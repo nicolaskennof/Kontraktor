@@ -20,6 +20,7 @@
   },
   "dependencies": {
     "express": "^4.16.3",
+    "gridfs-stream": "^1.1.1",
     "if-env": "^1.0.4",
     "mongoose": "^5.4.5"
   }

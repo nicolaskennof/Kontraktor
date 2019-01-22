@@ -10,9 +10,9 @@ app.use(express.json());
 app.use(routes);
 
 // Serve up static assets (usually on heroku)
-if (process.env.NODE_ENV === "production") {
+/*if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
-}
+}*/
 
 // Connect to the Mongo DB
 var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/kontratado";

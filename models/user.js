@@ -1,16 +1,12 @@
 var mongoose = require("mongoose");
 
-
-
 var Schema = mongoose.Schema;
 
-
 var UserSchema = new Schema({
-    // `title` is required and of type String
     username: {
         type: String,
-        required: true,    
-        unique: true,    
+        required: true,
+        unique: true
     },
 
     email: {
@@ -18,23 +14,28 @@ var UserSchema = new Schema({
         required: true,
         match: [/.+@.+\..+/, "Please enter a valid e-mail address"],
         trim: true,
-        unique: true,
+        unique: true
     },
-    
-    password:{
-        type: String,
-        required: true,
-    }
 
+    favourites: [
+        {
+            type: Schema.Types.ObjectId,
+            ref: "Favourite"
+        }
+    ],
 
-    });
+    visits: [
+        {
+            type: Schema.Types.ObjectId,
+            ref: "Visit"
+        }
+    ]
 
+});
 
+var User = mongoose.model("User", UserSchema);
 
-    var User = mongoose.model("User", UserSchema);
+module.exports = User;
 
-    // Export the User model
-    module.exports = User;
-    
 
 
