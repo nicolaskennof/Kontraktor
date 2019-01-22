@@ -1,10 +1,14 @@
 // Exporting an object containing all of our models
 
 module.exports = {
-    Kontratado: require("./Kontratado"),
-    Rates: require("./Rates"),
-    User: require("./User"),
-    Favoritos: require("./Favoritos"),
-    Mensajes: require("/Mensajes")
-  };
-  
+  CostRate: require("./costRate"),
+  Favourite: require("./favourite"),
+  Hire: require("./hire"),
+  Kontratado: require("./kontratado"),
+  KontratadoLogin: require("./kontratadoLogin"),
+  Message: require("./message"),
+  QualityRate: require("./qualityRate"),
+  Review: require("./review"),
+  User: require("./user"),
+  Visit: require("visit")
+};
