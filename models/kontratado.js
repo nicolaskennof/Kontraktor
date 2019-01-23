@@ -1,15 +1,12 @@
 var mongoose = require("mongoose");
 
-
-
 var Schema = mongoose.Schema;
 
-
 var KontratadoSchema = new Schema({
-    // `title` is required and of type String
+    
     firstName: {
         type: String,
-        required: true,        
+        required: true,
     },
 
     lastName: {
@@ -17,55 +14,82 @@ var KontratadoSchema = new Schema({
         required: true,
     },
 
-    userName:{
+    userName: {
         type: String,
         required: true,
     },
 
-    password: {
-        type:String,
-        required: true,
-    },
-
-    profession:{
-        type: Schema.Types.ObjectId, ref: "Profession",
-        required: true,
-    },
-
-    timesHired:{
-        type: Number,
-        required: false,
-        default: 0,
-    },
-
-    state:{
+    profession: {
         type: String,
         required: true,
     },
-    city:{
+
+    state: {
         type: String,
         required: true,
     },
-    area:{
+
+    city: {
         type: String,
         required: true,
     },
-    contactPhone:{
+
+    area: {
+        type: String,
+        required: true,
+    },
+
+    contactPhone: {
         type: String,
         required: false,
     },
-    pictures:{
-        type: String,
-        required: false,
-    }});
 
+    kontratadoLogin: { type: Schema.Types.ObjectId, ref: 'KontratadoLogin' },
 
+    reviews: [
+        {
+            type: Schema.Types.ObjectId,
+            ref: "Review"
+        }
+    ],
 
-    var Kontratado = mongoose.model("Kontratado", KontratadoSchema);
+    visits: [
+        {
+            type: Schema.Types.ObjectId,
+            ref: "Visit"
+        }
+    ],
 
-    // Export the Kontratado model
-    module.exports = Kontratado;
-    
+    hires: [
+        {
+            type: Schema.Types.ObjectId,
+            ref: "Hire"
+        }
+    ],
 
+    messages: [
+        {
+            type: Schema.Types.ObjectId,
+            ref: "Message"
+        }
+    ],
 
-// agregar varias areas
+    costRates: [
+        {
+            type: Schema.Types.ObjectId,
+            ref: "CostRate"
+        }
+    ],
+
+    qualityRates: [
+        {
+            type: Schema.Types.ObjectId,
+            ref: "QualityRate"
+        }
+    ]
+
+});
+
+var Kontratado = mongoose.model("Kontratado", KontratadoSchema);
+
+module.exports = Kontratado;
