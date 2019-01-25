@@ -29,6 +29,13 @@ var UserSchema = new Schema({
             type: Schema.Types.ObjectId,
             ref: "Visit"
         }
+    ],
+
+    messages : [
+        {
+            type: Schema.Types.ObjectId,
+            ref: "Message"
+        }
     ]
 
 });
