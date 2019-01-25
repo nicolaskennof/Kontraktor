@@ -16,14 +16,12 @@ module.exports = {
             console.log("we are on getbyId");
             if(req.params.id){
                 db.Kontratado
-                .findOne({_id: req.params.id}).populate("CostRate")
+                .findOne({_id: req.params.id})
+                .populate("costRates")
                 .then(dbModel => res.json(dbModel))
                 .catch(err => res.status(422).json(err.message));
             }
-            },
-    
-        
-        
+            },    
         
         }
 

@@ -3,7 +3,8 @@ var mongoose = require("mongoose");
 var fs = require("fs");
 
 module.exports = {
-    create: (req, res) => {}
+    create: (req, res) => {}, 
+    getImage: (req,res) =>{}
      /*   var filesrc = path.join(__dirname, "../", req.file.path);
 
         //Modify this to use multer. 
