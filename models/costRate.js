@@ -3,7 +3,7 @@ var Schema = mongoose.Schema;
 
 var CostRateSchema = new Schema({
 
-    cost: {
+    costRating: {
         type: Number,
         required : true
     },

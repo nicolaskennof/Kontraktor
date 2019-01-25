@@ -1,10 +1,10 @@
 var mongoose = require("mongoose");
-var path = require("path");
+//var path = require("path");
 var fs = require("fs");
 
 module.exports = {
-    create: (req, res) => {
-        var filesrc = path.join(__dirname, "../", req.file.path);
+    create: (req, res) => {}
+     /*   var filesrc = path.join(__dirname, "../", req.file.path);
 
         //Modify this to use multer. 
         var bucket = new mongoose.mongo.GridFSBucket(mongoose.connection.db, { bucketName: 'fs' });
@@ -33,8 +33,8 @@ module.exports = {
                 res.send(chunks[0].data.buffer);
             })
         })
-
+*/
 
 
     }
-}
+//}
