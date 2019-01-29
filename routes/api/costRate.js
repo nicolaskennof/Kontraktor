@@ -6,9 +6,12 @@ router.route("/")
 .post(costRateController.insertcostRate);
 
 
+router.route("/:id")
+  .post(costRateController.editCostRate);
 
 
-
+  router.route("/delete/:id")
+  .delete(costRateController.deleteCostRate);
 
 
 

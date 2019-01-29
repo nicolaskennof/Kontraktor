@@ -1,0 +1,45 @@
+var db = require("../models");
+
+
+module.exports = {
+    insertQualityRate: (req, res) => {
+        console.log("we getting here");
+
+        if (req.body.quality && req.body.kontratado && req.body.user) {
+            db.QualityRate
+                .create(req.body)
+                .then(dbModel => {
+                        db.Kontratado.findOneAndUpdate({ _id: dbModel.kontratado }, { $push: { qualityRates: dbModel._id } }, { new: true })
+                            .then(updated => {
+                                res.status(200).json(dbModel);
+                                   })
+                    })
+                .catch(err => res.status(422).json(err.message));
+
+
+
+        }
+
+
+
+
+
+
+    },
+    editQualityRate: (req,res)=>{
+        if(req.body.quality && req.params.id) {
+            db.QualityRate
+            .findOneAndUpdate({_id: req.params.id }, { quality: req.body.quality })
+            .then( dbModel => {
+                db.Kontratado.findOneAndUpdate({ _id: dbModel.kontratado },  { qualityRates: dbModel._id } )
+                .then(updated => {
+                res.status(200).json(dbModel);
+                   })
+                })
+    
+.catch(err => res.status(422).json(err.message));
+}
+        }
+}
+
+
