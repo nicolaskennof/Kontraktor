@@ -17,6 +17,10 @@ module.exports = {
             db.Kontratado
                 .findOne({ _id: req.params.id })
                 .populate("costRates")
+                .populate("reviews")
+                .populate("messages")
+                .populate("qualityRates")
+                .populate("hires")
                 .then(dbModel => res.json(dbModel))
                 .catch(err => res.status(422).json(err.message));
         }
