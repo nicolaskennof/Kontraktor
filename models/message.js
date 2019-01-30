@@ -13,6 +13,11 @@ var MessageSchema = new Schema({
         required : true
     },
 
+    isUserMessage: {
+        type: Boolean,
+        required: true
+    },
+
     kontratado : {
         type: Schema.Types.ObjectId, ref: "Kontratado",
     },

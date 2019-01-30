@@ -8,9 +8,4 @@ router.route("/")
 router.route("/:id")
   .get(kontratadoController.getbyId);
 
-  
-
-
-  
-
 module.exports = router;
