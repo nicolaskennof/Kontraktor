@@ -6,6 +6,7 @@ const review = require("./review");
 const message = require ("./message");
 const qualityRate = require ("./qualityRate");
 const hire = require ("./hire");
+const favouriteRoutes = require("./favourite");;
 const facebookRoutes = require("./facebookLogin");
 
 
@@ -17,6 +18,7 @@ router.use("/message", message);
 router.use("/qualityRate", qualityRate);
 router.use("/hire", hire);
 router.use("/v1/auth/facebook", facebookRoutes);
+router.use("/favourite", favouriteRoutes);
 
 
 module.exports = router;

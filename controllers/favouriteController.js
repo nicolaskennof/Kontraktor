@@ -1,13 +1,12 @@
 var db = require("../models");
 
-
 module.exports = {
-    insertHire: (req, res) => {
+    insertFavourite: (req, res) => {
         if (req.body.kontratado && req.body.user) {
-            db.Hire
+            db.Favourite
                 .create(req.body)
                 .then(dbModel => {
-                    db.Kontratado.findOneAndUpdate({ _id: dbModel.kontratado }, { $push: { hires: dbModel._id } }, { new: true })
+                    db.User.findOneAndUpdate({ _id: dbModel.user }, { $push: { favourites: dbModel._id } }, { new: true })
                         .then(updated => {
                             res.status(200).json(dbModel);
                         })
@@ -16,5 +15,3 @@ module.exports = {
         }
     }
 }
-
-

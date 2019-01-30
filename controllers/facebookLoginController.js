@@ -1,3 +1,5 @@
+var db = require("../models");
+
 module.exports = {
     login: (req, res, next) => {
         if (!req.user) {
@@ -8,5 +10,17 @@ module.exports = {
         };
 
         next();
+    },
+
+    getUserById: (req,res) => {
+        let id = req.params.id;
+        if (id){
+            db.User.findById(id)
+                .populate({ path:"messages", populate : {path : "kontratado"}})
+                .populate({ path:"favourites", populate : {path : "kontratado"}})
+                .then(user => {
+                    res.status(200).json(user);
+                })
+        }
     }
 }

@@ -8,4 +8,7 @@ router.route("/")
 .post(passport.authenticate('facebook-token', {session: false}),
     facebookLoginController.login, generateToken, sendToken);
 
+router.route("/:id")
+  .get(facebookLoginController.getUserById);
+
 module.exports = router;

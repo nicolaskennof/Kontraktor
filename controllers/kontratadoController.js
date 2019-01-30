@@ -16,11 +16,11 @@ module.exports = {
         if (req.params.id) {
             db.Kontratado
                 .findOne({ _id: req.params.id })
-                .populate("costRates")
-                .populate("reviews")
-                .populate("messages")
-                .populate("qualityRates")
-                .populate("hires")
+                .populate({ path : "costRates", populate : { path : "user" }})
+                .populate({ path : "reviews", populate : { path : "user" }})
+                .populate({ path : "messages", populate : { path : "user" }})
+                .populate({ path : "qualityRates", populate : { path : "user" }})
+                .populate({ path : "hires", populate : { path : "user" }})
                 .then(dbModel => res.json(dbModel))
                 .catch(err => res.status(422).json(err.message));
         }
