@@ -247,15 +247,15 @@ db.Hire
 
 const FavouriteSeed = [
   {
-    _id: ObjectId("5c50e5b37764a03ad83aaf0e"),
-    kontratado: ObjectId("5c50dd7e2e135134edee9a47"),
-    user: ObjectId("REEMPLAZAR"),
+    _id: mongoose.mongo.ObjectId("5c50e5b37764a03ad83aaf0e"),
+    kontratado: mongoose.mongo.ObjectId("5c50dd7e2e135134edee9a47"),
+    user: mongoose.mongo.ObjectId("REEMPLAZAR"),
     __v: 0
   },
   {
-    _id: ObjectId("5c52381c26d8344aea5a6e34"),
-    kontratado: ObjectId("5c50dddb2e135134edee9a48"),
-    user: ObjectId("REEMPLAZAR"),
+    _id: mongoose.mongo.ObjectId("5c52381c26d8344aea5a6e34"),
+    kontratado: mongoose.mongo.ObjectId("5c50dddb2e135134edee9a48"),
+    user: mongoose.mongo.ObjectId("REEMPLAZAR"),
     __v: 0
   }
 ]
