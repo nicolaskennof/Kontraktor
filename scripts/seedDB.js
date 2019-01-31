@@ -87,14 +87,14 @@ db.Kontratado
         _id : mongoose.mongo.ObjectId("5c50df87ff467935f0f4e56e"),
         costRating : 3,
         kontratado : mongoose.mongo.ObjectId("5c50dd7e2e135134edee9a47"),
-        user : mongoose.mongo.ObjectId("5c50a78d8d01d0300099ad66"),
+        user : mongoose.mongo.ObjectId("5c52567b4643c206b8f47e45"),
         __v : 0
      },
      {
         _id : mongoose.mongo.ObjectId("5c52377126d8344aea5a6e2e"),
         costRating : 4,
         kontratado : mongoose.mongo.ObjectId("5c50dddb2e135134edee9a48"),
-        user : mongoose.mongo.ObjectId("5c50a78d8d01d0300099ad66"),
+        user : mongoose.mongo.ObjectId("5c52567b4643c206b8f47e45"),
         __v : 0
      }
   ];
@@ -117,7 +117,7 @@ db.Kontratado
         _id : mongoose.mongo.ObjectId("5c50e17ce850f73788c93b26"),
         review : "Me gusto mucho su trabajo, muy guapeton",
         kontratado : mongoose.mongo.ObjectId("5c50dd7e2e135134edee9a47"),
-        user : mongoose.mongo.ObjectId("5c50a78d8d01d0300099ad66"),
+        user : mongoose.mongo.ObjectId("5c52567b4643c206b8f47e45"),
         review_date : new Date,
         __v : 0
      },
@@ -125,7 +125,7 @@ db.Kontratado
         _id : mongoose.mongo.ObjectId("5c52378e26d8344aea5a6e2f"),
         review : "Trabaja como los dioses, se los recomiendo mucho.",
         kontratado : mongoose.mongo.ObjectId("5c50dddb2e135134edee9a48"),
-        user : mongoose.mongo.ObjectId("5c50a78d8d01d0300099ad66"),
+        user : mongoose.mongo.ObjectId("5c52567b4643c206b8f47e45"),
         review_date : new Date,
         __v : 0
      }
@@ -152,7 +152,7 @@ db.Kontratado
         _id : mongoose.mongo.ObjectId("5c50e2cdf523b138be3dee68"),
         message : "Oye, me podrás ayudar hoy por la noche?",
         kontratado : mongoose.mongo.ObjectId("5c50dd7e2e135134edee9a47"),
-        user : mongoose.mongo.ObjectId("5c50a78d8d01d0300099ad66"),
+        user : mongoose.mongo.ObjectId("5c52567b4643c206b8f47e45"),
         isUserMessage : true,
         message_date : new Date,
         __v : 0
@@ -161,7 +161,7 @@ db.Kontratado
         _id : mongoose.mongo.ObjectId("5c50e67618f97b3b625de080"),
         message : "Claro que por supuesto que no",
         kontratado : mongoose.mongo.ObjectId("5c50dd7e2e135134edee9a47"),
-        user : mongoose.mongo.ObjectId("5c50a78d8d01d0300099ad66"),
+        user : mongoose.mongo.ObjectId("5c52567b4643c206b8f47e45"),
         isUserMessage : false,
         message_date : new Date,
         __v : 0
@@ -170,7 +170,7 @@ db.Kontratado
         _id : mongoose.mongo.ObjectId("5c5237e126d8344aea5a6e30"),
         message : "Hola Froy estas ocupado esta mañana",
         kontratado : mongoose.mongo.ObjectId("5c50dddb2e135134edee9a48"),
-        user : mongoose.mongo.ObjectId("5c50a78d8d01d0300099ad66"),
+        user : mongoose.mongo.ObjectId("5c52567b4643c206b8f47e45"),
         isUserMessage : true,
         message_date : new Date,
         __v : 0
@@ -179,7 +179,7 @@ db.Kontratado
         _id : mongoose.mongo.ObjectId("5c5237f726d8344aea5a6e31"),
         message : "No, en que le puedo ayudar?",
         kontratado : mongoose.mongo.ObjectId("5c50dddb2e135134edee9a48"),
-        user : mongoose.mongo.ObjectId("5c50a78d8d01d0300099ad66"),
+        user : mongoose.mongo.ObjectId("5c52567b4643c206b8f47e45"),
         isUserMessage : false,
         message_date : new Date,
         __v : 0
@@ -205,14 +205,14 @@ db.Kontratado
         _id : mongoose.mongo.ObjectId("5c50e43eeabd4b39537efaf2"),
         quality : 4,
         kontratado : mongoose.mongo.ObjectId("5c50dd7e2e135134edee9a47"),
-        user : mongoose.mongo.ObjectId("5c50a78d8d01d0300099ad66"),
+        user : mongoose.mongo.ObjectId("5c52567b4643c206b8f47e45"),
         __v : 0
      },
      {
         _id : mongoose.mongo.ObjectId("5c52380426d8344aea5a6e32"),
         quality : 5,
         kontratado : mongoose.mongo.ObjectId("5c50dddb2e135134edee9a48"),
-        user : mongoose.mongo.ObjectId("5c50a78d8d01d0300099ad66"),
+        user : mongoose.mongo.ObjectId("5c52567b4643c206b8f47e45"),
         __v : 0
      }
 
@@ -236,14 +236,14 @@ db.Kontratado
     {
         _id : mongoose.mongo.ObjectId("5c50e49286ba6539a6ba05ac"),
         kontratado : mongoose.mongo.ObjectId("5c50dd7e2e135134edee9a47"),
-        user : mongoose.mongo.ObjectId("5c50a78d8d01d0300099ad66"),
+        user : mongoose.mongo.ObjectId("5c52567b4643c206b8f47e45"),
         hire_date : new Date,
         __v : 0
      },
      {
         _id : mongoose.mongo.ObjectId("5c52380d26d8344aea5a6e33"),
         kontratado : mongoose.mongo.ObjectId("5c50dddb2e135134edee9a48"),
-        user : mongoose.mongo.ObjectId("5c50a78d8d01d0300099ad66"),
+        user : mongoose.mongo.ObjectId("5c52567b4643c206b8f47e45"),
         hire_date : new Date,
         __v : 0
      }

@@ -13,8 +13,4 @@ export default {
     return axios.post("/api/kontratado/", kontratado);
   },
 
-  
-
-
-
 };
