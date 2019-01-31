@@ -16,15 +16,7 @@ module.exports = {
                     })
                 .catch(err => res.status(422).json(err.message));
 
-
-
         }
-
-
-
-
-
-
     },
     editQualityRate: (req,res)=>{
         if(req.body.quality && req.params.id) {
@@ -39,7 +31,17 @@ module.exports = {
     
 .catch(err => res.status(422).json(err.message));
 }
-        }
+        },
+
+        deleteQualityRate:(req,res) =>{
+            if(req.params.id){
+                db.QualityRate
+                .findOneAndDelete({_id: req.params.id})
+                .then(dbModel => {
+                    db.Kontratado.findOneAndUpdate({ _id: dbModel.kontratado }, {qualityRates: req.params.id} )
+                    .then(updated => {
+                    res.status(200).json(dbModel);
+                    })})
+}   }
+
 }
-
-

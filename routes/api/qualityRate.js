@@ -10,4 +10,7 @@ router.route("/:id")
   .post(qualityRateController.editQualityRate);
 
 
+  router.route("/delete/:id")
+  .delete(qualityRateController.deleteQualityRate);
+
 module.exports = router;
