@@ -53,13 +53,6 @@ var KontratadoSchema = new Schema({
         }
     ],
 
-    visits: [
-        {
-            type: Schema.Types.ObjectId,
-            ref: "Visit"
-        }
-    ],
-
     hires: [
         {
             type: Schema.Types.ObjectId,

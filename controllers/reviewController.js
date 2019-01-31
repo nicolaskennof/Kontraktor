@@ -10,7 +10,6 @@ module.exports = {
             db.Review
                 .create(req.body)
                 .then(
-
                     dbModel => {
                         console.log(dbModel);
                         db.Kontratado.findOneAndUpdate({ _id: dbModel.kontratado }, { $push: { reviews: dbModel._id } }, { new: true })
@@ -19,7 +18,6 @@ module.exports = {
                                 res.status(200).json(dbModel);
                             })
                     }
-
                 )
                 .catch(err => res.status(422).json(err.message));
         }
