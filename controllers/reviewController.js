@@ -14,39 +14,42 @@ module.exports = {
                     dbModel => {
                         console.log(dbModel);
                         db.Kontratado.findOneAndUpdate({ _id: dbModel.kontratado }, { $push: { reviews: dbModel._id } }, { new: true })
-                        
+
                             .then(updated => {
                                 res.status(200).json(dbModel);
-                                   })
+                            })
                     }
-                                 
-                     )
+
+                )
                 .catch(err => res.status(422).json(err.message));
-                }  },
+        }
+    },
 
-                    editReview: (req,res)=>{
-                                if(req.body.review && req.params.id) {
-                                    db.Review
-                                    .findOneAndUpdate({_id: req.params.id }, { review: req.body.review })
-                                    .then( dbModel => {
-                                        db.Kontratado.findOneAndUpdate({ _id: dbModel.kontratado },  { reviews: dbModel._id } )
-                                        .then(updated => {
-                                        res.status(200).json(dbModel);
-                                        })
-                                        })
-                            
-                        .catch(err => res.status(422).json(err.message));
-                        }
-                    },
+    editReview: (req, res) => {
+        if (req.body.review && req.params.id) {
+            db.Review
+                .findOneAndUpdate({ _id: req.params.id }, { review: req.body.review })
+                .then(dbModel => {
+                    db.Kontratado.findOneAndUpdate({ _id: dbModel.kontratado }, { reviews: dbModel._id })
+                        .then(updated => {
+                            res.status(200).json(dbModel);
+                        })
+                })
 
-                    deleteReview:(req,res) =>{
-                                if(req.params.id){
-                                    db.Review
-                                    .findOneAndDelete({_id: req.params.id})
-                                    .then(dbModel => {
-                                        db.Kontratado.findOneAndUpdate({ _id: dbModel.kontratado }, {reviews: req.params.id} )
-                                        .then(updated => {
-                                        res.status(200).json(dbModel);
-                                        })})
-}   }
-                }
+                .catch(err => res.status(422).json(err.message));
+        }
+    },
+
+    deleteReview: (req, res) => {
+        if (req.params.id) {
+            db.Review
+                .findOneAndDelete({ _id: req.params.id })
+                .then(dbModel => {
+                    db.Kontratado.findOneAndUpdate({ _id: dbModel.kontratado }, { reviews: req.params.id })
+                        .then(updated => {
+                            res.status(200).json(dbModel);
+                        })
+                })
+        }
+    }
+}
