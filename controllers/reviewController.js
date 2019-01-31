@@ -36,6 +36,18 @@ module.exports = {
 
                 .catch(err => res.status(422).json(err.message));
         }
-    }
+    },
 
+    deleteReview: (req, res) => {
+        if (req.params.id) {
+            db.Review
+                .findOneAndDelete({ _id: req.params.id })
+                .then(dbModel => {
+                    db.Kontratado.findOneAndUpdate({ _id: dbModel.kontratado }, { reviews: req.params.id })
+                        .then(updated => {
+                            res.status(200).json(dbModel);
+                        })
+                })
+        }
+    }
 }

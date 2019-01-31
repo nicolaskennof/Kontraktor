@@ -39,11 +39,11 @@ module.exports = {
             db.CostRate
                 .findOneAndDelete({ _id: req.params.id })
                 .then(dbModel => {
-                    db.Kontratado.findOneAndDelete({ _id: dbModel.kontratado }, { costRates: req.params.id })
-                        .then(updated => {
-                            res.status(200).json(dbModel);
-                        })
-                })
+
+                    db.Kontratado.findOneAndUpdate({ _id: dbModel.kontratado }, {costRates: req.params.id} )
+                    .then(updated => {
+                    res.status(200).json(dbModel);
+                       })})
+            }
         }
-    }
 }
