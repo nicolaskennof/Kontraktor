@@ -25,10 +25,10 @@ module.exports = {
                         .then(updated => {
                             res.status(200).json(dbModel);
                         })
-
-
+                    })
                 .catch(err => res.status(422).json(err.message));
         }
+
     },
 
 
