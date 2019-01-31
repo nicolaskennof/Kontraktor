@@ -62,11 +62,11 @@ class App extends Component {
       ) : (
         <div>
           <BeforeLogin />
-          {/* <FacebookLogin
+          <FacebookLogin
             appId={config.FACEBOOK_APP_ID}
             autoLoad={false}
             fields="name,email,picture"
-            callback={this.facebookResponse} /> */}
+            callback={this.facebookResponse} />
         </div>
       );
 
