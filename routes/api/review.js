@@ -7,4 +7,7 @@ router.route("/")
 router.route("/:id")
   .post(reviewController.editReview);
 
+ router.route("/delete/:id")
+  .delete(reviewController.deleteReview);
+
 module.exports = router;
