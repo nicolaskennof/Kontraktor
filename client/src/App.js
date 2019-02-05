@@ -1,6 +1,4 @@
 import React, { Component } from "react";
-import FacebookLogin from 'react-facebook-login';
-import config from './config.json';
 import BeforeLogin from './Components/beforeLogin/beforeLogin'
 
 class App extends Component {
@@ -65,11 +63,7 @@ class App extends Component {
       ) : (
         <div>
           <BeforeLogin />
-          <FacebookLogin
-            appId={config.FACEBOOK_APP_ID}
-            autoLoad={false}
-            fields="name,email,picture"
-            callback={this.facebookResponse} />
+          
         </div>
       );
 
