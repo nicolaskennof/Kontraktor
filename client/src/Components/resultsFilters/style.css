@@ -1,0 +1,26 @@
+.filtersBtn {
+    background: #494949;
+    width:30%;
+}
+
+.filtersBtn:hover {
+    background: #FBBC04;
+}
+
+.filtersBtn:focus,.filtersBtn:active {
+    background: #FBBC04;
+}
+
+.filtersWrapper {
+    border: 1px dotted #494949;
+    width: 100%
+}
+
+.filterText {
+    width: 20%
+}
+
+.btn:focus,.btn:active {
+    outline: none !important;
+    box-shadow: none;
+ }
