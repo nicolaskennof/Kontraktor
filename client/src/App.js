@@ -1,7 +1,6 @@
 import React, { Component } from "react";
-import FacebookLogin from 'react-facebook-login';
-import config from './config.json';
 import BeforeLogin from './Components/beforeLogin/beforeLogin'
+import AfterLogin from './Components/afterLogin/afterLogin'
 
 class App extends Component {
 
@@ -35,7 +34,6 @@ class App extends Component {
       cache: 'default'
     };
     fetch('/api/v1/auth/facebook', options).then(r => {
-      console.log(r);
       const token = r.headers.get('x-auth-token');
       r.json().then(user => {
         if (token) {
@@ -52,21 +50,22 @@ class App extends Component {
           <p>Authenticated</p>
           <div>
             {this.state.user.email}
+            <img src={`https://graph.facebook.com/${this.state.user.facebookProvider.id}/picture?type=square`} alt=""></img>
           </div>
           <div>
             <button onClick={this.logout} className="button">
               Log out
             </button>
           </div>
+          <div>
+          <AfterLogin />
+          </div>
+          
         </div>
       ) : (
         <div>
-          <BeforeLogin />
-          <FacebookLogin
-            appId={config.FACEBOOK_APP_ID}
-            autoLoad={false}
-            fields="name,email,picture"
-            callback={this.facebookResponse} />
+          <BeforeLogin facebookResponse={this.facebookResponse} />
+
         </div>
       );
 
