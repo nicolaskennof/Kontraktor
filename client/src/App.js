@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import FacebookLogin from 'react-facebook-login';
 import config from './config.json';
 import BeforeLogin from './Components/beforeLogin/beforeLogin'
+import UserIn from './Components/userIn/userIn'
 
 class App extends Component {
 
@@ -67,6 +68,7 @@ class App extends Component {
             autoLoad={false}
             fields="name,email,picture"
             callback={this.facebookResponse} />
+          <UserIn />
         </div>
       );
 
