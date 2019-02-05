@@ -1,0 +1,33 @@
+.search-container {
+    justify-content: center;
+}
+
+.card-container {
+    width:60%;
+    border:2px solid #000;
+    margin-top: 10px;
+    text-align: center;
+}
+
+.card-body {
+    padding: 0.25rem;
+}
+
+.card-title {
+    font-weight: bold !important;
+
+}
+
+.card-subtitle {
+    font-weight: bold !important;
+    color: #000 !important;
+}
+
+.card-search-container{
+    width: 60%;
+    border: none;
+}
+
+.w18 {
+    width:18px;
+}

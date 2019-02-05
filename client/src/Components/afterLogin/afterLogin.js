@@ -3,7 +3,7 @@ import NavBarUser from "../navBars/navBarUser"
 import LogInCardsWrapper from "../infoCardsWrapper/logInCardsWrapper"
 import ImgCarousel from '../carousel/carousel'
 
-function UserIn(props) {
+function AfterLogin(props) {
     return (
 
         <div>
@@ -18,4 +18,4 @@ function UserIn(props) {
         </div>
     )
 }
-export default UserIn;
+export default AfterLogin;

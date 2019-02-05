@@ -23,7 +23,7 @@ function NavBarStart(props) {
                 </Navbar.Brand>
                 <div className="signInWrapper">
                     <div className="buttonSignIn">
-                        <Button className="buttonMargin" href="#" variant="outline-warning">Sign in</Button>
+                        <Button className="buttonMargin" variant="outline-warning">Sign in</Button>
                         <Button href="#" variant="outline-warning">Sign up</Button>
                     </div>
                 </div>
