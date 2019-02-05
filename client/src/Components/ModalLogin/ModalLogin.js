@@ -1,8 +1,8 @@
 import React, {Component} from "react";
 import FacebookLogin from 'react-facebook-login';
 import config from '../../config.json';  
-import {Modal,Button} from "react-bootstrap"
-import classes from "./Style.css"
+import {Modal} from "react-bootstrap"
+import  "./Style.css"
 class ModalLogin extends Component{
 constructor(props) {
   super(props)
@@ -31,7 +31,7 @@ handleOptionChange(changeEvent){
         appId={config.FACEBOOK_APP_ID}
         autoLoad={false}
         fields="name,email,picture"
-        callback={this.facebookResponse} 
+        callback={this.props.facebookResponse} 
         textButton="Registrate con Facebook"/>;       
     } 
     if (this.state.selectedOption === 'B') {
@@ -39,7 +39,7 @@ handleOptionChange(changeEvent){
     }
 return (
 
-        <div class="container">
+        <div className="container">
         <button onClick={this.handleShow}>log in</button>
 
             <Modal show={this.state.show} onHide={this.handleClose}>
@@ -49,9 +49,9 @@ return (
         
                 <Modal.Body>
                     <input variant="secondary" type="radio" value="A" checked={this.state.selectedOption ==='A'} onChange={this.handleOptionChange} /> 
-                        <span class="options-text marR64">Quiero Contratar</span>
+                        <span className="options-text marR64">Quiero Contratar</span>
                     <input variant="primary" type="radio" value="B" checked={this.state.selectedOption ==='B'} onChange={this.handleOptionChange}/>
-                        <span class="options-text">Quiero Trabajar</span>
+                        <span className="options-text">Quiero Trabajar</span>
                 </Modal.Body>
                 
                 <Modal.Footer>

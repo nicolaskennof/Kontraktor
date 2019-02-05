@@ -62,7 +62,7 @@ class App extends Component {
         </div>
       ) : (
         <div>
-          <BeforeLogin />
+          <BeforeLogin facebookResponse = {this.facebookResponse} />
           
         </div>
       );
