@@ -10,7 +10,7 @@ function BeforeLogin(props) {
         <div>
             <NavBarStart />
             <Search />
-            <ModalLogin />
+            <ModalLogin facebookResponse = {props.facebookResponse} />
             
             <br/>
             <br/>
