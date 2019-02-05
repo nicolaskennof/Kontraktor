@@ -19,7 +19,6 @@ var UserSchema = new Schema({
             id: String,
             token: String
         },
-        select: false
     },
 
     favourites: [

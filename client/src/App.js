@@ -35,7 +35,6 @@ class App extends Component {
       cache: 'default'
     };
     fetch('/api/v1/auth/facebook', options).then(r => {
-      console.log(r);
       const token = r.headers.get('x-auth-token');
       r.json().then(user => {
         if (token) {
@@ -52,11 +51,15 @@ class App extends Component {
           <p>Authenticated</p>
           <div>
             {this.state.user.email}
+            <img src={`https://graph.facebook.com/${this.state.user.facebookProvider.id}/picture?type=square`} alt=""></img>
           </div>
           <div>
             <button onClick={this.logout} className="button">
               Log out
             </button>
+          </div>
+          <div>
+
           </div>
         </div>
       ) : (
