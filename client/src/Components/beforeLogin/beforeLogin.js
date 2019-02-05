@@ -11,7 +11,6 @@ function BeforeLogin(props) {
             <NavBarStart />
             <Search />
             <ModalLogin facebookResponse = {props.facebookResponse} />
-            
             <br/>
             <br/>
             <InfoCardsWrapper />
