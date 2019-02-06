@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import FacebookLogin from 'react-facebook-login';
-import config from './config.json';
+import BeforeLogin from './Components/beforeLogin/beforeLogin'
+import AfterLogin from './Components/afterLogin/afterLogin'
 
 class App extends Component {
 
@@ -13,7 +13,7 @@ class App extends Component {
     };
   }
 
-  logout = () => {
+  facebookLogout = () => {
     this.setState({
       isAuthenticated: false,
       token: '',
@@ -34,9 +34,8 @@ class App extends Component {
       cache: 'default'
     };
     fetch('/api/v1/auth/facebook', options).then(r => {
-    console.log(r);
-    const token = r.headers.get('x-auth-token');  
-    r.json().then(user => {
+      const token = r.headers.get('x-auth-token');
+      r.json().then(user => {
         if (token) {
           this.setState({ isAuthenticated: true, user, token })
         }
@@ -48,23 +47,11 @@ class App extends Component {
     let content = !!this.state.isAuthenticated ?
       (
         <div>
-          <p>Authenticated</p>
-          <div>
-            {this.state.user.email}
-          </div>
-          <div>
-            <button onClick={this.logout} className="button">
-              Log out
-            </button>
-          </div>
+          <AfterLogin facebookLogout = {this.facebookLogout} />
         </div>
       ) : (
         <div>
-          <FacebookLogin
-            appId={config.FACEBOOK_APP_ID}
-            autoLoad={false}
-            fields="name,email,picture"
-            callback={this.facebookResponse} />
+          <BeforeLogin facebookResponse={this.facebookResponse} />
         </div>
       );
 
