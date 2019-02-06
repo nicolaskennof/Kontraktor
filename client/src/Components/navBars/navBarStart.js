@@ -8,8 +8,6 @@ function NavBarStart(props) {
         <div>
             <Navbar bg="dark" variant="dark">
                 <Navbar.Brand href="#home">
-
-
                     <img
                         alt=""
                         src="/assets/img/helmet.png"
@@ -23,7 +21,7 @@ function NavBarStart(props) {
                 </Navbar.Brand>
                 <div className="signInWrapper">
                     <div className="buttonSignIn">
-                        <Button className="buttonMargin" variant="outline-warning">Sign in</Button>
+                        <Button className="buttonMargin" onClick={props.handleShow} variant="outline-warning">Sign in</Button>
                         <Button href="#" variant="outline-warning">Sign up</Button>
                     </div>
                 </div>

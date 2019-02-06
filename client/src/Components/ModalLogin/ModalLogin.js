@@ -7,17 +7,10 @@ import  "./Style.css"
 constructor(props) {
   super(props)
   this.handleOptionChange = this.handleOptionChange.bind(this)
-  this.handleShow = this.handleShow.bind(this)
-  this.handleClose = this.handleClose.bind(this)
 }
     
-state={selectedOption:'',show:false}    
-handleClose(){
-    this.setState({show:false});
-}
-handleShow(){
-    this.setState({show:true});
-}
+state={selectedOption:''}    
+
 handleOptionChange(changeEvent){
     this.setState({
         selectedOption: changeEvent.target.value
@@ -40,9 +33,8 @@ handleOptionChange(changeEvent){
 return (
 
         <div className="container">
-        <button onClick={this.handleShow}>log in</button>
 
-            <Modal show={this.state.show} onHide={this.handleClose}>
+            <Modal show={this.props.show} onHide={this.props.handleClose}>
                 <Modal.Header closeButton>
                     <Modal.Title>Registrate para comenzar</Modal.Title>
                 </Modal.Header>

@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import { Container, ButtonGroup, Button } from "react-bootstrap";
 import "./style.css"
 

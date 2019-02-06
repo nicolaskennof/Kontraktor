@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import { Container, Figure, Button } from "react-bootstrap";
 import Modals from "../modals/Modals"
 import "./style.css"

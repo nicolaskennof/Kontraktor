@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import { ButtonToolbar, Button, Modal, Form, Container } from "react-bootstrap";
 import MessageInChat from "../messageInChat/MessageInChat"
 import "./style.css"

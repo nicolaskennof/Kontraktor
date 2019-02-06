@@ -9,10 +9,10 @@ function AfterLogin(props) {
     return (
 
         <div>
-
             <NavBarUser />
             <br />
             <br />
+            <button onClick={props.facebookLogout} className="button">Log out</button>
             <ImgCarousel />
             <br />
             <LogInCardsWrapper />
