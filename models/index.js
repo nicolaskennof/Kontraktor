@@ -10,5 +10,7 @@ module.exports = {
   QualityRate: require("./qualityRate"),
   Review: require("./review"),
   User: require("./user"),
-  Visit: require("./visit")
+  Visit: require("./visit"),
+  State: require("./state"),
+  County: require("./county")
 };
