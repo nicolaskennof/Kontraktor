@@ -6,10 +6,4 @@ router.route("/")
 .post(messageController.insertMessage);
 
 
-
-
-
-
-
-
 module.exports = router;
