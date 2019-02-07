@@ -11,10 +11,8 @@ class StateSelector extends Component {
     }
 
     handleChange = (selectedOption) => {
-        /*let counties = this.state.states.filter(state=>{
-            return state.value === selectedOption.value;
-        })[0].counties;*/
         this.setState({ selectedOption });
+        this.props.getSelectedState(selectedOption);
     }
 
     componentDidMount() {

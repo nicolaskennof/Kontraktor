@@ -25,10 +25,7 @@ var KontratadoSchema = new Schema({
         required: true,
     },
 
-    state: {
-        type: String,
-        required: true,
-    },
+    state: { type: Schema.Types.ObjectId, ref: 'State' },
 
     city: {
         type: String,

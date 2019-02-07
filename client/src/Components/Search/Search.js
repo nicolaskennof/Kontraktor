@@ -1,14 +1,38 @@
 import React, { Component } from "react";
 import { Card, InputGroup, Button, FormControl } from "react-bootstrap";
 import "./search.css";
-import lupita from "../../img/lupita.png";
 import StateSelector from "../StateSelector/StateSelector";
+import API from "../../utils/API";
 
 class Search extends Component {
+	
 	state = {
+		searchProfession : '',
+		searchState : null
 	}
-	render() {
 
+	searchProfessionChangeHandler = (e) => {
+		this.setState({
+			searchProfession : e.target.value
+		});
+	}
+
+	searchClickHandler = () => {
+		API.getKontratadoByFilter({
+			searchProfession : this.state.searchProfession,
+			searchState : this.state.searchState.value
+		}).then(result=>{
+			console.log (result);
+		}).catch(err=> console.log(err));
+	}
+
+	getSelectedState = (selectedOption) => {
+		this.setState({
+			searchState : selectedOption
+		});
+	}
+
+	render() {
 		return (
 			<div className="search-container" align="center">
 				<Card className="card-container">
@@ -21,20 +45,15 @@ class Search extends Component {
 				<Card className="card-search-container">
 					<Card.Body className="row">
 						<InputGroup className="mb-3 col-6">
-							<InputGroup.Prepend>
-								<Button onClick={this.props.handleNameSearch} variant="outline-secondary"><img alt="" src={lupita} className="w18" ></img></Button>
-							</InputGroup.Prepend>
-							<FormControl placeholder="¿A quién buscas?" aria-describedby="basic-addon1" />
+							<FormControl value={this.state.searchProfession} onChange={this.searchProfessionChangeHandler} placeholder="¿Qué necesitas?" aria-describedby="basic-addon1" />
 						</InputGroup>
-
 						<InputGroup className="mb-3 col-6">
-							<StateSelector />
+							<StateSelector getSelectedState = {this.getSelectedState}/>
 						</InputGroup>
+						<Button onClick={()=>this.searchClickHandler()}>Submit form</Button>
 					</Card.Body>
 				</Card>
-
 			</div>
-
 		)
 	}
 }

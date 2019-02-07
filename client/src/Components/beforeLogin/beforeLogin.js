@@ -3,6 +3,7 @@ import NavBarStart from "../navBars/navBarStart"
 import InfoCardsWrapper from "../infoCardsWrapper/infoCardsWrapper"
 import ModalLogin from "../ModalLogin/ModalLogin"
 import Search from "../Search/Search"
+import WorkerProfileData from "../WorkerProfileData/WorkerProfileData"
 
 class BeforeLogin extends Component {
     
@@ -26,6 +27,7 @@ class BeforeLogin extends Component {
                 <br />
                 <br />
                 <InfoCardsWrapper />
+                <WorkerProfileData />
             </div>
         )
     }

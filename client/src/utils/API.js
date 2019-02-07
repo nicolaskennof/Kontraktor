@@ -9,6 +9,11 @@ export default {
   getKontratado: function(id){
     return axios.get("/api/kontratado/"+id);
   },
+
+  getKontratadoByFilter: function(filter){
+    return axios.post("/api/kontratado/filter", filter);
+  },
+
   createKontratado: function(kontratado){
     return axios.post("/api/kontratado/", kontratado);
   },
