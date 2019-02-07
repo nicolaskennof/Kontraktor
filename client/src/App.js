@@ -13,7 +13,7 @@ class App extends Component {
     };
   }
 
-  logout = () => {
+  facebookLogout = () => {
     this.setState({
       isAuthenticated: false,
       token: '',
@@ -47,25 +47,11 @@ class App extends Component {
     let content = !!this.state.isAuthenticated ?
       (
         <div>
-          <p>Authenticated</p>
-          <div>
-            {this.state.user.email}
-            <img src={`https://graph.facebook.com/${this.state.user.facebookProvider.id}/picture?type=square`} alt=""></img>
-          </div>
-          <div>
-            <button onClick={this.logout} className="button">
-              Log out
-            </button>
-          </div>
-          <div>
-          <AfterLogin />
-          </div>
-          
+          <AfterLogin facebookLogout = {this.facebookLogout} />
         </div>
       ) : (
         <div>
           <BeforeLogin facebookResponse={this.facebookResponse} />
-
         </div>
       );
 
