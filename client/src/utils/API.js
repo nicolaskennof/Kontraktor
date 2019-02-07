@@ -50,6 +50,10 @@ export default {
   },
   deleteReview: function(id){
     return axios.delete("/api/review/delete/"+id);
+  },
+
+  getStates: () => {
+    return axios.get("/api/state");
   }
 
   
