@@ -59,7 +59,9 @@ export default {
 
   getStates: () => {
     return axios.get("/api/state");
-  }
+  },
 
-  
+  getProfessions: () => {
+    return axios.get("api/profession");
+  }  
 };

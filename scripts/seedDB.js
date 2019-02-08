@@ -29,7 +29,7 @@ const kontratadoSeed = [
     firstName: "Francisco",
     lastName: "Gonzalez",
     userName: "franklin",
-    profession: "Albañil",
+    profession: mongoose.mongo.ObjectId("5c5cd03964456033ac212432"),
     state: mongoose.mongo.ObjectID("5c5b2f78cc485304b96cfc28"),
     city: "Monterrey",
     area: "Cumbres",
@@ -57,7 +57,7 @@ const kontratadoSeed = [
     firstName: "Froylan",
     lastName: "Vargas",
     userName: "fvargas",
-    profession: "Plomero Feliz",
+    profession: mongoose.mongo.ObjectId("5c5cd03964456033ac212434"),
     state: mongoose.mongo.ObjectID("5c5b2f78cc485304b96cfc1e"),
     city: "Ciudad de Mexico",
     area: "Tlalcoligia",
@@ -263,6 +263,32 @@ const FavouriteSeed = [
 db.Favourite
   .remove({})
   .then(() => db.Favourite.collection.insertMany(FavouriteSeed))
+  .then(data => {
+    console.log(data.result.n + " records inserted!");
+  })
+  .catch(err => {
+    console.error(err);
+  });
+
+const ProfessionSeed = [
+  { profession: "Plomero", _id: mongoose.mongo.ObjectId("5c5cd03964456033ac212432") },
+  { profession: "Techador", _id: mongoose.mongo.ObjectId("5c5cd03964456033ac212433") },
+  { profession: "Electricista", _id: mongoose.mongo.ObjectId("5c5cd03964456033ac212434") },
+  { profession: "Jardinero", _id: mongoose.mongo.ObjectId("5c5cd03964456033ac212435") },
+  { profession: "Paisajista", _id: mongoose.mongo.ObjectId("5c5cd03964456033ac212436") },
+  { profession: "Limpiador", _id: mongoose.mongo.ObjectId("5c5cd03964456033ac212437") },
+  { profession: "Remodelador", _id: mongoose.mongo.ObjectId("5c5cd03964456033ac212438") },
+  { profession: "Pintor", _id: mongoose.mongo.ObjectId("5c5cd03964456033ac212439") },
+  { profession: "Mantenedor", _id: mongoose.mongo.ObjectId("5c5cd03964456033ac21243a") },
+  { profession: "Fumigador", _id: mongoose.mongo.ObjectId("5c5cd03964456033ac21243b") },
+  { profession: "Instalador de aire acondicionado", _id: mongoose.mongo.ObjectId("5c5cd03964456033ac21243c") },
+  { profession: "Reparator de aire acondicionado", _id: mongoose.mongo.ObjectId("5c5cd03964456033ac21243d") },
+  { profession: "Cuidador de perro", _id: mongoose.mongo.ObjectId("5c5cd03964456033ac21243e") },
+]
+
+db.Profession
+  .remove({})
+  .then(() => db.Profession.collection.insertMany(ProfessionSeed))
   .then(data => {
     console.log(data.result.n + " records inserted!");
   })

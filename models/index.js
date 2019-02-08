@@ -12,5 +12,6 @@ module.exports = {
   User: require("./user"),
   Visit: require("./visit"),
   State: require("./state"),
-  County: require("./county")
+  County: require("./county"),
+  Profession: require("./profession")
 };

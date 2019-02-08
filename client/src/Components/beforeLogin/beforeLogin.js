@@ -9,14 +9,19 @@ import { Container } from "react-bootstrap";
 class BeforeLogin extends Component {
     
     state = {
-        show:false
+        show:false,
+        isSignup: false
     }
     
     handleClose = () =>{
         this.setState({show:false});
     }
-    handleShow = () => {
-        this.setState({show:true});
+    
+    handleShow = (isSignup) => {
+        this.setState({
+            isSignup,
+            show:true
+        });
     }
 
     render() {
@@ -25,12 +30,12 @@ class BeforeLogin extends Component {
                 <NavBarStart handleShow = {this.handleShow} />
                 <Container>
                 <Search />
-                <ModalLogin handleClose = {this.handleClose} show = {this.state.show} facebookResponse={this.props.facebookResponse} />
+                <ModalLogin logKontratado = {this.props.logKontratado} isSignup = {this.state.isSignup} handleClose = {this.handleClose} show = {this.state.show} facebookResponse={this.props.facebookResponse} />
                 <br />
                 <br />
                 <InfoCardsWrapper />
                 <br />
-                <WorkerProfileData />
+                <WorkerProfileData kontratado = {{firstName:"Nicolas", lastName:"Kennof"}} isSignup={false} />
                 </Container>
             </div>
         )

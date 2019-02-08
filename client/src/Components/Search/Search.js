@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Card, InputGroup, Button, FormControl } from "react-bootstrap";
 import "./search.css";
+import Professions from "../Professions/Professions";
 import StateSelector from "../StateSelector/StateSelector";
 import API from "../../utils/API";
 
@@ -8,28 +9,24 @@ class Search extends Component {
 	
 	state = {
 		searchProfession : '',
-		searchState : null
+		searchState : ''
 	}
 
-	searchProfessionChangeHandler = (e) => {
-		this.setState({
-			searchProfession : e.target.value
-		});
+	onProfessionChange = (searchProfession) => {
+		this.setState({searchProfession});
 	}
 
 	searchClickHandler = () => {
 		API.getKontratadoByFilter({
 			searchProfession : this.state.searchProfession,
-			searchState : this.state.searchState.value
+			searchState : this.state.searchState
 		}).then(result=>{
 			console.log (result);
 		}).catch(err=> console.log(err));
 	}
 
-	getSelectedState = (selectedOption) => {
-		this.setState({
-			searchState : selectedOption
-		});
+	onStateChange = (searchState) => {
+		this.setState({searchState});
 	}
 
 	render() {
@@ -45,10 +42,10 @@ class Search extends Component {
 				<Card className="card-search-container">
 					<Card.Body className="row">
 						<InputGroup className="mb-3 col-6">
-							<FormControl value={this.state.searchProfession} onChange={this.searchProfessionChangeHandler} placeholder="¿Qué necesitas?" aria-describedby="basic-addon1" />
+							<Professions onProfessionChange = {this.onProfessionChange} />
 						</InputGroup>
 						<InputGroup className="mb-3 col-6">
-							<StateSelector getSelectedState = {this.getSelectedState}/>
+							<StateSelector isSearch = {true} handleStateChange = {this.onStateChange}/>
 						</InputGroup>
 						<Button onClick={()=>this.searchClickHandler()}>Submit form</Button>
 					</Card.Body>

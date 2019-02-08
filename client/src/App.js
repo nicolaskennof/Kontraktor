@@ -7,17 +7,18 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-      isAuthenticated: false,
-      user: null,
+      isFacebookAuthenticated: false,
+      isKontratadoAuthenticated: false,
+      facebookUser: null,
       token: ''
     };
   }
 
   facebookLogout = () => {
     this.setState({
-      isAuthenticated: false,
+      isFacebookAuthenticated: false,
       token: '',
-      user: null
+      facebookUser: null
     });
   }
 
@@ -35,29 +36,46 @@ class App extends Component {
     };
     fetch('/api/v1/auth/facebook', options).then(r => {
       const token = r.headers.get('x-auth-token');
-      r.json().then(user => {
+      r.json().then(facebookUser => {
         if (token) {
-          this.setState({ isAuthenticated: true, user, token })
+          this.setState({ isFacebookAuthenticated: true, facebookUser, token })
         }
       });
     })
   };
 
-  render() {
-    let content = !!this.state.isAuthenticated ?
-      (
-        <div>
-          <AfterLogin facebookLogout = {this.facebookLogout} />
-        </div>
-      ) : (
-        <div>
-          <BeforeLogin facebookResponse={this.facebookResponse} />
-        </div>
-      );
+  logKontratado = () => {
+    this.setState({
+      isKontratadoAuthenticated : true
+    });
+  }
 
+  logOutKontratado = () => {
+    this.setState({
+      isKontratadoAuthenticated : false
+    });
+  }
+
+  chooseRender = () => {
+    if (this.state.isFacebookAuthenticated || this.state.isKontratadoAuthenticated){
+      if (this.state.isFacebookAuthenticated){
+        return <AfterLogin facebookLogout = {this.facebookLogout} />
+      } else {
+        return <div>
+          {/* Aqui va la página de AfterLoginKontratado */}
+          <h1>Hola Kontratado</h1>
+          <button onClick={this.logOutKontratado}>Adios paisano</button>
+        </div>
+      }
+    } else {
+      return <BeforeLogin logKontratado = {this.logKontratado} facebookResponse={this.facebookResponse} />
+    }
+  }
+
+  render() {
     return (
       <div className="App">
-        {content}
+        {this.chooseRender()}
       </div>
     )
   }

@@ -27,14 +27,16 @@ var KontratadoSchema = new Schema({
 
     state: { type: Schema.Types.ObjectId, ref: 'State' },
 
+    profession: { type: Schema.Types.ObjectId, ref: 'Profession' },
+
     city: {
         type: String,
         required: true,
     },
 
-    area: {
+    description: {
         type: String,
-        required: true,
+        required: true
     },
 
     contactPhone: {

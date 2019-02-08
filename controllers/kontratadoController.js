@@ -22,6 +22,8 @@ module.exports = {
                 .populate({ path: "messages", populate: { path: "user" } })
                 .populate({ path: "qualityRates", populate: { path: "user" } })
                 .populate({ path: "hires", populate: { path: "user" } })
+                .populate('state')
+                .populate('profession')
                 .then(dbModel => res.json(dbModel))
                 .catch(err => res.status(422).json(err.message));
         }
@@ -31,7 +33,7 @@ module.exports = {
         const { searchProfession, searchState } = req.body;
         const query = {
             $and: [
-                { profession: new RegExp(searchProfession, "i") },
+                { profession: searchProfession },
                 { state: searchState }
             ]
         }
@@ -42,6 +44,7 @@ module.exports = {
             .populate({ path: "qualityRates", populate: { path: "user" } })
             .populate({ path: "hires", populate: { path: "user" } })
             .populate('state')
+            .populate('profession')
             .then(result => res.status(200).json(result))
             .catch(err => res.status(422).json(err.message))
     }
