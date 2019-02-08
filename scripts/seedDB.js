@@ -28,11 +28,10 @@ const kontratadoSeed = [
     ],
     firstName: "Francisco",
     lastName: "Gonzalez",
-    userName: "franklin",
+    email: "lugof@gmail.com",
     profession: mongoose.mongo.ObjectId("5c5cd03964456033ac212432"),
     state: mongoose.mongo.ObjectID("5c5b2f78cc485304b96cfc28"),
-    city: "Monterrey",
-    area: "Cumbres",
+    city: mongoose.mongo.ObjectID("5c5b2f78cc485304b96cfc28"),
     __v: 0
   },
   {
@@ -56,11 +55,10 @@ const kontratadoSeed = [
     ],
     firstName: "Froylan",
     lastName: "Vargas",
-    userName: "fvargas",
+    email: "froylan.vargas.gomez@gmail.com",
     profession: mongoose.mongo.ObjectId("5c5cd03964456033ac212434"),
     state: mongoose.mongo.ObjectID("5c5b2f78cc485304b96cfc1e"),
-    city: "Ciudad de Mexico",
-    area: "Tlalcoligia",
+    city: mongoose.mongo.ObjectID("5c5b2f78cc485304b96cfc1e"),
     __v: 0
   }
 ];

@@ -14,25 +14,19 @@ var KontratadoSchema = new Schema({
         required: true,
     },
 
-    userName: {
-        type: String,
-        required: true,
-        /*This hould be just one word*/
-    },
-
-    profession: {
-        type: String,
-        required: true,
+    email : {
+        type : String,
+        required : true,
+        match: [/.+@.+\..+/, "Please enter a valid e-mail address"],
+        trim: true,
+        unique : true
     },
 
     state: { type: Schema.Types.ObjectId, ref: 'State' },
 
     profession: { type: Schema.Types.ObjectId, ref: 'Profession' },
 
-    city: {
-        type: String,
-        required: true,
-    },
+    county: { type: Schema.Types.ObjectId, ref: 'County' },
 
     description: {
         type: String,
@@ -44,7 +38,7 @@ var KontratadoSchema = new Schema({
         required: false,
     },
 
-    kontratadoLogin: { type: Schema.Types.ObjectId, ref: 'KontratadoLogin' },
+    kontratadoLogin: { type: Schema.Types.ObjectId, ref: 'KontratadoLogin', select:false },
 
     reviews: [
         {

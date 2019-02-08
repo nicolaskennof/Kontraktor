@@ -4,6 +4,7 @@ import config from '../../config.json';
 import {Modal} from "react-bootstrap"
 import  "./Style.css"
 import WorkerProfileData from '../WorkerProfileData/WorkerProfileData'
+import KontratadoLogin from '../KontratadoLogin/KontratadoLogin'
 
 class ModalLogin extends Component{
 constructor(props) {
@@ -30,10 +31,8 @@ handleOptionChange(changeEvent){
         textButton={this.props.isSignup ? "Registrate con Facebook" : "Conectate con Facebook"}/>;       
     } 
     if (this.state.selectedOption === 'B') {
-        button = this.props.isSignup ? <WorkerProfileData kontratado = {null} isSignup = {true} /> : 
-        
-            <button onClick={()=>this.props.logKontratado()}>Pasale paisano</button>
-        
+        button = this.props.isSignup ? <WorkerProfileData logKontratado = {this.props.logKontratado} kontratado = {null} isSignup = {true} /> : 
+            <KontratadoLogin logKontratado = {this.props.logKontratado} />
     }
 return (
 

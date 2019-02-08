@@ -31,17 +31,17 @@ function WorkerCard() {
                                             <h5 className="workerCardDetail"><span id="workerEmployment">{occupation}</span></h5>
                                         </div>
                                         <div className="col-6 text-left">
-                                            <Button className="mr-1" variant="danger" id="favoriteBtn"><i class="fas fa-heart"></i></Button>
+                                            <Button className="mr-1" variant="danger" id="favoriteBtn"><i className="fas fa-heart"></i></Button>
                                         </div>
                                     </div>
                                 </div>
                                 <div className="col-md-3 text-center">
                                     <p><b>Rango de precio:</b><br />
-                                        <span class="fas fa-dollar-sign checked mr-1"></span>
-                                        <span class="fas fa-dollar-sign checked mr-1"></span>
-                                        <span class="fas fa-dollar-sign checked mr-1"></span>
-                                        <span class="fas fa-dollar-sign mr-1"></span>
-                                        <span class="fas fa-dollar-sign mr-1"></span>
+                                        <span className="fas fa-dollar-sign checked mr-1"></span>
+                                        <span className="fas fa-dollar-sign checked mr-1"></span>
+                                        <span className="fas fa-dollar-sign checked mr-1"></span>
+                                        <span className="fas fa-dollar-sign mr-1"></span>
+                                        <span className="fas fa-dollar-sign mr-1"></span>
                                     </p>
                                 </div>
                             </div>

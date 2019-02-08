@@ -3,10 +3,9 @@ import { Form, InputGroup, Button, Col, Container, Image } from "react-bootstrap
 import StateSelector from "../StateSelector/StateSelector"
 import Professions from "../Professions/Professions"
 import "./style.css"
+import API from "../../utils/API";
 
-let lastProfilePicValue = "http://nicolas-kennof.com/wp-content/uploads/2018/07/Perfil-2018.png";
-
-class WorkerProfileData extends React.Component {
+class WorkerProfileData extends Component {
 
     state = {
         validated: false,
@@ -18,6 +17,7 @@ class WorkerProfileData extends React.Component {
         state: '',
         city: '',
         profession: '',
+        password: '',
         mdColumnSize: '4'
     };
 
@@ -62,13 +62,31 @@ class WorkerProfileData extends React.Component {
         });
       };
 
-    handleSubmit(event) {
+    handleSubmit = event => {
         const form = event.currentTarget;
         if (form.checkValidity() === false) {
             event.preventDefault();
             event.stopPropagation();
         }
         this.setState({ validated: true });
+        const {firstName, lastName, contactPhone, email, description, state, city, profession, password} = this.state;
+        const kontratado = {
+            firstName,
+            lastName,
+            contactPhone,
+            email,
+            description,
+            state,
+            city,
+            profession,
+            password
+        };
+
+        API.createKontratado(kontratado)
+            .then( response =>{
+                this.props.logKontratado(response.data);
+            })
+            .catch(err=>console.log(err)); 
     }
 
     render() {
@@ -78,7 +96,6 @@ class WorkerProfileData extends React.Component {
                 <Form
                     noValidate
                     validated={validated}
-                    onSubmit={e => this.handleSubmit(e)}
                     className="profileForm"
                 >
                     <Form.Row>
@@ -86,17 +103,17 @@ class WorkerProfileData extends React.Component {
                             <Col s={12} md={2}>
                                 <div className="imgWrap">
                                     <Image src="http://nicolas-kennof.com/wp-content/uploads/2018/07/Perfil-2018.png" roundedCircle className="profilePicAccount" />
-                                    <p className="profilePicChange"><br /><a className="profilePicChangeLink" href="#"><i class="fas fa-camera"></i><br />Editar tu foto<br />de perfil</a></p>
+                                    <p className="profilePicChange"><br /><a className="profilePicChangeLink" href="https://localhost:3000"><i className="fas fa-camera"></i><br />Editar tu foto<br />de perfil</a></p>
                                 </div>
                             </Col> : ""
                         }
 
                         <Col md={10}>
                             <Form.Row>
-                                <Form.Group as={Col} md={this.state.mdColumnSize} controlId="validationCustom01">
+                                <Form.Group as={Col} md={this.state.mdColumnSize}>
                                     <InputGroup>
                                         <InputGroup.Prepend>
-                                            <InputGroup.Text className="formIcon" id="inputGroupPrepend"><i class="fas fa-user-alt"></i></InputGroup.Text>
+                                            <InputGroup.Text className="formIcon" id="inputGroupPrepend"><i className="fas fa-user-alt"></i></InputGroup.Text>
                                         </InputGroup.Prepend>
                                         <Form.Control
                                             required
@@ -112,10 +129,10 @@ class WorkerProfileData extends React.Component {
                                 </Form.Control.Feedback>
                                     </InputGroup>
                                 </Form.Group>
-                                <Form.Group as={Col} md={this.state.mdColumnSize} controlId="validationCustom02">
+                                <Form.Group as={Col} md={this.state.mdColumnSize} >
                                     <InputGroup>
                                         <InputGroup.Prepend>
-                                            <InputGroup.Text className="formIcon" id="inputGroupPrepend"><i class="fas fa-signature"></i></InputGroup.Text>
+                                            <InputGroup.Text className="formIcon" id="inputGroupPrepend"><i className="fas fa-signature"></i></InputGroup.Text>
                                         </InputGroup.Prepend>
                                         <Form.Control
                                             required
@@ -138,10 +155,10 @@ class WorkerProfileData extends React.Component {
                             <Form.Row>
                                 <div className={"col-md-" + this.state.mdColumnSize}>
                                     <Form.Row>
-                                    <Form.Group as={Col} md="12" controlId="validationCustom01">
+                                    <Form.Group as={Col} md="12">
                                     <InputGroup>
                                         <InputGroup.Prepend>
-                                            <InputGroup.Text className="formIcon" id="inputGroupPrepend"><i class="fas fa-mobile-alt"></i></InputGroup.Text>
+                                            <InputGroup.Text className="formIcon" id="inputGroupPrepend"><i className="fas fa-mobile-alt"></i></InputGroup.Text>
                                         </InputGroup.Prepend>
                                         <Form.Control
                                             required
@@ -158,7 +175,7 @@ class WorkerProfileData extends React.Component {
                                 </Form.Group>
                                     </Form.Row>
                                     <Form.Row>
-                                        <Form.Group as={Col} md="12" controlId="validationCustomUsername">
+                                        <Form.Group as={Col} md="12" >
                                             <InputGroup>
                                                 <InputGroup.Prepend>
                                                     <InputGroup.Text className="formIcon" id="inputGroupPrepend">@</InputGroup.Text>
@@ -178,14 +195,37 @@ class WorkerProfileData extends React.Component {
                                             </InputGroup>
                                         </Form.Group>
                                     </Form.Row>
+                                    {this.props.isSignup ?
+                                        <Form.Row>
+                                        <Form.Group as={Col} md="12" >
+                                            <InputGroup>
+                                                <InputGroup.Prepend>
+                                                    <InputGroup.Text className="formIcon" id="inputGroupPrepend">@</InputGroup.Text>
+                                                </InputGroup.Prepend>
+                                                <Form.Control
+                                                    type="password"
+                                                    placeholder="Password"
+                                                    aria-describedby="inputGroupPrepend"
+                                                    className="formInput"
+                                                    required
+                                                    onChange = {this.handleInputChange}
+                                                    name = "password"
+                                                />
+                                                <Form.Control.Feedback type="invalid">
+                                                    Favor de ingresar una contraseña
+                                        </Form.Control.Feedback>
+                                            </InputGroup>
+                                        </Form.Group>
+                                    </Form.Row>
+                                        : <div></div>}
                                 </div>
-                                <Form.Group as={Col} md={this.state.mdColumnSize} controlId="exampleForm.ControlTextarea1">
+                                <Form.Group as={Col} md={this.state.mdColumnSize}>
                                     <InputGroup>
                                         <InputGroup.Prepend>
-                                            <InputGroup.Text className="formIcon" id="inputGroupPrepend"><i class="fas fa-hammer"></i></InputGroup.Text>
+                                            <InputGroup.Text className="formIcon" id="inputGroupPrepend"><i className="fas fa-hammer"></i></InputGroup.Text>
                                         </InputGroup.Prepend>
 
-                                        <Form.Control onChange={this.handleInputChange} name="description" as="textarea" rows="3" className="formInput" />
+                                        <Form.Control onChange={this.handleInputChange} placeholder="Tell us something about you" name="description" as="textarea" rows="3" className="formInput" />
                                     </InputGroup>
                                 </Form.Group>
                                 <div className={"col-md-" + this.state.mdColumnSize}>
@@ -194,7 +234,7 @@ class WorkerProfileData extends React.Component {
                             </Form.Row>
                             <Form.Row>
                                 <div className="col-md-4">
-                                    <Button className="workerProfileBtn" type="submit"><i class="fas fa-save"></i> Guardar cambios</Button>
+                                    <Button className="workerProfileBtn" onClick={this.handleSubmit}><i className="fas fa-save"></i> Guardar cambios</Button>
                                 </div>
                             </Form.Row>
                         </Col>
