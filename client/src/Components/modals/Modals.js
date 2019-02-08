@@ -24,10 +24,10 @@ class Modals extends React.Component {
     return (
       <ButtonToolbar>
         <Button className="workerCardButton mr-2 my-2" id="messageBtn" onClick={() => this.setState({ messageModal: true })}>
-          <i class="fas fa-comments"></i>
+          <i className="fas fa-comments"></i>
         </Button>
         <Button className="workerCardButton mb-5" id="phoneBtn" onClick={() => this.setState({ phoneModal: true })}>
-          <i class="fas fa-phone"></i>
+          <i className="fas fa-phone"></i>
         </Button>
 
         <Modal
@@ -72,7 +72,7 @@ class Modals extends React.Component {
           >
             <Modal.Header closeButton>
               <Modal.Title id="example-modal-sizes-title-lg">
-                <i class="fas fa-phone"></i> Contacto
+                <i className="fas fa-phone"></i> Contacto
               </Modal.Title>
             </Modal.Header>
             <Modal.Body>

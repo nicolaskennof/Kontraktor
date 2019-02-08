@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import BeforeLogin from './Components/beforeLogin/beforeLogin'
 import AfterLogin from './Components/afterLogin/afterLogin'
+import KontratadoAfterLogin from './Components/KontratadoAfterLogin/KontratadoAfterLogin'
 
 class App extends Component {
 
@@ -10,7 +11,8 @@ class App extends Component {
       isFacebookAuthenticated: false,
       isKontratadoAuthenticated: false,
       facebookUser: null,
-      token: ''
+      token: '',
+      kontratadoUser: null
     };
   }
 
@@ -44,8 +46,9 @@ class App extends Component {
     })
   };
 
-  logKontratado = () => {
+  logKontratado = (idKontratado) => {
     this.setState({
+      kontratadoUser: idKontratado,
       isKontratadoAuthenticated : true
     });
   }
@@ -62,9 +65,7 @@ class App extends Component {
         return <AfterLogin facebookLogout = {this.facebookLogout} />
       } else {
         return <div>
-          {/* Aqui va la página de AfterLoginKontratado */}
-          <h1>Hola Kontratado</h1>
-          <button onClick={this.logOutKontratado}>Adios paisano</button>
+          <KontratadoAfterLogin kontratado = {this.state.kontratadoUser} logOutKontratado={this.logOutKontratado} />
         </div>
       }
     } else {

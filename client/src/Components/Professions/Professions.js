@@ -24,15 +24,15 @@ class Professions extends Component {
 
     render() {
         return (
-            <Form.Group as={Col} md={this.state.mdColumnSize} controlId="validationCustom05">
+            <Form.Group as={Col} md={this.state.mdColumnSize}>
                 <InputGroup>
                     <InputGroup.Prepend>
-                        <InputGroup.Text className="formIcon" id="inputGroupPrepend"><i class="fas fa-hammer"></i></InputGroup.Text>
+                        <InputGroup.Text className="formIcon" id="inputGroupPrepend"><i className="fas fa-hammer"></i></InputGroup.Text>
                     </InputGroup.Prepend>
                     <Form.Control as="select" onChange={this.onProfessionChange} className="formInput">
                         <option>Elija tus habilidades (3 max.)</option>
                         {this.state.professions.map(professionElement=>{
-                            return <option value = {professionElement._id}>{professionElement.profession}</option>
+                            return <option key = {professionElement._id} value = {professionElement._id}>{professionElement.profession}</option>
                         })}
                     </Form.Control>
                     <Form.Control.Feedback type="invalid">

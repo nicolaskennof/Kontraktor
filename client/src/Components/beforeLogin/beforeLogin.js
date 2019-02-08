@@ -35,7 +35,7 @@ class BeforeLogin extends Component {
                 <br />
                 <InfoCardsWrapper />
                 <br />
-                <WorkerProfileData kontratado = {{firstName:"Nicolas", lastName:"Kennof"}} isSignup={false} />
+                <WorkerProfileData logKontratado = {this.props.logKontratado} kontratado = {{firstName:"Nicolas", lastName:"Kennof"}} isSignup={false} />
                 </Container>
             </div>
         )

@@ -35,10 +35,10 @@ class StateSelector extends Component {
         return (
             <div>
                 <Form.Row>
-                    <Form.Group as={Col} md="12" controlId="validationCustom04">
+                    <Form.Group as={Col} md="12">
                         <InputGroup>
                             <InputGroup.Prepend>
-                                <InputGroup.Text className="formIcon" id="inputGroupPrepend"><i class="fas fa-map-marked-alt"></i></InputGroup.Text>
+                                <InputGroup.Text className="formIcon" id="inputGroupPrepend"><i className="fas fa-map-marked-alt"></i></InputGroup.Text>
                             </InputGroup.Prepend>
                             <Form.Control
                                 placeholder="¿Dónde?"
@@ -60,10 +60,10 @@ class StateSelector extends Component {
                 </Form.Row>
                 {!this.props.isSearch ? 
                     <Form.Row>
-                    <Form.Group as={Col} md="12" controlId="validationCustom04">
+                    <Form.Group as={Col} md="12">
                         <InputGroup>
                             <InputGroup.Prepend>
-                                <InputGroup.Text className="formIcon" id="inputGroupPrepend"><i class="fas fa-university"></i></InputGroup.Text>
+                                <InputGroup.Text className="formIcon" id="inputGroupPrepend"><i className="fas fa-university"></i></InputGroup.Text>
                             </InputGroup.Prepend>
                             <Form.Control as="select" className="formInput" onChange={this.handleCityChange}>
                                 <option>Elija tu ciudad...</option>
