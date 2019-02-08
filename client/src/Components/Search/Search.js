@@ -1,11 +1,34 @@
 import React, { Component } from "react";
 import { Card, InputGroup, Button, FormControl } from "react-bootstrap";
 import "./search.css";
-import lupita from "../../img/lupita.png"
+import Professions from "../Professions/Professions";
+import StateSelector from "../StateSelector/StateSelector";
+import API from "../../utils/API";
 
 class Search extends Component {
+	
 	state = {
+		searchProfession : '',
+		searchState : ''
 	}
+
+	onProfessionChange = (searchProfession) => {
+		this.setState({searchProfession});
+	}
+
+	searchClickHandler = () => {
+		API.getKontratadoByFilter({
+			searchProfession : this.state.searchProfession,
+			searchState : this.state.searchState
+		}).then(result=>{
+			console.log (result);
+		}).catch(err=> console.log(err));
+	}
+
+	onStateChange = (searchState) => {
+		this.setState({searchState});
+	}
+
 	render() {
 		return (
 			<div className="search-container" align="center">
@@ -19,12 +42,12 @@ class Search extends Component {
 				<Card className="card-search-container">
 					<Card.Body className="row">
 						<InputGroup className="mb-3 col-6">
-							<FormControl placeholder="¿Qué necesitas?" aria-describedby="basic-addon1" />
+							<Professions onProfessionChange = {this.onProfessionChange} />
 						</InputGroup>
 						<InputGroup className="mb-3 col-6">
-							<FormControl placeholder="¿Dónde vives?" aria-describedby="basic-addon1" />
+							<StateSelector isSearch = {true} handleStateChange = {this.onStateChange}/>
 						</InputGroup>
-						<Button type="submit">Submit form</Button>
+						<Button onClick={()=>this.searchClickHandler()}>Submit form</Button>
 					</Card.Body>
 				</Card>
 			</div>
