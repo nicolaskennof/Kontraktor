@@ -4,12 +4,14 @@ import LogInCardsWrapper from "../infoCardsWrapper/logInCardsWrapper"
 import ImgCarousel from '../carousel/carousel'
 import Filters from "../resultsFilters/Filters"
 import WorkerCard from "../workerCard/WorkerCard"
+import Reviews from "../reviews/reviews"
 
 function AfterLogin(props) {
     return (
 
         <div>
             <NavBarUser />
+            <Reviews />
             <br />
             <br />
             <button onClick={props.facebookLogout} className="button">Log out</button>
