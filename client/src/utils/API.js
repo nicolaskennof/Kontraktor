@@ -9,6 +9,11 @@ export default {
   getKontratado: function(id){
     return axios.get("/api/kontratado/"+id);
   },
+
+  getKontratadoByFilter: function(filter){
+    return axios.post("/api/kontratado/filter", filter);
+  },
+
   createKontratado: function(kontratado){
     return axios.post("/api/kontratado/", kontratado);
   },
@@ -50,7 +55,13 @@ export default {
   },
   deleteReview: function(id){
     return axios.delete("/api/review/delete/"+id);
-  }
+  },
 
-  
+  getStates: () => {
+    return axios.get("/api/state");
+  },
+
+  getProfessions: () => {
+    return axios.get("api/profession");
+  }  
 };

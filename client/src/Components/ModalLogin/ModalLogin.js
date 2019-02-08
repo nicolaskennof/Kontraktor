@@ -3,6 +3,8 @@ import FacebookLogin from 'react-facebook-login';
 import config from '../../config.json';  
 import {Modal} from "react-bootstrap"
 import  "./Style.css"
+import WorkerProfileData from '../WorkerProfileData/WorkerProfileData'
+
 class ModalLogin extends Component{
 constructor(props) {
   super(props)
@@ -15,7 +17,7 @@ handleOptionChange(changeEvent){
     this.setState({
         selectedOption: changeEvent.target.value
     })
-} 
+}
 
 render () {
     let button;
@@ -25,18 +27,25 @@ handleOptionChange(changeEvent){
         autoLoad={false}
         fields="name,email,picture"
         callback={this.props.facebookResponse} 
-        textButton="Registrate con Facebook"/>;       
+        textButton={this.props.isSignup ? "Registrate con Facebook" : "Conectate con Facebook"}/>;       
     } 
     if (this.state.selectedOption === 'B') {
-        button = <form>FORMULARIO</form>
+        button = this.props.isSignup ? <WorkerProfileData kontratado = {null} isSignup = {true} /> : 
+        
+            <button onClick={()=>this.props.logKontratado()}>Pasale paisano</button>
+        
     }
 return (
 
         <div className="container">
 
-            <Modal show={this.props.show} onHide={this.props.handleClose}>
+            <Modal show={this.props.show} onHide={()=>{
+                this.setState({selectedOption:''});
+                this.props.handleClose();}}>
                 <Modal.Header closeButton>
-                    <Modal.Title>Registrate para comenzar</Modal.Title>
+                    <Modal.Title>
+                        {this.props.isSignup ? "Registrate para comenzar" : "Coenctar"}
+                    </Modal.Title>
                 </Modal.Header>
         
                 <Modal.Body>
