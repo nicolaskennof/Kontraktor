@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import { Card } from "react-bootstrap"
 import "./style.css"
 
@@ -9,7 +9,7 @@ function WelcomeMessage() {
         <div className="welcomeMessage" align="center">
             <Card className="card-container">
                 <Card.Body>
-                    <Card.Title>Hola {firstName}!</Card.Title>
+                    <Card.Title>¡Hola {firstName}!</Card.Title>
                     <Card.Subtitle className="mb-2 text-muted">¿Qué necesitas al día de hoy?</Card.Subtitle>
                 </Card.Body>
             </Card>

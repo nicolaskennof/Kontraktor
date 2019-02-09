@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { InputGroup, Button, Row, Col, Form } from "react-bootstrap";
+import { InputGroup, Button, Col, Form } from "react-bootstrap";
 import "./search.css";
 import Professions from "../Professions/Professions";
 import StateSelector from "../StateSelector/StateSelector";
