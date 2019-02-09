@@ -13,5 +13,20 @@ module.exports = {
                 })
                 .catch(err => res.status(422).json(err.message));
         }
-    }
-}
+    },
+    deleteFavourite: (req,res) =>{
+        if(req.params.id){
+            db.Favourite
+            .findOneAndDelete({ _id: req.params.id })
+                .then(dbModel => {
+
+                    db.Kontratado.findOneAndUpdate({ _id: dbModel.kontratado }, {favourites: req.params.id} )
+                    .then(updated => {
+                    res.status(200).json(dbModel);
+                       })})
+            }
+        },
+        }
+
+
+    

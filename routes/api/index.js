@@ -8,6 +8,9 @@ const qualityRate = require ("./qualityRate");
 const hire = require ("./hire");
 const favouriteRoutes = require("./favourite");;
 const facebookRoutes = require("./facebookLogin");
+const stateRoutes = require("./state");
+const professionRoutes = require("./profession");
+const kontratadoLoginRoutes = require("./kontratadoLogin");
 
 
 router.use("/image", imageRoutes);
@@ -19,6 +22,9 @@ router.use("/qualityRate", qualityRate);
 router.use("/hire", hire);
 router.use("/v1/auth/facebook", facebookRoutes);
 router.use("/favourite", favouriteRoutes);
+router.use("/state", stateRoutes);
+router.use("/profession", professionRoutes);
+router.use("/login", kontratadoLoginRoutes);
 
 
 module.exports = router;

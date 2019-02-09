@@ -1,25 +1,34 @@
 import React, { Component } from "react";
+<<<<<<< HEAD
 import BeforeLogin from './Components/beforeLogin/beforeLogin'
 import AfterLogin from './Components/afterLogin/afterLogin'
 import KontratadoHomepage from './Components/kontratado/kontratadoHomepage/kontratadoHomepage'
 import KMessagesPage from './Components/kontratado/kMessagesPage/kMessagesPage'
+=======
+import BeforeLogin from './Pages/BeforeLogin'
+import UserAfterLogin from './Pages/UserAfterLogin'
+import KontratadoAfterLogin from './Pages/KontratadoAfterLogin'
+import API from './utils/API'
+>>>>>>> master
 
 class App extends Component {
 
   constructor() {
     super();
     this.state = {
-      isAuthenticated: false,
-      user: null,
-      token: ''
+      isFacebookAuthenticated: false,
+      isKontratadoAuthenticated: false,
+      facebookUser: null,
+      token: '',
+      kontratadoUser: null
     };
   }
 
-  logout = () => {
+  facebookLogout = () => {
     this.setState({
-      isAuthenticated: false,
+      isFacebookAuthenticated: false,
       token: '',
-      user: null
+      facebookUser: null
     });
   }
 
@@ -37,14 +46,15 @@ class App extends Component {
     };
     fetch('/api/v1/auth/facebook', options).then(r => {
       const token = r.headers.get('x-auth-token');
-      r.json().then(user => {
+      r.json().then(facebookUser => {
         if (token) {
-          this.setState({ isAuthenticated: true, user, token })
+          this.setState({ isFacebookAuthenticated: true, facebookUser, token })
         }
       });
     })
   };
 
+<<<<<<< HEAD
   render() {
     let content = !!this.state.isAuthenticated ?
       (
@@ -70,12 +80,51 @@ class App extends Component {
           <br />
           <KontratadoHomepage />
           <KMessagesPage />
-        </div>
-      );
+=======
+  logKontratado = (idKontratado) => {
+    let kontratadoUser;
+    API.getKontratado(idKontratado)
+      .then(result=>{
+        kontratadoUser = result.data;
+        this.setState({
+          kontratadoUser,
+          isKontratadoAuthenticated : true
+        });
+      })
+  }
 
+  logOutKontratado = () => {
+    this.setState({
+      isKontratadoAuthenticated : false
+    });
+  }
+
+  kontratadoUpdate = kontratado => {
+    this.setState({
+      kontratadoUser : kontratado
+    })
+  }
+
+
+  chooseRender = () => {
+    if (this.state.isFacebookAuthenticated || this.state.isKontratadoAuthenticated){
+      if (this.state.isFacebookAuthenticated){
+        return <UserAfterLogin facebookLogout = {this.facebookLogout} />
+      } else {
+        return <div>
+          <KontratadoAfterLogin kontratadoUpdate={this.kontratadoUpdate} kontratado = {this.state.kontratadoUser} logOutKontratado={this.logOutKontratado} />
+>>>>>>> master
+        </div>
+      }
+    } else {
+      return <BeforeLogin logKontratado = {this.logKontratado} facebookResponse={this.facebookResponse} />
+    }
+  }
+
+  render() {
     return (
       <div className="App">
-        {content}
+        {this.chooseRender()}
       </div>
     )
   }

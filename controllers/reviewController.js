@@ -1,6 +1,5 @@
 var db = require("../models");
 
-
 module.exports = {
 
     insertReview: (req, res) => {
@@ -51,3 +50,4 @@ module.exports = {
         }
     }
 }
+
