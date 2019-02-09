@@ -6,7 +6,7 @@ import WorkersWrapper from "../Components/workersWrapper/WorkersWrapper"
 function UserFavorite() {
     return (
         <div>
-            <Filters />
+            <Filters isUserFilter={true}/>
             <WorkersWrapper>
                 <WorkerCard />
             </WorkersWrapper>

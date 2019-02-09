@@ -35,7 +35,7 @@ class UserAfterLogin extends Component {
                         <br />
                         <LogInCardsWrapper />
                         <br />
-                        <Filters />
+                        <Filters isUserFilter={true} />
                         <WorkersWrapper>
                             <WorkerCard />
                         </WorkersWrapper>

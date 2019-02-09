@@ -6,7 +6,7 @@ import WorkerCard from "../Components/workerCard/WorkerCard"
 function UserMailbox() {
     return (
         <div>
-            <Filters />
+            <Filters isUserFilter={true}/>
             <WorkersWrapper>
                 Mensajes
                 <WorkerCard />
