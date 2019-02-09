@@ -18,13 +18,16 @@ class WorkerProfileData extends Component {
         city: '',
         profession: '',
         password: '',
-        mdColumnSize: '4'
+        mdColumnSize: '4',
+        workerDataBtnText: ' Guardar Cambios'
     };
 
     componentDidMount() {
         if(this.props.isSignup){
             this.setState({
-                mdColumnSize : "12"
+                mdColumnSize : "12",
+                workerDataBtnText: " Regístrate",
+                icon: "save"
             })
         }
         
@@ -32,7 +35,8 @@ class WorkerProfileData extends Component {
             const { firstName, lastName } = this.props.kontratado;
             this.setState({
                 firstName,
-                lastName
+                lastName,
+                icon: "sign-in-alt"
             })
         }
     }
@@ -234,7 +238,7 @@ class WorkerProfileData extends Component {
                             </Form.Row>
                             <Form.Row>
                                 <div className="col-md-4">
-                                    <Button className="workerProfileBtn" onClick={this.handleSubmit}><i className="fas fa-save"></i> Guardar cambios</Button>
+                                    <Button className="workerProfileBtn" onClick={this.handleSubmit}><i className={`fas fa-${this.state.icon}`}></i>{this.state.workerDataBtnText}</Button>
                                 </div>
                             </Form.Row>
                         </Col>

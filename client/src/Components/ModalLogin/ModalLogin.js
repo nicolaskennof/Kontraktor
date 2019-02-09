@@ -2,7 +2,7 @@ import React, {Component} from "react";
 import FacebookLogin from 'react-facebook-login';
 import config from '../../config.json';  
 import {Modal} from "react-bootstrap"
-import  "./Style.css"
+import  "./style.css"
 import WorkerProfileData from '../WorkerProfileData/WorkerProfileData'
 import KontratadoLogin from '../KontratadoLogin/KontratadoLogin'
 
@@ -43,15 +43,15 @@ return (
                 this.props.handleClose();}}>
                 <Modal.Header closeButton>
                     <Modal.Title>
-                        {this.props.isSignup ? "Registrate para comenzar" : "Coenctar"}
+                        {this.props.isSignup ? "Registrate para comenzar" : "Inicia tu sesión"}
                     </Modal.Title>
                 </Modal.Header>
         
                 <Modal.Body>
                     <input variant="secondary" type="radio" value="A" checked={this.state.selectedOption ==='A'} onChange={this.handleOptionChange} /> 
-                        <span className="options-text marR64">Quiero Contratar</span>
+                        <span className="options-text marR64">{this.props.isSignup ? "Quiero kontratar" : "Kontrato!"}</span>
                     <input variant="primary" type="radio" value="B" checked={this.state.selectedOption ==='B'} onChange={this.handleOptionChange}/>
-                        <span className="options-text">Quiero Trabajar</span>
+                        <span className="options-text">{this.props.isSignup ? "Quiero trabajar" : "Soy trabajador!"}</span>
                 </Modal.Body>
                 
                 <Modal.Footer>
