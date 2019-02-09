@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import BeforeLogin from './Components/beforeLogin/beforeLogin'
 import AfterLogin from './Components/afterLogin/afterLogin'
+import KontratadoHomepage from './Components/kontratado/kontratadoHomepage/kontratadoHomepage'
+import KMessagesPage from './Components/kontratado/kMessagesPage/kMessagesPage'
 
 class App extends Component {
 
@@ -58,14 +60,16 @@ class App extends Component {
             </button>
           </div>
           <div>
-          <AfterLogin />
+            <AfterLogin />
           </div>
-          
+
         </div>
       ) : (
         <div>
           <BeforeLogin facebookResponse={this.facebookResponse} />
-
+          <br />
+          <KontratadoHomepage />
+          <KMessagesPage />
         </div>
       );
 
