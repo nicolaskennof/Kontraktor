@@ -8,6 +8,7 @@ function UserMailbox() {
         <div>
             <Filters />
             <WorkersWrapper>
+                Mensajes
                 <WorkerCard />
             </WorkersWrapper>
         </div>
