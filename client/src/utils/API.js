@@ -17,6 +17,10 @@ export default {
     return axios.post("/api/kontratado/", kontratado);
   },
 
+  updateKontratado: function(kontratado){
+    return axios.post("/api/kontratado/update", kontratado);
+  },
+
   loginKontratado: function(kontratado){
     return axios.post("api/login/", kontratado);
   },

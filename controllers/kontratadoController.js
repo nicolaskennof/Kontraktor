@@ -4,10 +4,10 @@ const bcrypt = require('bcrypt-nodejs');
 module.exports = {
 
     register: (req, res) => {
-        const {city, contactPhone, description, email, firstName, lastName, password, profession, state} = req.body;
-        if (city && contactPhone  && description && email && firstName && lastName && password && profession && state) {
+        const {county, contactPhone, description, email, firstName, lastName, password, profession, state} = req.body;
+        if (county && contactPhone  && description && email && firstName && lastName && password && profession && state) {
             const kontratado = {
-                city, contactPhone,description,email,firstName, lastName, profession, state
+                county, contactPhone,description,email,firstName, lastName, profession, state
             }
             db.Kontratado.create(kontratado).then(userResult => {
                 const hash = bcrypt.hashSync(password);
@@ -66,5 +66,19 @@ module.exports = {
             .populate('profession')
             .then(result => res.status(200).json(result))
             .catch(err => res.status(422).json(err.message))
+    },
+
+    updateKontratado: (req,res) => {
+        const {county, contactPhone, description, email, firstName, lastName, profession, state} = req.body;
+        const kontratado = {
+            county, contactPhone,description,email,firstName, lastName, profession, state
+        }
+        if (county && contactPhone  && description && email && firstName && lastName && profession && state) {
+            db.Kontratado.findOneAndUpdate({email},kontratado,{new: true})
+                .then((result)=>{
+                   res.status(200).json(result);
+                })
+                .catch(err=>res.status(400).json(err.message));
+        }
     }
 }

@@ -3,7 +3,6 @@ import NavBarStart from "../navBars/navBarStart"
 import InfoCardsWrapper from "../infoCardsWrapper/infoCardsWrapper"
 import ModalLogin from "../ModalLogin/ModalLogin"
 import Search from "../Search/Search"
-import WorkerProfileData from "../WorkerProfileData/WorkerProfileData"
 import { Container } from "react-bootstrap";
 
 class BeforeLogin extends Component {
@@ -35,7 +34,6 @@ class BeforeLogin extends Component {
                 <br />
                 <InfoCardsWrapper />
                 <br />
-                <WorkerProfileData logKontratado = {this.props.logKontratado} kontratado = {{firstName:"Nicolas", lastName:"Kennof"}} isSignup={false} />
                 </Container>
             </div>
         )

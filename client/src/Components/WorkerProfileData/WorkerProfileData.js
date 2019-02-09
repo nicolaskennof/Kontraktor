@@ -15,7 +15,7 @@ class WorkerProfileData extends Component {
         email: '',
         description: '',
         state: '',
-        city: '',
+        county: '',
         profession: '',
         password: '',
         mdColumnSize: '4'
@@ -29,13 +29,25 @@ class WorkerProfileData extends Component {
         }
         
         if (this.props.kontratado) {
-            const { firstName, lastName } = this.props.kontratado;
+            const { contactPhone, description, email, firstName, lastName, state, county, profession } = this.props.kontratado;
             this.setState({
+                contactPhone,
+                description,
+                email,
                 firstName,
-                lastName
+                lastName,
+                state : state._id, 
+                county,
+                profession : profession._id
             })
         }
     }
+
+   
+
+    componentWillUnmount(){
+        this.mounted = false;
+      }
 
     handleStateChange = (state) => {
         this.setState({
@@ -43,9 +55,9 @@ class WorkerProfileData extends Component {
         });
     }
 
-    handleCityChange = (city) => {
+    handleCityChange = (county) => {
         this.setState({
-            city
+            county
         });
     }
 
@@ -69,24 +81,32 @@ class WorkerProfileData extends Component {
             event.stopPropagation();
         }
         this.setState({ validated: true });
-        const {firstName, lastName, contactPhone, email, description, state, city, profession, password} = this.state;
-        const kontratado = {
+        const {firstName, lastName, contactPhone, email, description, state, county, profession} = this.state;
+        let kontratado = {
             firstName,
             lastName,
             contactPhone,
             email,
             description,
             state,
-            city,
+            county,
             profession,
-            password
         };
 
-        API.createKontratado(kontratado)
+        if (this.props.isSignup){
+            kontratado.password = this.state.password;
+            API.createKontratado(kontratado)
             .then( response =>{
                 this.props.logKontratado(response.data);
             })
             .catch(err=>console.log(err)); 
+        } else {
+            API.updateKontratado(kontratado)
+                .then(result=>{
+                    this.props.kontratadoUpdate(result.data);
+                })
+                .catch(err=>console.log(err.response))
+        }
     }
 
     render() {
@@ -149,7 +169,7 @@ class WorkerProfileData extends Component {
                                     </InputGroup>
                                 </Form.Group>
                                 
-                                <Professions onProfessionChange = {this.handleProfessionChange} />
+                                <Professions currentProfession={this.state.profession} onProfessionChange = {this.handleProfessionChange} />
 
                             </Form.Row>
                             <Form.Row>
@@ -165,6 +185,7 @@ class WorkerProfileData extends Component {
                                             type="number"
                                             placeholder="Celular"
                                             className="formInput"
+                                            value={this.state.contactPhone}
                                             onChange = {this.handleInputChange}
                                             name = "contactPhone"
                                         />
@@ -186,6 +207,7 @@ class WorkerProfileData extends Component {
                                                     aria-describedby="inputGroupPrepend"
                                                     className="formInput"
                                                     required
+                                                    value = {this.state.email}
                                                     onChange = {this.handleInputChange}
                                                     name = "email"
                                                 />
@@ -225,11 +247,11 @@ class WorkerProfileData extends Component {
                                             <InputGroup.Text className="formIcon" id="inputGroupPrepend"><i className="fas fa-hammer"></i></InputGroup.Text>
                                         </InputGroup.Prepend>
 
-                                        <Form.Control onChange={this.handleInputChange} placeholder="Tell us something about you" name="description" as="textarea" rows="3" className="formInput" />
+                                        <Form.Control onChange={this.handleInputChange} value={this.state.description} placeholder="Tell us something about you" name="description" as="textarea" rows="3" className="formInput" />
                                     </InputGroup>
                                 </Form.Group>
                                 <div className={"col-md-" + this.state.mdColumnSize}>
-                                    <StateSelector handleStateChange = {this.handleStateChange} handleCityChange={this.handleCityChange} />
+                                    <StateSelector currentState = {this.state.state} currentCity = {this.state.county} handleStateChange = {this.handleStateChange} handleCityChange={this.handleCityChange} />
                                 </div>
                             </Form.Row>
                             <Form.Row>
