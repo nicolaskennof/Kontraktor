@@ -1,33 +1,54 @@
-import React from "react";
+import React, { Component } from "react";
 import Button from 'react-bootstrap/Button'
 import Navbar from 'react-bootstrap/Navbar'
 import './style.css'
 
-function NavBarUser(props) {
-    return (
-        <div>
-            <Navbar bg="dark" variant="dark">
-                <Navbar.Brand href="#home">
+class NavBarUser extends Component {
 
-                    <img
-                        alt=""
-                        src="/assets/img/helmet.png"
-                        width="30"
-                        height="30"
-                        className="d-inline-block align-top"
-                    />
+    chooseRender = () => {
+        if (this.props.type === "home") {
+            return <div>
+                <Button onClick={() => { this.props.routeChange("favorite") }} className="m-2" variant="outline-warning"><i className="fas fa-heart"></i></Button>
+                <Button onClick={() => { this.props.routeChange("message") }} variant="outline-warning"><i className="fas fa-comments"></i></Button>
+            </div>
+        } else if (this.props.type === "favorite") {
+            return <div>
+                <Button onClick={() => { this.props.routeChange("message") }} className="m-2 mr-2" variant="outline-warning"><i className="fas fa-comments"></i></Button>
+                <Button onClick={() => { this.props.routeChange("home") }} variant="outline-warning"><i class="fas fa-home"></i></Button>
+            </div>
+        } else {
+            return <div>
+                <Button onClick={() => { this.props.routeChange("favorite") }} className="m-2" variant="outline-warning"><i className="fas fa-heart"></i></Button>
+                <Button onClick={() => { this.props.routeChange("home") }} variant="outline-warning"><i class="fas fa-home"></i></Button>
+            </div>
+        }
+    }
 
-                    {' Kontractor'}
-                </Navbar.Brand>
-                <div className="signInWrapper">
-                    <div className="buttonSignIn">
-                        <Button onClick={() => {props.routeChange("favorite")}} className="buttonMargin" variant="outline-warning"><i className="fas fa-heart"></i></Button>
-                        <Button onClick={() => {props.routeChange("message")}} variant="outline-warning"><i className="fas fa-comments"></i></Button>
+    render() {
+        return (
+            <div>
+                <Navbar bg="dark" variant="dark">
+                    <Navbar.Brand href="#home">
+
+                        <img
+                            alt=""
+                            src="/assets/img/helmet.png"
+                            width="30"
+                            height="30"
+                            className="d-inline-block align-top"
+                        />
+
+                        {' Kontractor'}
+                    </Navbar.Brand>
+                    <div className="signInWrapper">
+                        <div className="buttonSignIn">
+                            {this.chooseRender()}
+                        </div >
                     </div >
-                </div >
-            </Navbar >
+                </Navbar >
 
-        </div >
-    )
+            </div >
+        )
+    }
 }
 export default NavBarUser;

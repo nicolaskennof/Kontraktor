@@ -13,25 +13,25 @@ import WelcomeMessage from "../Components/WelcomeMessage/WelcomeMessage"
 class UserAfterLogin extends Component {
 
     state = {
-        render: "start"
+        type: "home"
     }
 
     routeChange = (type) => {
         this.setState({
-            render: type
+            type
         })
     }
 
     render() {
         return (
             <div>
-                <NavBarUser routeChange={this.routeChange} />{this.state.render === "start" ?
+                <NavBarUser type={this.state.type} routeChange={this.routeChange} />{this.state.type === "home" ?
                     <div>
                         <WelcomeMessage />
                         <br />
                         <Search />
                         <br />
-                        <button onClick={this.props.facebookLogout} className="button">Log out</button>
+                        <button onClick={this.props.facebookLogout} className="button">Cerrar sesión</button>
                         <br />
                         <LogInCardsWrapper />
                         <br />
@@ -41,10 +41,10 @@ class UserAfterLogin extends Component {
                         </WorkersWrapper>
                     </div>
                     :
-                    this.state.render === "favorite" ?
-                        <UserFavorite />
+                    this.state.type === "favorite" ?
+                        <div><UserFavorite /></div>
                         :
-                        <UserMailbox />
+                        <div><UserMailbox /></div>
                 }
             </div>
         )

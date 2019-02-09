@@ -17,9 +17,9 @@ function Reviews() {
                     </div>
                 </div>
                 <div class="col-4">
-                    <div class="big-box">Tu calificacion promedio</div>
+                    <div class="big-box">Tu calificación promedia</div>
 
-                    <div class="big-box">Tu costo promedio <div className="col-md-3 text-right">
+                    <div class="big-box">Tu costo promedio<div className="col-md-3 text-right">
                         <span class="fas fa-dollar-sign checked mr-1"></span>
                         <span class="fas fa-dollar-sign checked mr-1"></span>
                         <span class="fas fa-dollar-sign mr-1"></span>
