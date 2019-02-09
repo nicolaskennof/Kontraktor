@@ -22,12 +22,12 @@ class WorkerProfileData extends Component {
     };
 
     componentDidMount() {
-        if(this.props.isSignup){
+        if (this.props.isSignup) {
             this.setState({
-                mdColumnSize : "12"
+                mdColumnSize: "12"
             })
         }
-        
+
         if (this.props.kontratado) {
             const { contactPhone, description, email, firstName, lastName, state, county, profession } = this.props.kontratado;
             this.setState({
@@ -36,18 +36,16 @@ class WorkerProfileData extends Component {
                 email,
                 firstName,
                 lastName,
-                state : state._id, 
+                state: state._id,
                 county,
-                profession : profession._id
+                profession: profession._id
             })
         }
     }
 
-   
-
-    componentWillUnmount(){
+    componentWillUnmount() {
         this.mounted = false;
-      }
+    }
 
     handleStateChange = (state) => {
         this.setState({
@@ -70,9 +68,9 @@ class WorkerProfileData extends Component {
     handleInputChange = event => {
         const { name, value } = event.target;
         this.setState({
-          [name]: value
+            [name]: value
         });
-      };
+    };
 
     handleSubmit = event => {
         const form = event.currentTarget;
@@ -80,8 +78,9 @@ class WorkerProfileData extends Component {
             event.preventDefault();
             event.stopPropagation();
         }
+
         this.setState({ validated: true });
-        const {firstName, lastName, contactPhone, email, description, state, county, profession} = this.state;
+        const { firstName, lastName, contactPhone, email, description, state, county, profession } = this.state;
         let kontratado = {
             firstName,
             lastName,
@@ -93,26 +92,36 @@ class WorkerProfileData extends Component {
             profession,
         };
 
-        if (this.props.isSignup){
+        if (this.props.isSignup) {
             kontratado.password = this.state.password;
             API.createKontratado(kontratado)
-            .then( response =>{
-                this.props.logKontratado(response.data);
-            })
-            .catch(err=>console.log(err)); 
+                .then(response => {
+                    this.props.logKontratado(response.data);
+                })
+                .catch(err => console.log(err));
         } else {
+            while (document.querySelectorAll('div.valid-feedback').length > 0) {
+                document.querySelector('div.valid-feedback').remove();
+            }
             API.updateKontratado(kontratado)
-                .then(result=>{
+                .then(result => {
                     this.props.kontratadoUpdate(result.data);
                 })
-                .catch(err=>console.log(err.response))
+                .catch(err => console.log(err.response))
         }
+    }
+
+    loadImage = () => {
+        document.querySelector('input#uploadFileInput').click()
     }
 
     render() {
         const { validated } = this.state;
         return (
             <Container>
+                                <div className="fileControl">
+                                        <input id="uploadFileInput" className="form-control" type="file" />
+                                </div>
                 <Form
                     noValidate
                     validated={validated}
@@ -120,12 +129,21 @@ class WorkerProfileData extends Component {
                 >
                     <Form.Row>
                         {!this.props.isSignup ?
+
+                            
+                                    
+
+                                   
+
+                            
+
                             <Col s={12} md={2}>
                                 <div className="imgWrap">
+                                
                                     <Image src="http://nicolas-kennof.com/wp-content/uploads/2018/07/Perfil-2018.png" roundedCircle className="profilePicAccount" />
-                                    <p className="profilePicChange"><br /><a className="profilePicChangeLink" href="https://localhost:3000"><i className="fas fa-camera"></i><br />Editar tu foto<br />de perfil</a></p>
+                                    <p className="profilePicChange"><br /><span onClick={this.loadImage} className="profilePicChangeLink"><i className="fas fa-camera"></i><br />Editar tu foto<br />de perfil</span></p>
                                 </div>
-                            </Col> : ""
+                            </Col>  : ""
                         }
 
                         <Col md={10}>
@@ -142,7 +160,7 @@ class WorkerProfileData extends Component {
                                             className="formInput"
                                             value={this.state.firstName}
                                             name="firstName"
-                                            onChange = {this.handleInputChange}
+                                            onChange={this.handleInputChange}
                                         />
                                         <Form.Control.Feedback>
                                             Looks good!
@@ -160,40 +178,40 @@ class WorkerProfileData extends Component {
                                             placeholder="Apellido"
                                             className="formInput"
                                             value={this.state.lastName}
-                                            name = "lastName"
-                                            onChange = {this.handleInputChange}
+                                            name="lastName"
+                                            onChange={this.handleInputChange}
                                         />
                                         <Form.Control.Feedback type="invalid">
                                             Looks good!
                                         </Form.Control.Feedback>
                                     </InputGroup>
                                 </Form.Group>
-                                
-                                <Professions currentProfession={this.state.profession} onProfessionChange = {this.handleProfessionChange} />
+
+                                <Professions currentProfession={this.state.profession} onProfessionChange={this.handleProfessionChange} />
 
                             </Form.Row>
                             <Form.Row>
                                 <div className={"col-md-" + this.state.mdColumnSize}>
                                     <Form.Row>
-                                    <Form.Group as={Col} md="12">
-                                    <InputGroup>
-                                        <InputGroup.Prepend>
-                                            <InputGroup.Text className="formIcon" id="inputGroupPrepend"><i className="fas fa-mobile-alt"></i></InputGroup.Text>
-                                        </InputGroup.Prepend>
-                                        <Form.Control
-                                            required
-                                            type="number"
-                                            placeholder="Celular"
-                                            className="formInput"
-                                            value={this.state.contactPhone}
-                                            onChange = {this.handleInputChange}
-                                            name = "contactPhone"
-                                        />
-                                        <Form.Control.Feedback>
-                                            Looks good!
+                                        <Form.Group as={Col} md="12">
+                                            <InputGroup>
+                                                <InputGroup.Prepend>
+                                                    <InputGroup.Text className="formIcon" id="inputGroupPrepend"><i className="fas fa-mobile-alt"></i></InputGroup.Text>
+                                                </InputGroup.Prepend>
+                                                <Form.Control
+                                                    required
+                                                    type="number"
+                                                    placeholder="Celular"
+                                                    className="formInput"
+                                                    value={this.state.contactPhone}
+                                                    onChange={this.handleInputChange}
+                                                    name="contactPhone"
+                                                />
+                                                <Form.Control.Feedback>
+                                                    Looks good!
                                 </Form.Control.Feedback>
-                                    </InputGroup>
-                                </Form.Group>
+                                            </InputGroup>
+                                        </Form.Group>
                                     </Form.Row>
                                     <Form.Row>
                                         <Form.Group as={Col} md="12" >
@@ -207,9 +225,9 @@ class WorkerProfileData extends Component {
                                                     aria-describedby="inputGroupPrepend"
                                                     className="formInput"
                                                     required
-                                                    value = {this.state.email}
-                                                    onChange = {this.handleInputChange}
-                                                    name = "email"
+                                                    value={this.state.email}
+                                                    onChange={this.handleInputChange}
+                                                    name="email"
                                                 />
                                                 <Form.Control.Feedback type="invalid">
                                                     Favor de ingresar tu dirección de correo electrónico.
@@ -219,26 +237,26 @@ class WorkerProfileData extends Component {
                                     </Form.Row>
                                     {this.props.isSignup ?
                                         <Form.Row>
-                                        <Form.Group as={Col} md="12" >
-                                            <InputGroup>
-                                                <InputGroup.Prepend>
-                                                    <InputGroup.Text className="formIcon" id="inputGroupPrepend">@</InputGroup.Text>
-                                                </InputGroup.Prepend>
-                                                <Form.Control
-                                                    type="password"
-                                                    placeholder="Password"
-                                                    aria-describedby="inputGroupPrepend"
-                                                    className="formInput"
-                                                    required
-                                                    onChange = {this.handleInputChange}
-                                                    name = "password"
-                                                />
-                                                <Form.Control.Feedback type="invalid">
-                                                    Favor de ingresar una contraseña
+                                            <Form.Group as={Col} md="12" >
+                                                <InputGroup>
+                                                    <InputGroup.Prepend>
+                                                        <InputGroup.Text className="formIcon" id="inputGroupPrepend">@</InputGroup.Text>
+                                                    </InputGroup.Prepend>
+                                                    <Form.Control
+                                                        type="password"
+                                                        placeholder="Password"
+                                                        aria-describedby="inputGroupPrepend"
+                                                        className="formInput"
+                                                        required
+                                                        onChange={this.handleInputChange}
+                                                        name="password"
+                                                    />
+                                                    <Form.Control.Feedback type="invalid">
+                                                        Favor de ingresar una contraseña
                                         </Form.Control.Feedback>
-                                            </InputGroup>
-                                        </Form.Group>
-                                    </Form.Row>
+                                                </InputGroup>
+                                            </Form.Group>
+                                        </Form.Row>
                                         : <div></div>}
                                 </div>
                                 <Form.Group as={Col} md={this.state.mdColumnSize}>
@@ -251,7 +269,7 @@ class WorkerProfileData extends Component {
                                     </InputGroup>
                                 </Form.Group>
                                 <div className={"col-md-" + this.state.mdColumnSize}>
-                                    <StateSelector currentState = {this.state.state} currentCity = {this.state.county} handleStateChange = {this.handleStateChange} handleCityChange={this.handleCityChange} />
+                                    <StateSelector currentState={this.state.state} currentCity={this.state.county} handleStateChange={this.handleStateChange} handleCityChange={this.handleCityChange} />
                                 </div>
                             </Form.Row>
                             <Form.Row>

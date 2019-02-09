@@ -15,6 +15,10 @@
     border: #494949 .5px dotted
 }
 
+.fileControl{
+    display: none;
+}
+
 .profilePicAccount {
     width: 180px;
     height: 180px;

@@ -19,7 +19,7 @@ class UploadImage extends Component {
                         <input id="uploadFileInput" className="form-control" type="file" />
                     </div>
 
-                    <button className="btn btn-success">Upload</button>
+                        
                 </form>
 
                 <img src={`/api/image/5c47ca4b98f99c30afb747a4`} alt="profileImage"></img>
