@@ -1,6 +1,5 @@
 import React from "react";
 import { Button, Modal, ButtonToolbar, Container, Form } from "react-bootstrap";
-import { Reviews } from "../reviews/Reviews";
 import "./style.css"
 
 

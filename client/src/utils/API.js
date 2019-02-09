@@ -1,8 +1,8 @@
 import axios from "axios";
 
 export default {
-  saveImage : function(formData) {
-    return axios.post("/api/image", formData);
+  saveImage : function(formData, kontratadoId) {
+    return axios.post("/api/image/" + kontratadoId, formData);
   },
 
   getKontratado: function(id){
@@ -15,6 +15,10 @@ export default {
 
   createKontratado: function(kontratado){
     return axios.post("/api/kontratado/", kontratado);
+  },
+
+  updateKontratado: function(kontratado){
+    return axios.post("/api/kontratado/update", kontratado);
   },
 
   loginKontratado: function(kontratado){
