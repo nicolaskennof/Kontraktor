@@ -30,13 +30,13 @@ class Professions extends Component {
                         <InputGroup.Text className="formIcon" id="inputGroupPrepend"><i className="fas fa-hammer"></i></InputGroup.Text>
                     </InputGroup.Prepend>
                     <Form.Control as="select" onChange={this.onProfessionChange} className="formInput">
-                        <option>Elija tus habilidades (3 max.)</option>
+                        <option>¿Qué profesional buscas?</option>
                         {this.state.professions.map(professionElement=>{
                             return <option key = {professionElement._id} value = {professionElement._id}>{professionElement.profession}</option>
                         })}
                     </Form.Control>
                     <Form.Control.Feedback type="invalid">
-                        Favor de ingresar minimo una habilidad.
+                        Favor de seleccionar un profesional.
                                 </Form.Control.Feedback>
                 </InputGroup>
             </Form.Group>

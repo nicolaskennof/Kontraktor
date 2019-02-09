@@ -53,7 +53,7 @@ class StateSelector extends Component {
                             </Form.Control>
 
                             <Form.Control.Feedback type="invalid">
-                                Favor de ingresar tu estado.
+                                Favor de seleccionar tu estado.
                                         </Form.Control.Feedback>
                         </InputGroup>
                     </Form.Group>

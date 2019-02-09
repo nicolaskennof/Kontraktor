@@ -6,6 +6,7 @@ import WorkerCard from "../Components/workerCard/WorkerCard"
 import Search from "../Components/Search/Search"
 import UserFavorite from "./UserFavorite"
 import UserMailbox from "./UserMailbox"
+import WelcomeMessage from "../Components/WelcomeMessage/WelcomeMessage";
 
 
 class UserAfterLogin extends Component {
@@ -25,6 +26,7 @@ class UserAfterLogin extends Component {
         <div>
             <NavBarUser routeChange = {this.routeChange}/>{this.state.render === "start" ?
                 <div>
+                    <WelcomeMessage />
                     <br />
                     <Search />
                     <br />
