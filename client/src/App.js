@@ -1,8 +1,8 @@
 import React, { Component } from "react";
-import BeforeLogin from './Components/beforeLogin/beforeLogin'
-import AfterLogin from './Components/afterLogin/afterLogin'
-import KontratadoAfterLogin from './Components/KontratadoAfterLogin/KontratadoAfterLogin'
-import API from "./utils/API";
+import BeforeLogin from './Pages/BeforeLogin'
+import UserAfterLogin from './Pages/UserAfterLogin'
+import KontratadoAfterLogin from './Pages/KontratadoAfterLogin'
+import API from './utils/API'
 
 class App extends Component {
 
@@ -66,17 +66,16 @@ class App extends Component {
   }
 
   kontratadoUpdate = kontratado => {
-    console.log(kontratado.description);
     this.setState({
       kontratadoUser : kontratado
-    },()=>{console.log(this.state.kontratadoUser.description)})
+    })
   }
 
 
   chooseRender = () => {
     if (this.state.isFacebookAuthenticated || this.state.isKontratadoAuthenticated){
       if (this.state.isFacebookAuthenticated){
-        return <AfterLogin facebookLogout = {this.facebookLogout} />
+        return <UserAfterLogin facebookLogout = {this.facebookLogout} />
       } else {
         return <div>
           <KontratadoAfterLogin kontratadoUpdate={this.kontratadoUpdate} kontratado = {this.state.kontratadoUser} logOutKontratado={this.logOutKontratado} />

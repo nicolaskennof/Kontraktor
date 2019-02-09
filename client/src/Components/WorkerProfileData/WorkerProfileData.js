@@ -9,6 +9,7 @@ class WorkerProfileData extends Component {
 
     state = {
         validated: false,
+        kontratadoId: '',
         firstName: '',
         lastName: '',
         contactPhone: '',
@@ -18,19 +19,24 @@ class WorkerProfileData extends Component {
         county: '',
         profession: '',
         password: '',
-        mdColumnSize: '4'
+        image: '',
+        mdColumnSize: '4',
+        workerDataBtnText: ' Guardar Cambios'
     };
 
     componentDidMount() {
         if (this.props.isSignup) {
             this.setState({
-                mdColumnSize: "12"
+                mdColumnSize: "12",
+                workerDataBtnText: " Regístrate",
+                icon: "save"
             })
         }
 
         if (this.props.kontratado) {
-            const { contactPhone, description, email, firstName, lastName, state, county, profession } = this.props.kontratado;
+            const { contactPhone, description, email, firstName, lastName, state, county, profession, _id, image } = this.props.kontratado;
             this.setState({
+                kontratadoId: _id,
                 contactPhone,
                 description,
                 email,
@@ -38,7 +44,9 @@ class WorkerProfileData extends Component {
                 lastName,
                 state: state._id,
                 county,
-                profession: profession._id
+                profession: profession._id,
+                image,
+                icon: "sign-in-alt"
             })
         }
     }
@@ -105,23 +113,52 @@ class WorkerProfileData extends Component {
             }
             API.updateKontratado(kontratado)
                 .then(result => {
-                    this.props.kontratadoUpdate(result.data);
+                    API.getKontratado(result.data._id)
+                        .then(currentKontratado => {
+                            this.props.kontratadoUpdate(currentKontratado.data);
+                        })
+                        .catch(err => console.log(err.response))
                 })
                 .catch(err => console.log(err.response))
         }
     }
 
     loadImage = () => {
-        document.querySelector('input#uploadFileInput').click()
+        const selector = document.querySelector('input#uploadFileInput');
+        selector.click();
+    }
+
+    selectorChange = () => {
+        const button = document.querySelector('button#triggerUploadButton');
+        button.click();
+    }
+
+    handleImageUpload = () => {
+        const data = new FormData();
+        data.append('uploadFile', document.getElementById('uploadFileInput').files[0]);
+        API.saveImage(data, this.state.kontratadoId)
+            .then(result => {
+                API.getKontratado(this.state.kontratadoId)
+                    .then(currentKontratado => {
+                        this.setState({
+                            image: result.data
+                        },()=>{
+                            this.props.kontratadoUpdate(currentKontratado.data);
+                        })
+                    })
+                    .catch(err => console.log(err.response))
+            })
+            .catch(err => { console.log(err.response) })
     }
 
     render() {
         const { validated } = this.state;
         return (
             <Container>
-                                <div className="fileControl">
-                                        <input id="uploadFileInput" className="form-control" type="file" />
-                                </div>
+                <div className="fileControl">
+                    <input id="uploadFileInput" onChange={this.selectorChange} className="form-control" type="file" />
+                    <button id="triggerUploadButton" onClick={this.handleImageUpload}></button>
+                </div>
                 <Form
                     noValidate
                     validated={validated}
@@ -129,21 +166,15 @@ class WorkerProfileData extends Component {
                 >
                     <Form.Row>
                         {!this.props.isSignup ?
-
-                            
-                                    
-
-                                   
-
-                            
-
                             <Col s={12} md={2}>
                                 <div className="imgWrap">
-                                
-                                    <Image src="http://nicolas-kennof.com/wp-content/uploads/2018/07/Perfil-2018.png" roundedCircle className="profilePicAccount" />
+
+                                    <Image
+                                        src={this.state.image ? `/api/image/${this.state.image}` : "http://nicolas-kennof.com/wp-content/uploads/2018/07/Perfil-2018.png"}
+                                        roundedCircle className="profilePicAccount" />
                                     <p className="profilePicChange"><br /><span onClick={this.loadImage} className="profilePicChangeLink"><i className="fas fa-camera"></i><br />Editar tu foto<br />de perfil</span></p>
                                 </div>
-                            </Col>  : ""
+                            </Col> : ""
                         }
 
                         <Col md={10}>
@@ -274,7 +305,7 @@ class WorkerProfileData extends Component {
                             </Form.Row>
                             <Form.Row>
                                 <div className="col-md-4">
-                                    <Button className="workerProfileBtn" onClick={this.handleSubmit}><i className="fas fa-save"></i> Guardar cambios</Button>
+                                    <Button className="workerProfileBtn" onClick={this.handleSubmit}><i className={`fas fa-${this.state.icon}`}></i>{this.state.workerDataBtnText}</Button>
                                 </div>
                             </Form.Row>
                         </Col>

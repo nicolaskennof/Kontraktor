@@ -1,9 +1,13 @@
 import React from "react";
-import { Container, Figure, Button } from "react-bootstrap";
-import Modals from "../modals/Modals"
+import { Container, Figure, Row, Col } from "react-bootstrap";
+import ModalMessage from "../microCompMessage/ModalMessage"
+import ModalPhone from "../microCompPhone/ModalPhone"
+import Fav from "../microCompFav/Fav"
+import Price from "../microCompPrice/Price"
+import Rating from "../microCompRating/ModalRating"
+import Quant from "../microCompQuant/Quant"
 import "./style.css"
 
-let kontraktedAmount = 48;
 let firstName = "Nicolas Jules R";
 let lastName = "Kennof";
 let occupation = "Plomero"
@@ -17,7 +21,7 @@ function WorkerCard() {
                     <div className="row">
                         <div className="col-md-2 text-center">
                             <Figure.Image
-                                className="workerImage border-right my-2"
+                                className="workerImage my-2"
                                 alt=""
                                 src={workerImage}
                             />
@@ -31,49 +35,41 @@ function WorkerCard() {
                                             <h5 className="workerCardDetail"><span id="workerEmployment">{occupation}</span></h5>
                                         </div>
                                         <div className="col-6 text-left">
-                                            <Button className="mr-1" variant="danger" id="favoriteBtn"><i className="fas fa-heart"></i></Button>
                                         </div>
                                     </div>
                                 </div>
                                 <div className="col-md-3 text-center">
-                                    <p><b>Rango de precio:</b><br />
-                                        <span className="fas fa-dollar-sign checked mr-1"></span>
-                                        <span className="fas fa-dollar-sign checked mr-1"></span>
-                                        <span className="fas fa-dollar-sign checked mr-1"></span>
-                                        <span className="fas fa-dollar-sign mr-1"></span>
-                                        <span className="fas fa-dollar-sign mr-1"></span>
-                                    </p>
+                                    <Price />
                                 </div>
                             </div>
-                            <hr />
                             <div className="row">
                                 <div className="col-md-6 text-left">
-                                    <Button className="btn rating btn-warning btn-sm mr-1" aria-label="Left Align">
-                                        <span className="fa fa-hammer" aria-hidden="true"></span>
-                                    </Button>
-                                    <Button className="btn rating btn-warning btn-sm mr-1" aria-label="Left Align">
-                                        <span className="fa fa-hammer" aria-hidden="true"></span>
-                                    </Button>
-                                    <Button className="btn rating btn-warning btn-sm mr-1" aria-label="Left Align">
-                                        <span className="fa fa-hammer" aria-hidden="true"></span>
-                                    </Button>
-                                    <Button className="btn rating btn-grey btn-sm mr-1" aria-label="Left Align">
-                                        <span className="fa fa-hammer" aria-hidden="true"></span>
-                                    </Button>
-                                    <Button className="btn rating btn-grey btn-sm" aria-label="Left Align">
-                                        <span className="fa fa-hammer" aria-hidden="true"></span>
-                                    </Button>
+                                    <Rating />
                                 </div>
                                 <div className="col-md-3 text-center">
-                                    <p><b># Kontratado: </b><span className="workerCardDetail" id="timesKontrakted">{kontraktedAmount}</span> x</p>
+                                    <Quant />
                                 </div>
                                 <div className="col-md-3 text-center">
-                                    
+
                                 </div>
                             </div>
                         </div>
                         <div className="col-md-2 my-auto">
-                            <Modals />
+                            <Row>
+                                <Col md={12} className="mb-2">
+                                    <ModalMessage />
+                                </Col>
+                            </Row>
+                            <Row>
+                                <Col md={12} className="mb-2">
+                                    <ModalPhone />
+                                </Col>
+                            </Row>
+                            <Row>
+                                <Col md={12}>
+                                    <Fav />
+                                </Col>
+                            </Row>
                         </div>
                     </div>
                 </Figure>

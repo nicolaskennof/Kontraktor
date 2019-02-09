@@ -13,8 +13,10 @@ class StateSelector extends Component {
         const cities = this.state.states.filter(stateElement=>{
             return stateElement.value === selectedState.target.value;
         })[0].counties;
-        this.setState({cities})
-        this.props.handleStateChange(selectedState.target.value);
+        const currentState = selectedState.target.value;
+        this.setState({cities}, ()=>{
+            this.props.handleStateChange(currentState);
+        })
     }
 
     handleCityChange = (selectedCity) => {
@@ -27,7 +29,7 @@ class StateSelector extends Component {
                 this.setState({
                     states: result.data.map(stateElement => {
                         return { value: stateElement._id, label: stateElement.state, counties: stateElement.counties }
-                    })
+                    },()=>{console.log(this.props)})
                 })
             }).catch(err => console.log(err))
         
