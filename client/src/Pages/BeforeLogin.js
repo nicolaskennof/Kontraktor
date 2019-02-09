@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import NavBarStart from "../Components/navBars/navBarStart"
 import InfoCardsWrapper from "../Components/infoCardsWrapper/infoCardsWrapper"
 import ModalLogin from "../Components/ModalLogin/ModalLogin"
-import WorkerProfileData from "../Components/WorkerProfileData/WorkerProfileData"
 import ImgCarousel from "../Components/carousel/Carousel"
 import { Container } from "react-bootstrap";
 
@@ -33,8 +32,6 @@ class BeforeLogin extends Component {
                 <ModalLogin logKontratado = {this.props.logKontratado} isSignup = {this.state.isSignup} handleClose = {this.handleClose} show = {this.state.show} facebookResponse={this.props.facebookResponse} />
                 <br />
                 <InfoCardsWrapper />
-                <br />
-                <WorkerProfileData logKontratado = {this.props.logKontratado} kontratado = {{firstName:"Nicolas", lastName:"Kennof"}} isSignup={false} />
                 <br />
                 </Container>
             </div>

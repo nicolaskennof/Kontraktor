@@ -13,8 +13,10 @@ class StateSelector extends Component {
         const cities = this.state.states.filter(stateElement=>{
             return stateElement.value === selectedState.target.value;
         })[0].counties;
-        this.setState({cities})
-        this.props.handleStateChange(selectedState.target.value);
+        const currentState = selectedState.target.value;
+        this.setState({cities}, ()=>{
+            this.props.handleStateChange(currentState);
+        })
     }
 
     handleCityChange = (selectedCity) => {
@@ -22,13 +24,30 @@ class StateSelector extends Component {
     }
 
     componentDidMount() {
-        API.getStates().then(result => {
-            this.setState({
-                states: result.data.map(stateElement => {
-                    return { value: stateElement._id, label: stateElement.state, counties: stateElement.counties }
+        
+            API.getStates().then(result => {
+                this.setState({
+                    states: result.data.map(stateElement => {
+                        return { value: stateElement._id, label: stateElement.state, counties: stateElement.counties }
+                    },()=>{console.log(this.props)})
                 })
-            })
-        }).catch(err => console.log(err))
+            }).catch(err => console.log(err))
+        
+    }
+
+    componentWillReceiveProps(newProps){
+        if(newProps.currentState && newProps.currentCity){
+            API.getStates().then(result => {
+                this.setState({
+                    states: result.data.map(stateElement => {
+                        return { value: stateElement._id, label: stateElement.state, counties: stateElement.counties }
+                    }),
+                    cities: result.data.filter(stateElement=>{
+                        return stateElement._id === newProps.currentState;
+                    })[0].counties
+                })
+            }).catch(err => console.log(err))
+        }
     }
 
     render() {
@@ -45,6 +64,7 @@ class StateSelector extends Component {
                                 as="select"
                                 className="formInput"
                                 onChange={this.handleStateChange}
+                                value = {this.props.currentState}
                             >
                                 <option value="">Elija tu estado...</option>
                                 {this.state.states.map(stateElement => {
@@ -65,7 +85,7 @@ class StateSelector extends Component {
                             <InputGroup.Prepend>
                                 <InputGroup.Text className="formIcon" id="inputGroupPrepend"><i className="fas fa-university"></i></InputGroup.Text>
                             </InputGroup.Prepend>
-                            <Form.Control as="select" className="formInput" onChange={this.handleCityChange}>
+                            <Form.Control value = {this.props.currentCity} as="select" className="formInput" onChange={this.handleCityChange}>
                                 <option>Elija tu ciudad...</option>
                                 {this.state.cities.map(cityElement => {
                                     return <option key={cityElement._id} value={cityElement._id}>{cityElement.county}</option>

@@ -22,6 +22,14 @@ var KontratadoSchema = new Schema({
         unique : true
     },
 
+    image : {
+        type : Schema.Types.ObjectId
+    },
+
+    fileImage : {
+        type : Schema.Types.ObjectId
+    },
+
     state: { type: Schema.Types.ObjectId, ref: 'State' },
 
     profession: { type: Schema.Types.ObjectId, ref: 'Profession' },

@@ -1,27 +1,13 @@
 import React, { Component } from "react"
-import API from '../utils/API'
+import WorkerProfileData from "../Components/WorkerProfileData/WorkerProfileData"
+
 
 class KontratadoAfterLogin extends Component {
-    
-    state = {
-        kontratado : null
-    }
-    
-    componentDidMount(){
-        if (this.props.kontratado){
-            API.getKontratado(this.props.kontratado)
-                .then(result=>{
-                    console.log(result.data);
-                    this.setState({kontratado : result.data});
-                })
-                .catch(err=>console.log(err.response))
-        }
-    }
     
     render() {
         return (
             <div>
-                <h1>Hola Kontratado</h1>
+                <WorkerProfileData kontratadoUpdate={this.props.kontratadoUpdate} kontratado = {this.props.kontratado} isSignup={false} />
                 <button onClick={this.props.logOutKontratado}>Adios paisano</button>
             </div>
         )

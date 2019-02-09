@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import BeforeLogin from './Pages/BeforeLogin'
 import UserAfterLogin from './Pages/UserAfterLogin'
 import KontratadoAfterLogin from './Pages/KontratadoAfterLogin'
+import API from './utils/API'
 
 class App extends Component {
 
@@ -47,10 +48,15 @@ class App extends Component {
   };
 
   logKontratado = (idKontratado) => {
-    this.setState({
-      kontratadoUser: idKontratado,
-      isKontratadoAuthenticated : true
-    });
+    let kontratadoUser;
+    API.getKontratado(idKontratado)
+      .then(result=>{
+        kontratadoUser = result.data;
+        this.setState({
+          kontratadoUser,
+          isKontratadoAuthenticated : true
+        });
+      })
   }
 
   logOutKontratado = () => {
@@ -59,13 +65,20 @@ class App extends Component {
     });
   }
 
+  kontratadoUpdate = kontratado => {
+    this.setState({
+      kontratadoUser : kontratado
+    })
+  }
+
+
   chooseRender = () => {
     if (this.state.isFacebookAuthenticated || this.state.isKontratadoAuthenticated){
       if (this.state.isFacebookAuthenticated){
         return <UserAfterLogin facebookLogout = {this.facebookLogout} />
       } else {
         return <div>
-          <KontratadoAfterLogin kontratado = {this.state.kontratadoUser} logOutKontratado={this.logOutKontratado} />
+          <KontratadoAfterLogin kontratadoUpdate={this.kontratadoUpdate} kontratado = {this.state.kontratadoUser} logOutKontratado={this.logOutKontratado} />
         </div>
       }
     } else {

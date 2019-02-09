@@ -8,6 +8,9 @@ router.route("/")
 router.route("/filter")  
   .post(kontratadoController.getKontratadoByFilter);
 
+router.route("/update")
+  .post(kontratadoController.updateKontratado);
+
 router.route("/:id")
   .get(kontratadoController.getbyId);
 

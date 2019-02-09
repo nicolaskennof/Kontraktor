@@ -2,9 +2,9 @@ import React, {Component} from "react";
 import FacebookLogin from 'react-facebook-login';
 import config from '../../config.json';  
 import {Modal} from "react-bootstrap"
-import  "./style.css"
 import WorkerProfileData from '../WorkerProfileData/WorkerProfileData'
 import KontratadoLogin from '../KontratadoLogin/KontratadoLogin'
+import "./Style.css"
 
 class ModalLogin extends Component{
 constructor(props) {
