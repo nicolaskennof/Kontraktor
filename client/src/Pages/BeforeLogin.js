@@ -27,10 +27,9 @@ class BeforeLogin extends Component {
         return (
             <div>
                 <NavBarStart handleShow = {this.handleShow} />
+                <ImgCarousel />
                 <Container>
                 <ModalLogin logKontratado = {this.props.logKontratado} isSignup = {this.state.isSignup} handleClose = {this.handleClose} show = {this.state.show} facebookResponse={this.props.facebookResponse} />
-                <br />
-                <ImgCarousel />
                 <br />
                 <InfoCardsWrapper />
                 <br />

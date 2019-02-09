@@ -1,11 +1,10 @@
-import React, { Component } from "react";
-import "./style.css"
+import React from "react";
 
-function WorkerWrapper() {
+function WorkersWrapper() {
     return (
         <div>
         </div>
     )
 }
 
-export default WorkerWrapper;
+export default WorkersWrapper;
