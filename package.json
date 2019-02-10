@@ -21,6 +21,7 @@
   },
   "dependencies": {
     "axios": "^0.18.0",
+    "ajv": "6.8.1",
     "bcrypt-nodejs": "^0.0.3",
     "bootstrap": "^4.2.1",
     "cookie-parser": "^1.4.3",
