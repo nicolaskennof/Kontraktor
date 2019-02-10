@@ -4,9 +4,6 @@ import InfoCardsWrapper from "../Components/infoCardsWrapper/infoCardsWrapper"
 import ModalLogin from "../Components/ModalLogin/ModalLogin"
 import ImgCarousel from "../Components/carousel/Carousel"
 import { Container } from "react-bootstrap"
-import Search from "../Components/Search/Search"
-import HeroImage from "../Components/HeroImage/HeroImageUserHome"
-import LoginCardsWrapper from "../Components/infoCardsWrapper/logInCardsWrapper"
 
 class BeforeLogin extends Component {
     
