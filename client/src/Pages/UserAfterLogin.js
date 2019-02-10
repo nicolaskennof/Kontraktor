@@ -8,6 +8,7 @@ import Search from "../Components/Search/Search"
 import UserFavorite from "./UserFavorite"
 import UserMailbox from "./UserMailbox"
 import WelcomeMessage from "../Components/WelcomeMessage/WelcomeMessage"
+import HeroImage from "../Components/HeroImage/HeroImageUserHome";
 
 
 class UserAfterLogin extends Component {
@@ -27,9 +28,7 @@ class UserAfterLogin extends Component {
             <div>
                 <NavBarUser type={this.state.type} routeChange={this.routeChange} />{this.state.type === "home" ?
                     <div>
-                        <WelcomeMessage />
-                        <br />
-                        <Search />
+                        <HeroImage />
                         <br />
                         <button onClick={this.props.facebookLogout} className="button">Cerrar sesión</button>
                         <br />

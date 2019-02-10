@@ -1,0 +1,14 @@
+.bannerTitle {
+    font-size: 45px;
+    margin: 40px
+}
+
+.bannerText {
+    font-size: 30px;
+    color: white;
+}
+
+.darkTextBackground {
+    background-color: #494949ce;
+    padding: 20px;
+}

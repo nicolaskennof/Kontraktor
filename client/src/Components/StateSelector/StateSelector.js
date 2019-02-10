@@ -60,7 +60,7 @@ class StateSelector extends Component {
                     <Form.Control
                         placeholder="¿Dónde?"
                         as="select"
-                        className="formInput"
+                        className="formInput rounded-right"
                         onChange={this.handleStateChange}
                         value={this.props.currentState}
                     >
@@ -87,7 +87,7 @@ class StateSelector extends Component {
                             <Form.Control
                                 placeholder="¿Dónde?"
                                 as="select"
-                                className="formInput"
+                                className="formInput rounded-right"
                                 onChange={this.handleStateChange}
                                 value={this.props.currentState}
                             >
@@ -110,7 +110,7 @@ class StateSelector extends Component {
                                 <InputGroup.Prepend>
                                     <InputGroup.Text className="formIcon" id="inputGroupPrepend"><i className="fas fa-university"></i></InputGroup.Text>
                                 </InputGroup.Prepend>
-                                <Form.Control value={this.props.currentCity} as="select" className="formInput" onChange={this.handleCityChange}>
+                                <Form.Control value={this.props.currentCity} as="select" className="formInput rounded-right" onChange={this.handleCityChange}>
                                     <option>Elija tu ciudad...</option>
                                     {this.state.cities.map(cityElement => {
                                         return <option key={cityElement._id} value={cityElement._id}>{cityElement.county}</option>
