@@ -19,11 +19,11 @@ handleOptionChange(changeEvent){
     })
 }
 
-render () {
+render () {
     let button;
 	if (this.state.selectedOption === 'A') {
         button =  <FacebookLogin
-        appId= {'1042884622576309'}
+        appId= {'311552682886836'}
         autoLoad={false}
         fields="name,email,picture"
         callback={this.props.facebookResponse} 
@@ -62,5 +62,6 @@ return (
 		</div>
 		)
 	}
-}
-export default ModalLogin;
+}
+
+export default ModalLogin;

@@ -75,7 +75,7 @@ class KontratadoLogin extends Component {
                             <Form.Group as={Col} md="12" >
                                 <InputGroup>
                                     <InputGroup.Prepend>
-                                        <InputGroup.Text className="formIcon" id="inputGroupPrepend">@</InputGroup.Text>
+                                        <InputGroup.Text className="formIcon" id="inputGroupPrepend"><i className="fas fa-key"></i></InputGroup.Text>
                                     </InputGroup.Prepend>
                                     <Form.Control
                                         type="password"
@@ -95,7 +95,7 @@ class KontratadoLogin extends Component {
 
                         <Form.Row>
                             <div className="col-md-12 text-center">
-                                <Button className="workerProfileBtn" onClick={this.handleSubmit}><i className="fas fa-save"></i> Log In </Button>
+                                <Button className="workerProfileBtn" onClick={this.handleSubmit}><i className="fas fa-sign-in-alt"></i> Ingresar</Button>
                             </div>
                         </Form.Row>
 
