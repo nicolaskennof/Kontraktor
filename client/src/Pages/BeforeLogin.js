@@ -6,6 +6,7 @@ import ImgCarousel from "../Components/carousel/Carousel"
 import { Container } from "react-bootstrap"
 import Search from "../Components/Search/Search"
 import HeroImage from "../Components/HeroImage/HeroImageUserHome"
+import LoginCardsWrapper from "../Components/infoCardsWrapper/logInCardsWrapper"
 
 class BeforeLogin extends Component {
     
@@ -34,6 +35,7 @@ class BeforeLogin extends Component {
                 <ModalLogin logKontratado = {this.props.logKontratado} isSignup = {this.state.isSignup} handleClose = {this.handleClose} show = {this.state.show} facebookResponse={this.props.facebookResponse} />
                 <br />
                 <InfoCardsWrapper />
+
                 <br />
                 </Container>
             </div>

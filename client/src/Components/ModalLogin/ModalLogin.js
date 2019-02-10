@@ -63,5 +63,6 @@ return (
 		</div>
 		)
 	}
-}
-export default ModalLogin;
+}
+
+export default ModalLogin;

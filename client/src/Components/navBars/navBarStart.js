@@ -21,8 +21,8 @@ function NavBarStart(props) {
                 </Navbar.Brand>
                 <div className="signInWrapper">
                     <div className="buttonSignIn">
-                        <Button className="buttonMargin" onClick={()=>props.handleShow(false)} variant="outline-warning">Sign in</Button>
-                        <Button href="#" onClick={()=>props.handleShow(true)} variant="outline-warning">Sign up</Button>
+                        <Button className="buttonMargin" onClick={()=>props.handleShow(false)} variant="outline-warning"><i className="fas fa-sign-in-alt"></i></Button>
+                        <Button href="#" onClick={()=>props.handleShow(true)} variant="outline-warning"><i className="fas fa-user-plus"></i></Button>
                     </div>
                 </div>
             </Navbar >

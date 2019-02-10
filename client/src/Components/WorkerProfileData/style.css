@@ -8,7 +8,8 @@
     color: #FBCC04;
     background: #494949;
     width: 45px;
-    border: #FBCC04 .5px dotted
+    border: #FBCC04 .5px dotted;
+    text-align: center
 }
 
 .formInput {
