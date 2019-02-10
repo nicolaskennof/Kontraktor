@@ -85,41 +85,42 @@ class WorkerProfileData extends Component {
         if (form.checkValidity() === false) {
             event.preventDefault();
             event.stopPropagation();
-        }
-
-        this.setState({ validated: true });
-        const { firstName, lastName, contactPhone, email, description, state, county, profession } = this.state;
-        let kontratado = {
-            firstName,
-            lastName,
-            contactPhone,
-            email,
-            description,
-            state,
-            county,
-            profession,
-        };
-
-        if (this.props.isSignup) {
-            kontratado.password = this.state.password;
-            API.createKontratado(kontratado)
-                .then(response => {
-                    this.props.logKontratado(response.data);
-                })
-                .catch(err => console.log(err));
+            this.setState({ validated: true });
         } else {
-            while (document.querySelectorAll('div.valid-feedback').length > 0) {
-                document.querySelector('div.valid-feedback').remove();
+            event.preventDefault();
+            const { firstName, lastName, contactPhone, email, description, state, county, profession } = this.state;
+            let kontratado = {
+                firstName,
+                lastName,
+                contactPhone,
+                email,
+                description,
+                state,
+                county,
+                profession,
+            };
+
+            if (this.props.isSignup) {
+                kontratado.password = this.state.password;
+                API.createKontratado(kontratado)
+                    .then(response => {
+                        this.props.logKontratado(response.data);
+                    })
+                    .catch(err => console.log(err));
+            } else {
+                while (document.querySelectorAll('div.valid-feedback').length > 0) {
+                    document.querySelector('div.valid-feedback').remove();
+                }
+                API.updateKontratado(kontratado)
+                    .then(result => {
+                        API.getKontratado(result.data._id)
+                            .then(currentKontratado => {
+                                this.props.kontratadoUpdate(currentKontratado.data);
+                            })
+                            .catch(err => console.log(err.response))
+                    })
+                    .catch(err => console.log(err.response))
             }
-            API.updateKontratado(kontratado)
-                .then(result => {
-                    API.getKontratado(result.data._id)
-                        .then(currentKontratado => {
-                            this.props.kontratadoUpdate(currentKontratado.data);
-                        })
-                        .catch(err => console.log(err.response))
-                })
-                .catch(err => console.log(err.response))
         }
     }
 
@@ -142,7 +143,7 @@ class WorkerProfileData extends Component {
                     .then(currentKontratado => {
                         this.setState({
                             image: result.data
-                        },()=>{
+                        }, () => {
                             this.props.kontratadoUpdate(currentKontratado.data);
                         })
                     })
@@ -163,6 +164,7 @@ class WorkerProfileData extends Component {
                     noValidate
                     validated={validated}
                     className="profileForm"
+                    onSubmit={e => this.handleSubmit(e)}
                 >
                     <Form.Row>
                         {!this.props.isSignup ?
@@ -194,8 +196,11 @@ class WorkerProfileData extends Component {
                                             onChange={this.handleInputChange}
                                         />
                                         <Form.Control.Feedback>
-                                            Looks good!
-                                </Form.Control.Feedback>
+                                            Se ve bien!
+                                        </Form.Control.Feedback>
+                                        <Form.Control.Feedback type="invalid">
+                                            Es necesario que ingreses tu nombre.
+                                        </Form.Control.Feedback>
                                     </InputGroup>
                                 </Form.Group>
                                 <Form.Group as={Col} md={this.state.mdColumnSize} >
@@ -212,8 +217,11 @@ class WorkerProfileData extends Component {
                                             name="lastName"
                                             onChange={this.handleInputChange}
                                         />
+                                        <Form.Control.Feedback>
+                                            Se ve bien!
+                                        </Form.Control.Feedback>
                                         <Form.Control.Feedback type="invalid">
-                                            Looks good!
+                                            Es necesario que ingreses tu apellido.
                                         </Form.Control.Feedback>
                                     </InputGroup>
                                 </Form.Group>
@@ -239,8 +247,11 @@ class WorkerProfileData extends Component {
                                                     name="contactPhone"
                                                 />
                                                 <Form.Control.Feedback>
-                                                    Looks good!
-                                </Form.Control.Feedback>
+                                                    Se ve bien!
+                                                </Form.Control.Feedback>
+                                                <Form.Control.Feedback type="invalid">
+                                                    Es necesario que ingreses tu celular.
+                                                </Form.Control.Feedback>
                                             </InputGroup>
                                         </Form.Group>
                                     </Form.Row>
@@ -260,9 +271,12 @@ class WorkerProfileData extends Component {
                                                     onChange={this.handleInputChange}
                                                     name="email"
                                                 />
+                                                <Form.Control.Feedback>
+                                                    Se ve bien!
+                                                </Form.Control.Feedback>
                                                 <Form.Control.Feedback type="invalid">
-                                                    Favor de ingresar tu dirección de correo electrónico.
-                                        </Form.Control.Feedback>
+                                                    Es necesario que ingreses tu correo electrónico.
+                                                </Form.Control.Feedback>
                                             </InputGroup>
                                         </Form.Group>
                                     </Form.Row>
@@ -282,9 +296,12 @@ class WorkerProfileData extends Component {
                                                         onChange={this.handleInputChange}
                                                         name="password"
                                                     />
-                                                    <Form.Control.Feedback type="invalid">
-                                                        Favor de ingresar una contraseña
-                                        </Form.Control.Feedback>
+                                                <Form.Control.Feedback>
+                                                        Se ve bien!
+                                                </Form.Control.Feedback>
+                                                <Form.Control.Feedback type="invalid">
+                                                        Es necesario que ingreses una contraseña.
+                                                </Form.Control.Feedback>
                                                 </InputGroup>
                                             </Form.Group>
                                         </Form.Row>
@@ -295,8 +312,21 @@ class WorkerProfileData extends Component {
                                         <InputGroup.Prepend>
                                             <InputGroup.Text className="formIcon rounded-left" id="inputGroupPrepend"><i className="fas fa-hammer"></i></InputGroup.Text>
                                         </InputGroup.Prepend>
-
-                                        <Form.Control onChange={this.handleInputChange} value={this.state.description} placeholder="Tell us something about you" name="description" as="textarea" rows="3" className="formInput rounded-right" />
+                                        <Form.Control
+                                            required
+                                            onChange={this.handleInputChange}
+                                            value={this.state.description}
+                                            placeholder="Tell us something about you"
+                                            name="description"
+                                            as="textarea"
+                                            rows="3"
+                                            className="formInput rounded-right" />
+                                        <Form.Control.Feedback>
+                                            Se ve bien!
+                                        </Form.Control.Feedback>
+                                        <Form.Control.Feedback type="invalid">
+                                            Es necesario que ingreses una descripción.
+                                        </Form.Control.Feedback>
                                     </InputGroup>
                                 </Form.Group>
                                 <div className={"col-md-" + this.state.mdColumnSize}>
@@ -305,7 +335,7 @@ class WorkerProfileData extends Component {
                             </Form.Row>
                             <Form.Row>
                                 <div className="col-md-4">
-                                    <Button className="workerProfileBtn" onClick={this.handleSubmit}><i className={`fas fa-${this.state.icon}`}></i>{this.state.workerDataBtnText}</Button>
+                                    <Button className="workerProfileBtn" type="submit"><i className={`fas fa-${this.state.icon}`}></i>{this.state.workerDataBtnText}</Button>
                                 </div>
                             </Form.Row>
                         </Col>
