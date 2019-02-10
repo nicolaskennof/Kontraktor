@@ -1,4 +1,5 @@
 import React, { Component } from "react"
+import { Container } from "react-bootstrap"
 import NavBarUser from "../Components/navBars/navBarUser"
 import LogInCardsWrapper from "../Components/infoCardsWrapper/logInCardsWrapper"
 import Filters from "../Components/resultsFilters/Filters"
@@ -26,11 +27,9 @@ class UserAfterLogin extends Component {
     render() {
         return (
             <div>
-                <NavBarUser type={this.state.type} routeChange={this.routeChange} />{this.state.type === "home" ?
+                <NavBarUser facebookLogout={this.props.facebookLogout} type={this.state.type} routeChange={this.routeChange} />{this.state.type === "home" ?
                     <div>
                         <HeroImage />
-                        <br />
-                        <button onClick={this.props.facebookLogout} className="button">Cerrar sesión</button>
                         <br />
                         <LogInCardsWrapper />
                         <br />

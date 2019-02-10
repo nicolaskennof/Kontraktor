@@ -2,10 +2,8 @@ import React, { Component } from "react"
 import NavBarStart from "../Components/navBars/navBarStart"
 import InfoCardsWrapper from "../Components/infoCardsWrapper/infoCardsWrapper"
 import ModalLogin from "../Components/ModalLogin/ModalLogin"
-import ImgCarousel from "../Components/carousel/Carousel"
+import ImgCarousel from "../Components/carousel/carousel"
 import { Container } from "react-bootstrap"
-import Search from "../Components/Search/Search"
-import HeroImage from "../Components/HeroImage/HeroImageUserHome"
 
 class BeforeLogin extends Component {
     
@@ -34,6 +32,7 @@ class BeforeLogin extends Component {
                 <ModalLogin logKontratado = {this.props.logKontratado} isSignup = {this.state.isSignup} handleClose = {this.handleClose} show = {this.state.show} facebookResponse={this.props.facebookResponse} />
                 <br />
                 <InfoCardsWrapper />
+
                 <br />
                 </Container>
             </div>
