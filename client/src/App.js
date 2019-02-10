@@ -71,7 +71,6 @@ class App extends Component {
     })
   }
 
-
   chooseRender = () => {
     if (this.state.isFacebookAuthenticated || this.state.isKontratadoAuthenticated){
       if (this.state.isFacebookAuthenticated){
