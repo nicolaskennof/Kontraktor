@@ -2,7 +2,7 @@ import React, { Component } from "react"
 import NavBarStart from "../Components/navBars/navBarStart"
 import InfoCardsWrapper from "../Components/infoCardsWrapper/infoCardsWrapper"
 import ModalLogin from "../Components/ModalLogin/ModalLogin"
-import ImgCarousel from "../Components/carousel/Carousel"
+import ImgCarousel from "../Components/carousel/carousel"
 import { Container } from "react-bootstrap"
 
 class BeforeLogin extends Component {
