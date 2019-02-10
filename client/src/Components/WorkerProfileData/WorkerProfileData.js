@@ -182,13 +182,13 @@ class WorkerProfileData extends Component {
                                 <Form.Group as={Col} md={this.state.mdColumnSize}>
                                     <InputGroup>
                                         <InputGroup.Prepend>
-                                            <InputGroup.Text className="formIcon" id="inputGroupPrepend"><i className="fas fa-user-alt"></i></InputGroup.Text>
+                                            <InputGroup.Text className="formIcon rounded-left" id="inputGroupPrepend"><i className="fas fa-user-alt"></i></InputGroup.Text>
                                         </InputGroup.Prepend>
                                         <Form.Control
                                             required
                                             type="text"
                                             placeholder="Nombre"
-                                            className="formInput"
+                                            className="formInput rounded-right"
                                             value={this.state.firstName}
                                             name="firstName"
                                             onChange={this.handleInputChange}
@@ -201,13 +201,13 @@ class WorkerProfileData extends Component {
                                 <Form.Group as={Col} md={this.state.mdColumnSize} >
                                     <InputGroup>
                                         <InputGroup.Prepend>
-                                            <InputGroup.Text className="formIcon" id="inputGroupPrepend"><i className="fas fa-signature"></i></InputGroup.Text>
+                                            <InputGroup.Text className="formIcon rounded-left" id="inputGroupPrepend"><i className="fas fa-signature"></i></InputGroup.Text>
                                         </InputGroup.Prepend>
                                         <Form.Control
                                             required
                                             type="text"
                                             placeholder="Apellido"
-                                            className="formInput"
+                                            className="formInput rounded-right"
                                             value={this.state.lastName}
                                             name="lastName"
                                             onChange={this.handleInputChange}
@@ -227,13 +227,13 @@ class WorkerProfileData extends Component {
                                         <Form.Group as={Col} md="12">
                                             <InputGroup>
                                                 <InputGroup.Prepend>
-                                                    <InputGroup.Text className="formIcon" id="inputGroupPrepend"><i className="fas fa-mobile-alt"></i></InputGroup.Text>
+                                                    <InputGroup.Text className="formIcon rounded-left" id="inputGroupPrepend"><i className="fas fa-mobile-alt"></i></InputGroup.Text>
                                                 </InputGroup.Prepend>
                                                 <Form.Control
                                                     required
                                                     type="number"
                                                     placeholder="Celular"
-                                                    className="formInput"
+                                                    className="formInput rounded-right"
                                                     value={this.state.contactPhone}
                                                     onChange={this.handleInputChange}
                                                     name="contactPhone"
@@ -248,13 +248,13 @@ class WorkerProfileData extends Component {
                                         <Form.Group as={Col} md="12" >
                                             <InputGroup>
                                                 <InputGroup.Prepend>
-                                                    <InputGroup.Text className="formIcon" id="inputGroupPrepend">@</InputGroup.Text>
+                                                    <InputGroup.Text className="formIcon rounded-left" id="inputGroupPrepend">@</InputGroup.Text>
                                                 </InputGroup.Prepend>
                                                 <Form.Control
                                                     type="text"
                                                     placeholder="Email"
                                                     aria-describedby="inputGroupPrepend"
-                                                    className="formInput"
+                                                    className="formInput rounded-right"
                                                     required
                                                     value={this.state.email}
                                                     onChange={this.handleInputChange}
@@ -271,13 +271,13 @@ class WorkerProfileData extends Component {
                                             <Form.Group as={Col} md="12" >
                                                 <InputGroup>
                                                     <InputGroup.Prepend>
-                                                        <InputGroup.Text className="formIcon" id="inputGroupPrepend">@</InputGroup.Text>
+                                                        <InputGroup.Text className="formIcon rounded-left" id="inputGroupPrepend">@</InputGroup.Text>
                                                     </InputGroup.Prepend>
                                                     <Form.Control
                                                         type="password"
                                                         placeholder="Password"
                                                         aria-describedby="inputGroupPrepend"
-                                                        className="formInput"
+                                                        className="formInput rounded-right"
                                                         required
                                                         onChange={this.handleInputChange}
                                                         name="password"
@@ -293,10 +293,10 @@ class WorkerProfileData extends Component {
                                 <Form.Group as={Col} md={this.state.mdColumnSize}>
                                     <InputGroup>
                                         <InputGroup.Prepend>
-                                            <InputGroup.Text className="formIcon" id="inputGroupPrepend"><i className="fas fa-hammer"></i></InputGroup.Text>
+                                            <InputGroup.Text className="formIcon rounded-left" id="inputGroupPrepend"><i className="fas fa-hammer"></i></InputGroup.Text>
                                         </InputGroup.Prepend>
 
-                                        <Form.Control onChange={this.handleInputChange} value={this.state.description} placeholder="Tell us something about you" name="description" as="textarea" rows="3" className="formInput" />
+                                        <Form.Control onChange={this.handleInputChange} value={this.state.description} placeholder="Tell us something about you" name="description" as="textarea" rows="3" className="formInput rounded-right" />
                                     </InputGroup>
                                 </Form.Group>
                                 <div className={"col-md-" + this.state.mdColumnSize}>

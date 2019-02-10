@@ -1,4 +1,12 @@
-.containerHard {
-    width: 100%;
+.searchContainer {
+    width: 60%;
     margin: auto
+}
+
+#searchBtn {
+    margin-left: 1em;
+}
+
+.darkBackground {
+    background-color: #494949ce;
 }

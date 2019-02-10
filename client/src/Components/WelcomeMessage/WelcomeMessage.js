@@ -6,13 +6,9 @@ let firstName = "Nicolas"
 
 function WelcomeMessage() {
     return (
-        <div className="welcomeMessage" align="center">
-            <Card className="card-container">
-                <Card.Body>
-                    <Card.Title>¡Hola {firstName}!</Card.Title>
-                    <Card.Subtitle className="mb-2 text-muted">¿Qué necesitas al día de hoy?</Card.Subtitle>
-                </Card.Body>
-            </Card>
+        <div className="welcomeMessage text-center mt-5">
+            <h5 className="bannerTitle"><span className="darkTextBackground rounded">¡Hola {firstName}!</span></h5>
+            <p className="bannerText"><span className="darkTextBackground rounded">¿Qué necesitas al dia de hoy??</span></p>
         </div>
     )
 }
