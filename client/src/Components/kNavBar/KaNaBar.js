@@ -10,16 +10,19 @@ class KaNaBar extends Component {
             return <div>
                 <Button onClick={() => { this.props.routeChange("profile") }} className="m-2" variant="outline-warning"><i class="fas fa-user-alt"></i></Button>
                 <Button onClick={() => { this.props.routeChange("message") }} variant="outline-warning"><i className="fas fa-comments"></i></Button>
+                <Button onClick={this.props.logOutKontratado} className="btn btn-danger m-2 ml-2 logoutBtn"><i className="fas fa-sign-out-alt"></i></Button>
             </div>
         } else if (this.props.type === "profile") {
             return <div>
                 <Button onClick={() => { this.props.routeChange("message") }} className="m-2 mr-2" variant="outline-warning"><i className="fas fa-comments"></i></Button>
                 <Button onClick={() => { this.props.routeChange("home") }} variant="outline-warning"><i class="fas fa-home"></i></Button>
+                <Button onClick={this.props.logOutKontratado} className="btn btn-danger m-2 ml-2 logoutBtn"><i className="fas fa-sign-out-alt"></i></Button>
             </div>
         } else {
             return <div>
                 <Button onClick={() => { this.props.routeChange("profile") }} className="m-2" variant="outline-warning"><i class="fas fa-user-alt"></i></Button>
                 <Button onClick={() => { this.props.routeChange("home") }} variant="outline-warning"><i class="fas fa-home"></i></Button>
+                <Button onClick={this.props.logOutKontratado} className="btn btn-danger m-2 ml-2 logoutBtn"><i className="fas fa-sign-out-alt"></i></Button>
             </div>
         }
     }

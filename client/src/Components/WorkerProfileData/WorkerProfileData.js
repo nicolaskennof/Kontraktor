@@ -29,7 +29,7 @@ class WorkerProfileData extends Component {
             this.setState({
                 mdColumnSize: "12",
                 workerDataBtnText: " Regístrate",
-                icon: "save"
+                icon: "user"
             })
         }
 
@@ -46,7 +46,7 @@ class WorkerProfileData extends Component {
                 county,
                 profession: profession._id,
                 image,
-                icon: "sign-in-alt"
+                icon: "save"
             })
         }
     }
@@ -271,7 +271,7 @@ class WorkerProfileData extends Component {
                                             <Form.Group as={Col} md="12" >
                                                 <InputGroup>
                                                     <InputGroup.Prepend>
-                                                        <InputGroup.Text className="formIcon rounded-left" id="inputGroupPrepend">@</InputGroup.Text>
+                                                        <InputGroup.Text className="formIcon rounded-left" id="inputGroupPrepend"><i className="fas fa-key"></i></InputGroup.Text>
                                                     </InputGroup.Prepend>
                                                     <Form.Control
                                                         type="password"
@@ -293,7 +293,7 @@ class WorkerProfileData extends Component {
                                 <Form.Group as={Col} md={this.state.mdColumnSize}>
                                     <InputGroup>
                                         <InputGroup.Prepend>
-                                            <InputGroup.Text className="formIcon rounded-left" id="inputGroupPrepend"><i className="fas fa-hammer"></i></InputGroup.Text>
+                                            <InputGroup.Text className="formIcon rounded-left" id="inputGroupPrepend"><i className="fas fa-pen-alt"></i></InputGroup.Text>
                                         </InputGroup.Prepend>
 
                                         <Form.Control onChange={this.handleInputChange} value={this.state.description} placeholder="Tell us something about you" name="description" as="textarea" rows="3" className="formInput rounded-right" />
@@ -304,7 +304,7 @@ class WorkerProfileData extends Component {
                                 </div>
                             </Form.Row>
                             <Form.Row>
-                                <div className="col-md-4">
+                                <div className="col-md-4 m-auto">
                                     <Button className="workerProfileBtn" onClick={this.handleSubmit}><i className={`fas fa-${this.state.icon}`}></i>{this.state.workerDataBtnText}</Button>
                                 </div>
                             </Form.Row>

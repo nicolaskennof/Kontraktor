@@ -13,3 +13,9 @@
 .rightMargin{
     margin-right: 20px
 }
+
+.logoutBtn {
+    background-color: #343A40;
+    color: #DC3545;
+    border: 0px
+}
