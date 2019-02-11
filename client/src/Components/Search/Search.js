@@ -3,7 +3,7 @@ import { InputGroup, Button, Col, Form } from "react-bootstrap";
 import "./search.css";
 import Professions from "../Professions/Professions";
 import StateSelector from "../StateSelector/StateSelector";
-import API from "../../utils/API";
+
 
 class Search extends Component {
 
@@ -16,17 +16,17 @@ class Search extends Component {
 		this.setState({ searchProfession });
 	}
 
-	searchClickHandler = () => {
-		API.getKontratadoByFilter({
-			searchProfession: this.state.searchProfession,
-			searchState: this.state.searchState
-		}).then(result => {
-			console.log(result);
-		}).catch(err => console.log(err));
-	}
+	
 
 	onStateChange = (searchState) => {
 		this.setState({ searchState });
+	}
+
+
+	onSearchHandler= ()=>{
+		let searchProfession = this.state.searchProfession;
+		let searchState = this.state.searchState;
+		this.props.mySearch(searchProfession, searchState)
 	}
 
 	render() {
@@ -45,7 +45,7 @@ class Search extends Component {
 							</InputGroup>
 						</Col>
 						<Col s={12} md={4} className="text-center">
-							<Button onClick={() => this.searchClickHandler()} className="workerCardButton" id="searchBtn"><i class="fas fa-search"></i> Buscar</Button>
+							<Button onClick={() => this.onSearchHandler()} className="workerCardButton" id="searchBtn"><i class="fas fa-search"></i> Buscar</Button>
 						</Col>
 					</Form.Row>
 				</Form>
