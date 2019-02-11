@@ -46,6 +46,11 @@ var KontratadoSchema = new Schema({
         required: false,
     },
 
+    registered_date : {
+        type : Date,
+        default : Date.now
+    },
+
     kontratadoLogin: { type: Schema.Types.ObjectId, ref: 'KontratadoLogin', select:false },
 
     reviews: [
@@ -59,6 +64,13 @@ var KontratadoSchema = new Schema({
         {
             type: Schema.Types.ObjectId,
             ref: "Hire"
+        }
+    ],
+
+    favourites: [
+        {
+            type: Schema.Types.ObjectId,
+            ref: "Favourite"
         }
     ],
 

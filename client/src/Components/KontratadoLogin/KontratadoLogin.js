@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Form, InputGroup, Button, Col, Container } from "react-bootstrap";
 import API from '../../utils/API';
+import './style.css';
 
 class KontratadoLogin extends Component {
 
@@ -8,34 +9,43 @@ class KontratadoLogin extends Component {
         validated: false,
         email: '',
         password: '',
-
+        showErrorMessage : false,
+        errorMessage : ''
     };
 
     handleInputChange = event => {
         const { name, value } = event.target;
         this.setState({
-          [name]: value
+            [name]: value
         });
-      };
+    };
 
-      handleSubmit = event => {
+    handleSubmit = event => {
         const form = event.currentTarget;
         if (form.checkValidity() === false) {
             event.preventDefault();
             event.stopPropagation();
-        }
-        this.setState({ validated: true });
-        const {email, password} = this.state;
-        const kontratado = {
-            email,
-            password
-        };
+            this.setState({ validated: true });
+        } else {
+            event.preventDefault();
+            const { email, password } = this.state;
+            const kontratado = {
+                email,
+                password
+            };
 
-        API.loginKontratado(kontratado)
-            .then(result=>{
-                this.props.logKontratado(result.data.kontratadoId);
-            })
-            .catch(err=>console.log(err.response));
+            API.loginKontratado(kontratado)
+                .then(result => {
+                    this.props.logKontratado(result.data.kontratadoId);
+                })
+                .catch(err => {
+                    const displayError = err.response.data ? `${err.response.data} : Try again!` : 'Error in user or password : Try again!'
+                    this.setState({
+                        showErrorMessage:true,
+                        errorMessage:displayError
+                    })
+                });
+        }
     }
 
     render() {
@@ -45,7 +55,9 @@ class KontratadoLogin extends Component {
                 <Form
                     noValidate
                     validated={validated}
-                    className="profileForm">
+                    className="profileForm"
+                    onSubmit={e => this.handleSubmit(e)}
+                    >
 
                     <Col md={10}>
 
@@ -95,12 +107,15 @@ class KontratadoLogin extends Component {
 
                         <Form.Row>
                             <div className="col-md-12 text-center">
-                                <Button className="workerProfileBtn" onClick={this.handleSubmit}><i className="fas fa-sign-in-alt"></i> Ingresar</Button>
+                                <Button className="workerProfileBtn" type="submit"><i className="fas fa-sign-in-alt"></i> Ingresar</Button>
                             </div>
                         </Form.Row>
 
                     </Col>
                 </Form>
+                <br />
+                {this.state.showErrorMessage ? <p className="invalidLogin">{this.state.errorMessage}</p> : <div></div> }
+
             </Container>
         )
     }

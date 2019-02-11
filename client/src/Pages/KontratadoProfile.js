@@ -6,7 +6,7 @@ import Wrapper from "../Components/workersWrapper/commonWrapper"
 import Reviews from "../Components/reviews/reviews"
 
 
-function KontratadoProfile() {
+function KontratadoProfile(props) {
     return (
         <div>
             <HeroImageProfile />
@@ -14,13 +14,13 @@ function KontratadoProfile() {
                 <h1>Tu datos</h1>
                 <hr />
                 <br />
-                <WorkerProfileData />
+                <WorkerProfileData kontratadoUpdate={props.kontratadoUpdate} kontratado={props.kontratado} />
                 <br />
                 <br />
                 <h1>Tus reseñas</h1>
                 <hr />
                 <br />
-                <Reviews />
+                <Reviews kontratado={props.kontratado} />
             </Wrapper>
             <Footer />
         </div>

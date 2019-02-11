@@ -3,7 +3,7 @@ import { Row, Col } from "react-bootstrap";
 import KStats from "../kStats/kStats"
 import "./userHome.css"
 
-function HeroImageKontratadoAfterLogin() {
+function HeroImageKontratadoAfterLogin(props) {
   return (
     <section class="bgimageKontratadoAfterLogin">
       <div class="container-fluid">
@@ -13,7 +13,7 @@ function HeroImageKontratadoAfterLogin() {
               <Col md={2}></Col>
               <Col md={8}>
               <div class="v-center text-center">
-                <KStats/>
+                <KStats kontratado={props.kontratado}/>
                 </div>
               </Col>
               <Col md={2}></Col>

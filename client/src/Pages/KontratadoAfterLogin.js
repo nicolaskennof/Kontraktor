@@ -27,7 +27,7 @@ class KontratadoAfterLogin extends Component {
                 <KaNaBar logOutKontratado={this.props.logOutKontratado} type={this.state.type} routeChange={this.routeChange} />
                 {this.state.type === "home" ?
                     <div>
-                        <HeroImageKontratadoAfterLogin />
+                        <HeroImageKontratadoAfterLogin  kontratado={this.props.kontratado}/>
                         <Wrapper>
                             <h1>Tus últimas conversaciones</h1>
                             <hr />
@@ -38,7 +38,7 @@ class KontratadoAfterLogin extends Component {
                     </div>
                     :
                     this.state.type === "profile" ?
-                        <div><KontratadoProfile /></div>
+                        <div><KontratadoProfile kontratadoUpdate={this.props.kontratadoUpdate} kontratado={this.props.kontratado} /></div>
                         :
                         <div><KontratadoMailbox /></div>
                 }
