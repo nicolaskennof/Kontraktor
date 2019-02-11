@@ -1,13 +1,11 @@
 import React from "react";
-import { Jumbotron, CardGroup, Row, Col, Card } from 'react-bootstrap'
-import ModalQuienes from "../microCompQuienes/ModalQuienes"
-import ModalPorque from "../microCompPorque/ModalPorque"
+import { Button, Jumbotron, CardGroup, Row, Col, Card } from 'react-bootstrap'
 import Like from "../../img/like.png"
 import Chat from "../../img/chat.png"
 import './style.css'
 
 
-function UserHomepageQuickLinks() {
+function UserHomepageQuickLinks(props) {
     return (
         <div>
             <Jumbotron className="jumbotronFunctioning rounded-0 text-center">
@@ -17,19 +15,19 @@ function UserHomepageQuickLinks() {
                         <Row>
                             <CardGroup>
                                 <Card className="border-0 text-center">
-                                    <Card.Img variant="top" src={Like} className="imgFunctioning"/>
+                                    <Card.Img variant="top" src={Like} className="imgFunctioning" />
                                     <Card.Body>
-                                        <Card.Title>Tus favortos</Card.Title>
+                                        <Card.Title>Tus favoritos</Card.Title>
                                         <Card.Text>
                                             Pica el botón de corazón para agregar los expertos que más te convienen a tu lista de favoritos
                                         </Card.Text>
                                     </Card.Body>
                                     <Card.Footer className="BtnFooter border-0">
-                                        <ModalQuienes />
+                                        <Button onClick={() => { this.props.routeChange("favorite") }} className="m-2" variant="outline-warning"><i className="fas fa-heart"></i></Button>
                                     </Card.Footer>
                                 </Card>
                                 <Card className="border-0">
-                                    <Card.Img variant="top" src={Chat} className="imgFunctioning"/>
+                                    <Card.Img variant="top" src={Chat} className="imgFunctioning" />
                                     <Card.Body>
                                         <Card.Title>Tus conversaciones</Card.Title>
                                         <Card.Text>
@@ -37,7 +35,7 @@ function UserHomepageQuickLinks() {
                                         </Card.Text>
                                     </Card.Body>
                                     <Card.Footer className="BtnFooter border-0">
-                                        <ModalPorque />
+                                        <Button onClick={() => { this.props.routeChange("message") }} variant="outline-warning"><i className="fas fa-comments"></i></Button>
                                     </Card.Footer>
                                 </Card>
                             </CardGroup>
