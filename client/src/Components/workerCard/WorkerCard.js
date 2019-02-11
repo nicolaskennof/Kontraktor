@@ -1,4 +1,4 @@
-import React, {Component} from "react";
+import React, { Component } from "react";
 import { Container, Figure, Row, Col } from "react-bootstrap";
 import ModalMessage from "../microCompMessage/ModalMessage"
 import ModalPhone from "../microCompPhone/ModalPhone"
@@ -6,6 +6,7 @@ import Fav from "../microCompFav/Fav"
 import Price from "../microCompPrice/Price"
 import Rating from "../microCompRating/ModalRating"
 import Quant from "../microCompQuant/Quant"
+import Hired from "../microCompHired/Hired"
 import "./style.css"
 import ModalPhoneFav from "../modalPhoneFav/ModalPhoneFav"
 
@@ -14,18 +15,19 @@ let lastName = "Kennof";
 let occupation = "Plomero"
 let workerImage = "http://nicolas-kennof.com/wp-content/uploads/2018/07/Perfil-2018.png"
 
-class WorkerCard extends Component{
+class WorkerCard extends Component {
 
-    state={
+    state = {
 
     }
 
-    calculateCostAverage = ()=>{
-        let sum=0;
-        let total=0
-        this.props.kontratado.costRates.forEach(costRate=>{
-            sum+=costRate.costRating   }   )
-            total= sum/this.props.kontratado.costRates.length;
+    calculateCostAverage = () => {
+        let sum = 0;
+        let total = 0
+        this.props.kontratado.costRates.forEach(costRate => {
+            sum += costRate.costRating
+        })
+        total = sum / this.props.kontratado.costRates.length;
         return total
     }
 
@@ -40,12 +42,12 @@ class WorkerCard extends Component{
 
 
 
-render( ){
-    let props=this.props;
+    render() {
+        let props = this.props;
 
-    return (
-        <div>
-            <Container>
+        return (
+            <div>
+
                 <Figure className="workerCard p-1">
                     <div className="row">
                         <div className="col-md-2 text-center">
@@ -73,39 +75,73 @@ render( ){
                             </div>
                             <div className="row">
                                 <div className="col-md-6 text-left">
+<<<<<<< HEAD
                                     <Rating quality={this.calculateRating()}/>
                                 </div>
                                 <div className="col-md-3 text-center">
                                     <Quant quant={props.kontratado.hires.length}  />
+=======
+                                    <Rating quality={props.kontratado.qualityRate} />
+                                </div>
+                                <div className="col-md-3 text-center">
+                                    <Quant quant={props.kontratado.hire} />
+>>>>>>> master
                                 </div>
                                 <div className="col-md-3 text-center">
 
                                 </div>
                             </div>
+                            <div className="col-md-2 my-auto">
+                                <Row>
+                                    <Col md={12} className="mb-2">
+                                        <ModalMessage />
+                                    </Col>
+                                </Row>
+                                <Row>
+                                    <Col md={12} className="mb-2">
+                                        <ModalPhone contactPhone={props.kontratado.contactPhone} />
+                                    </Col>
+                                </Row>
+                                <Row>
+                                    <Col md={12}>
+                                        <Fav userId={props.userId} addFavs={props.addFavs} />
+                                    </Col>
+                                </Row>
+                            </div>
                         </div>
-                        <div className="col-md-2 my-auto">
+                        <div className="col-md-3 my-auto">
                             <Row>
-                                <Col md={12} className="mb-2">
-                                    <ModalMessage />
+                                <Col md={6}>
+                                    <Row>
+                                        <Col md={12} className="mb-2">
+                                            <ModalMessage />
+                                        </Col>
+                                    </Row>
+                                    <Row>
+                                        <Col md={12} className="mb-2">
+                                            <ModalPhone />
+                                        </Col>
+                                    </Row>
                                 </Col>
-                            </Row>
-                            <Row>
-                                <Col md={12} className="mb-2">
-                                    <ModalPhone contactPhone={props.kontratado.contactPhone} />
-                                </Col>
-                            </Row>
-                            <Row>
-                                <Col md={12}>
-                                    <Fav userId={props.userId} addFavs={props.addFavs}/>
+                                <Col md={6}>
+                                    <Row>
+                                        <Col md={12}>
+                                            <Fav className="mr-3" />
+                                        </Col>
+                                    </Row>
+                                    <Row>
+                                        <Col md={12}>
+                                            <Hired className="mr-3" />
+                                        </Col>
+                                    </Row>
                                 </Col>
                             </Row>
                         </div>
                     </div>
                 </Figure>
-            </Container>
-        </div >
-    )
-}
+            </div>
+        )
+    }
 }
 
 export default WorkerCard;

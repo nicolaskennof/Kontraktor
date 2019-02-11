@@ -1,15 +1,14 @@
 {
-  "name": "mern",
+  "name": "kontratado",
   "version": "1.0.0",
-  
-  "description": "Mern Demo",
+  "description": "Kontratado",
   "main": "server.js",
   "scripts": {
     "start": "if-env NODE_ENV=production && npm run start:prod || npm run start:dev",
     "start:prod": "node server.js",
     "start:dev": "concurrently \"nodemon --ignore 'client/*'\" \"npm run client\"",
     "client": "cd client && npm run start",
-    "install": "cd client && npm install",
+    "install": "cd client && yarn install",
     "build": "cd client && npm run build",
     "heroku-postbuild": "npm run build"
   },
@@ -17,21 +16,17 @@
   "license": "ISC",
   "devDependencies": {
     "concurrently": "^4.1.0",
-    
     "nodemon": "^1.18.7"
   },
   "dependencies": {
-    "dotenv": "^6.2.0",
-    "ajv": "6.8.1",
-    "axios": "^0.18.0",
     "bcrypt-nodejs": "^0.0.3",
-    "bootstrap": "^4.2.1",
     "cookie-parser": "^1.4.3",
     "cors": "^2.8.5",
-    "express": "^4.16.3",
+    "dotenv": "^6.2.0",
+    "express": "^4.16.4",
     "if-env": "^1.0.4",
     "jsonwebtoken": "^8.4.0",
-    "mongoose": "^5.4.5",
+    "mongoose": "^5.4.11",
     "multer": "^1.4.1",
     "passport": "^0.4.0",
     "passport-facebook-token": "^3.3.0",
