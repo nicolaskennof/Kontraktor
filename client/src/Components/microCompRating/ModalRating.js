@@ -41,7 +41,7 @@ class RatingModal extends React.Component {
                     aria-labelledby="modal-rating"
                     centered
                 >
-                    <Modal.Header closeButton>
+                    <Modal.Header closeButton  className="border-dark">
                         <Modal.Title id="modal-rating">
                             ¿Qué opinan nuestros usuarios de {workerName}?
                         </Modal.Title>

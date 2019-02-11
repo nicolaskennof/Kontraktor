@@ -1,15 +1,13 @@
 import React, { Component } from "react"
-import { Container } from "react-bootstrap"
 import NavBarUser from "../Components/navBars/navBarUser"
-import LogInCardsWrapper from "../Components/infoCardsWrapper/logInCardsWrapper"
 import Filters from "../Components/resultsFilters/Filters"
 import WorkerCard from "../Components/workerCard/WorkerCard"
 import WorkersWrapper from "../Components/workersWrapper/WorkersWrapper"
-import Search from "../Components/Search/Search"
 import UserFavorite from "./UserFavorite"
 import UserMailbox from "./UserMailbox"
-import WelcomeMessage from "../Components/WelcomeMessage/WelcomeMessage"
-import HeroImage from "../Components/HeroImage/HeroImageUserHome";
+import HeroImage from "../Components/HeroImage/HeroImageUserHome"
+import UserHomepageQuickLinks from "../Components/Steps/UserHomepageQuickLinks"
+import Footer from "../Components/Footer/Footer"
 
 
 class UserAfterLogin extends Component {
@@ -30,13 +28,13 @@ class UserAfterLogin extends Component {
                 <NavBarUser facebookLogout={this.props.facebookLogout} type={this.state.type} routeChange={this.routeChange} />{this.state.type === "home" ?
                     <div>
                         <HeroImage />
-                        <br />
-                        <LogInCardsWrapper />
+                        <UserHomepageQuickLinks />
                         <br />
                         <Filters isUserFilter={true} />
                         <WorkersWrapper>
                             <WorkerCard />
                         </WorkersWrapper>
+                        <Footer />
                     </div>
                     :
                     this.state.type === "favorite" ?

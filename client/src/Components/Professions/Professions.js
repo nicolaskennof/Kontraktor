@@ -35,7 +35,7 @@ class Professions extends Component {
                         className="formInput rounded-right"
                         required
                     >
-                        <option value="">¿Cuál es tu habilidad?</option>
+                        <option value="">Seleciona tu habilidad</option>
                         {this.state.professions.map(professionElement => {
                             return <option key={professionElement._id} value={professionElement._id}>{professionElement.profession}</option>
                         })}
