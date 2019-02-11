@@ -116,15 +116,23 @@ class StateSelector extends Component {
                                 <InputGroup.Prepend>
                                     <InputGroup.Text className="formIcon" id="inputGroupPrepend"><i className="fas fa-university"></i></InputGroup.Text>
                                 </InputGroup.Prepend>
-                                <Form.Control value={this.props.currentCity} as="select" className="formInput rounded-right" onChange={this.handleCityChange}>
-                                    <option>Elija tu ciudad...</option>
+                                <Form.Control value={this.props.currentCity}
+                                    as="select"
+                                    className="formInput rounded-right"
+                                    onChange={this.handleCityChange}
+                                    required
+                                >
+                                    <option value="">Elija tu ciudad...</option>
                                     {this.state.cities.map(cityElement => {
                                         return <option key={cityElement._id} value={cityElement._id}>{cityElement.county}</option>
                                     })}
                                 </Form.Control>
+                                <Form.Control.Feedback>
+                                    Se ve bien!
+                                </Form.Control.Feedback>
                                 <Form.Control.Feedback type="invalid">
-                                    Favor de ingresar tu ciudad.
-                        </Form.Control.Feedback>
+                                    Es necesario elegir un estado.
+                                </Form.Control.Feedback>
                             </InputGroup>
                         </Form.Group>
                     </Form.Row>

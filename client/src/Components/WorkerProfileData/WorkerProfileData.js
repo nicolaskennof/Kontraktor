@@ -1,5 +1,5 @@
 import React, { Component } from "react"
-import { Form, InputGroup, Button, Col, Image } from "react-bootstrap";
+import { Form, InputGroup, Button, Col, Image, Alert } from "react-bootstrap";
 import StateSelector from "../StateSelector/StateSelector"
 import Professions from "../Professions/Professions"
 import "./style.css"
@@ -21,7 +21,8 @@ class WorkerProfileData extends Component {
         password: '',
         image: '',
         mdColumnSize: '4',
-        workerDataBtnText: ' Guardar Cambios'
+        workerDataBtnText: ' Guardar Cambios',
+        showSuccessUpdateMessage: false
     };
 
     componentDidMount() {
@@ -115,7 +116,11 @@ class WorkerProfileData extends Component {
                     .then(result => {
                         API.getKontratado(result.data._id)
                             .then(currentKontratado => {
-                                this.props.kontratadoUpdate(currentKontratado.data);
+                                this.setState({
+                                    showSuccessUpdateMessage:true
+                                },()=>{
+                                    this.props.kontratadoUpdate(currentKontratado.data);
+                                })
                             })
                             .catch(err => console.log(err.response))
                     })
@@ -142,7 +147,8 @@ class WorkerProfileData extends Component {
                 API.getKontratado(this.state.kontratadoId)
                     .then(currentKontratado => {
                         this.setState({
-                            image: result.data
+                            image: result.data,
+                            showSuccessUpdateMessage:true
                         }, () => {
                             this.props.kontratadoUpdate(currentKontratado.data);
                         })
@@ -156,6 +162,13 @@ class WorkerProfileData extends Component {
         const { validated } = this.state;
         return (
             <div>
+                
+                {this.state.showSuccessUpdateMessage ?
+                    <Alert variant='success'>
+                        Has actualizado tus datos con éxito!
+                    </Alert> : <div></div>
+                }
+                
                 <div className="fileControl">
                     <input id="uploadFileInput" onChange={this.selectorChange} className="form-control" type="file" />
                     <button id="triggerUploadButton" onClick={this.handleImageUpload}></button>
@@ -296,10 +309,10 @@ class WorkerProfileData extends Component {
                                                         onChange={this.handleInputChange}
                                                         name="password"
                                                     />
-                                                <Form.Control.Feedback>
+                                                    <Form.Control.Feedback>
                                                         Se ve bien!
                                                 </Form.Control.Feedback>
-                                                <Form.Control.Feedback type="invalid">
+                                                    <Form.Control.Feedback type="invalid">
                                                         Es necesario que ingreses una contraseña.
                                                 </Form.Control.Feedback>
                                                 </InputGroup>

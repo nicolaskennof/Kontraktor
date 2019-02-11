@@ -3,18 +3,43 @@ var db = require("../models");
 
 module.exports = {
     insertcostRate: (req, res) => {
-        console.log("we getting here");
+        const { costRating, kontratado, user } = req.body;
+        if (costRating && kontratado && user) {
 
-        if (req.body.costRating && req.body.kontratado && req.body.user) {
-            db.CostRate
-                .create(req.body)
-                .then(dbModel => {
-                    db.Kontratado.findOneAndUpdate({ _id: dbModel.kontratado }, { $push: { costRates: dbModel._id } }, { new: true })
-                        .then(updated => {
-                            res.status(200).json(dbModel);
-                        })
+            const query = {
+                $and: [
+                    { kontratado },
+                    { user }
+                ]
+            } 
+
+            db.CostRate.find(query)
+                .then(costRates => {
+                    if (costRates.length) {
+                        db.CostRate.findByIdAndDelete({_id:costRates[0]._id})
+                            .then(deleted => {
+                                db.CostRate
+                                    .create(req.body)
+                                    .then(dbModel => {
+                                        db.Kontratado.findOneAndUpdate({ _id: dbModel.kontratado }, { $push: { costRates: dbModel._id } }, { new: true })
+                                            .then(updated => {
+                                                res.status(200).json(dbModel);
+                                            })
+                                    })
+                                    .catch(err => res.status(422).json(err.message));
+                            })
+                    } else {
+                        db.CostRate
+                            .create(req.body)
+                            .then(dbModel => {
+                                db.Kontratado.findOneAndUpdate({ _id: dbModel.kontratado }, { $push: { costRates: dbModel._id } }, { new: true })
+                                    .then(updated => {
+                                        res.status(200).json(dbModel);
+                                    })
+                            })
+                            .catch(err => res.status(422).json(err.message));
+                    }
                 })
-                .catch(err => res.status(422).json(err.message));
         }
     },
 
@@ -40,10 +65,11 @@ module.exports = {
                 .findOneAndDelete({ _id: req.params.id })
                 .then(dbModel => {
 
-                    db.Kontratado.findOneAndUpdate({ _id: dbModel.kontratado }, {costRates: req.params.id} )
-                    .then(updated => {
-                    res.status(200).json(dbModel);
-                       })})
-            }
+                    db.Kontratado.findOneAndUpdate({ _id: dbModel.kontratado }, { costRates: req.params.id })
+                        .then(updated => {
+                            res.status(200).json(dbModel);
+                        })
+                })
         }
+    }
 }
