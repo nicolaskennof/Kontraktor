@@ -58,21 +58,23 @@ class StateSelector extends Component {
                         <InputGroup.Text className="formIcon" id="inputGroupPrepend"><i className="fas fa-map-marked-alt"></i></InputGroup.Text>
                     </InputGroup.Prepend>
                     <Form.Control
-                        placeholder="¿Dónde?"
                         as="select"
                         className="formInput rounded-right"
                         onChange={this.handleStateChange}
                         value={this.props.currentState}
+                        required
                     >
-                        <option value="">Elija tu estado...</option>
+                        <option value="">Elige tu estado...</option>
                         {this.state.states.map(stateElement => {
                             return <option key={stateElement.value} value={stateElement.value}>{stateElement.label}</option>
                         })}
                     </Form.Control>
-
+                    <Form.Control.Feedback>
+                        Se ve bien!
+                    </Form.Control.Feedback>
                     <Form.Control.Feedback type="invalid">
-                        Favor de seleccionar tu estado.
-                            </Form.Control.Feedback>
+                        Es necesario elegir un estado.
+                    </Form.Control.Feedback>
                 </InputGroup>
             </Form.Group>
         }
@@ -90,16 +92,20 @@ class StateSelector extends Component {
                                 className="formInput rounded-right"
                                 onChange={this.handleStateChange}
                                 value={this.props.currentState}
+                                required
                             >
-                                <option value="">Elija tu estado...</option>
+                                <option value="">Elige tu estado...</option>
                                 {this.state.states.map(stateElement => {
                                     return <option key={stateElement.value} value={stateElement.value}>{stateElement.label}</option>
                                 })}
                             </Form.Control>
-
+                            <Form.Control.Feedback>
+                                Se ve bien!
+                            </Form.Control.Feedback>
                             <Form.Control.Feedback type="invalid">
-                                Favor de seleccionar tu estado.
-                                    </Form.Control.Feedback>
+                                Es necesario elegir un estado.
+                            </Form.Control.Feedback>
+
                         </InputGroup>
                     </Form.Group>
                 </Form.Row>

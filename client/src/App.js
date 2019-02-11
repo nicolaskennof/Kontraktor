@@ -13,7 +13,10 @@ class App extends Component {
       isKontratadoAuthenticated: false,
       facebookUser: null,
       token: '',
-      kontratadoUser: null
+      kontratadoUser: null,
+      favorites:[],
+      messages:[],
+      favProfession:''
     };
   }
 
@@ -29,6 +32,9 @@ class App extends Component {
     alert(error);
   }
 
+
+
+  
   facebookResponse = (response) => {
     const tokenBlob = new Blob([JSON.stringify({ access_token: response.accessToken }, null, 2)], { type: 'application/json' });
     const options = {
@@ -37,14 +43,30 @@ class App extends Component {
       mode: 'cors',
       cache: 'default'
     };
+   
     fetch('/api/v1/auth/facebook', options).then(r => {
+      console.log(r);
       const token = r.headers.get('x-auth-token');
       r.json().then(facebookUser => {
         if (token) {
           this.setState({ isFacebookAuthenticated: true, facebookUser, token })
+
+          API.getFavourite(this.state.facebookUser.favourites[0]).then(result=>{
+            console.log(result)
+            this.setState({favorites: result.data})
+
+            API.getProfession(this.state.favorites.profession).then(res=>{
+              console.log("we received an answer", res);
+              this.setState({favProfession: res.data.profession})
+            })
+            })
+            
         }
       });
     })
+
+      
+    
   };
 
   logKontratado = (idKontratado) => {
@@ -74,7 +96,7 @@ class App extends Component {
   chooseRender = () => {
     if (this.state.isFacebookAuthenticated || this.state.isKontratadoAuthenticated){
       if (this.state.isFacebookAuthenticated){
-        return <UserAfterLogin facebookLogout = {this.facebookLogout} />
+        return <UserAfterLogin userId={this.state.facebookUser._id} addFavs={this.addFavs} myFavs={this.state.favorites} favProfession={this.state.favProfession} facebookLogout = {this.facebookLogout} />
       } else {
         return <div>
           <KontratadoAfterLogin kontratadoUpdate={this.kontratadoUpdate} kontratado = {this.state.kontratadoUser} logOutKontratado={this.logOutKontratado} />

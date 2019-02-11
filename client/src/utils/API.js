@@ -34,8 +34,13 @@ export default {
   deleteCostRate: function(id){
     return axios.delete("/api/costRate/delete/"+id);
   },
-  insertFavourite: function(id,favourite){
+  insertFavourite: function(favourite){
     return axios.post("/api/favourite/", favourite);
+  },
+  
+    getFavourite: function(id){
+      return axios.get("/api/favourite/"+id);
+    
   },
   deleteFavourite: function(id){
     return axios.delete("/api/favourite/delete/"+ id);
@@ -71,5 +76,9 @@ export default {
 
   getProfessions: () => {
     return axios.get("api/profession");
-  }  
+  },  
+
+  getProfession: function (id){
+    return axios.get("api/profession/"+id)
+  }
 };

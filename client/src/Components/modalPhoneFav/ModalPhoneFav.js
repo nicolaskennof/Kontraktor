@@ -30,13 +30,13 @@ class ModalPhone extends React.Component {
                     aria-labelledby="modal-phone"
                     centered
                 >
-                    <Modal.Header closeButton className="border-dark">
+                    <Modal.Header closeButton>
                         <Modal.Title id="modal-phone">
                             <i className="fas fa-phone"></i> Contacto
                         </Modal.Title>
                     </Modal.Header>
                     <Modal.Body>
-                        El número de celular de {this.props.firstName + " " + this.props.lastName} es el siguiente:<br /><b>{this.props.contactPhone}</b>.
+                        El número de celular de es el siguiente:<br /><b></b>.
                     </Modal.Body>
                 </Modal>
             </ButtonToolbar>

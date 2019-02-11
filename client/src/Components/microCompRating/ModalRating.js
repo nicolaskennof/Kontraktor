@@ -6,31 +6,45 @@ import "./style.css"
 class RatingModal extends React.Component {
     constructor(props, context) {
         super(props, context);
-
+     
         this.state = {
             ratingModal: false,
         };
+
+     
+       
     }
 
     render() {
+        let myClasses=[];
         let ratingClose = () => this.setState({ ratingModal: false });
         let workerName = "Nicolas el Plomero"
+        let var1=this.props.quality;
+        for(let i=0; i<5; i++){
+            
+            if(var1>i){
+                myClasses.push("btn rating btn-warning btn-sm mr-1")
+            }else{
+                myClasses.push("btn rating btn-grey btn-sm mr-1")
+            }
+        }
+
 
         return (
             <ButtonToolbar>
-                <Button className="btn rating btn-warning btn-sm mr-1" aria-label="Left Align" onClick={() => this.setState({ ratingModal: true })}>
+                <Button data-value= {this.props.quality} className={myClasses[0]} aria-label="Left Align" onClick={() => this.setState({ ratingModal: true })}>
                     <span className="fa fa-hammer" aria-hidden="true"></span>
                 </Button>
-                <Button className="btn rating btn-warning btn-sm mr-1" aria-label="Left Align" onClick={() => this.setState({ ratingModal: true })}>
+                <Button className={myClasses[1]} aria-label="Left Align" onClick={() => this.setState({ ratingModal: true })}>
                     <span className="fa fa-hammer" aria-hidden="true"></span>
                 </Button>
-                <Button className="btn rating btn-warning btn-sm mr-1" aria-label="Left Align" onClick={() => this.setState({ ratingModal: true })}>
+                <Button className={myClasses[2]} aria-label="Left Align" onClick={() => this.setState({ ratingModal: true })}>
                     <span className="fa fa-hammer" aria-hidden="true"></span>
                 </Button>
-                <Button className="btn rating btn-grey btn-sm mr-1" aria-label="Left Align" onClick={() => this.setState({ ratingModal: true })}>
+                <Button className={myClasses[3]}  aria-label="Left Align" onClick={() => this.setState({ ratingModal: true })}>
                     <span className="fa fa-hammer" aria-hidden="true"></span>
                 </Button>
-                <Button className="btn rating btn-grey btn-sm" aria-label="Left Align" onClick={() => this.setState({ ratingModal: true })}>
+                <Button className={myClasses[4]} aria-label="Left Align" onClick={() => this.setState({ ratingModal: true })}>
                     <span className="fa fa-hammer" aria-hidden="true"></span>
                 </Button>
 

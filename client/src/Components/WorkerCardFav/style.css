@@ -1,0 +1,84 @@
+.workerCard {
+    border:  #494949 1px dotted;
+    width: 100%
+}
+
+.fa-dollar-sign {
+    font-size: 20px;
+    color: #494949;
+}
+
+.fa-dollar-sign.checked {
+    color: #FBBC04;
+}
+
+.workerImage {
+    width: 150px;
+    height: 150px;
+}
+
+.btn-warning {
+    margin-right: 5px;
+    cursor: text;
+}
+
+.btn-warning:hover {
+    cursor: text;
+    background-color: #FBBC04;
+}
+
+.btn {
+    cursor: text;
+}
+
+.btn:hover {
+    cursor: text;
+}
+
+.btn-grey{
+    background-color:#494949;
+    color:#FBBC04;
+    border-color: #FBBC04
+}
+
+.btn-grey:hover{
+    background-color:#494949;
+    color:#FBBC04;
+    border-color: #FBBC04
+}
+
+.btn-grey:active{
+    background-color:#494949;
+    color:#FBBC04;
+    border-color: #FBBC04
+}
+
+.btn-grey:checked{
+    background-color:#494949;
+    color:#FBBC04;
+    border-color: #FBBC04
+}
+
+.rating-block{
+	background-color:#FFFFFF;
+	border:1px solid #EFEFEF;
+	padding:10px;
+	border-radius:0px;
+}
+
+h5.workerCardDetail {
+    font-style: italic;
+}
+
+.workerCardButton {
+    font-size: 16px;
+    width: 50%;
+    background: #FBBC04;
+    border: #494949 1px solid;
+}
+
+.workerCardButton:hover {
+    background: #494949;
+    border: #FBBC04 1px solid;
+}
+
