@@ -1,0 +1,31 @@
+#favoriteBtn {
+    background: white;
+    color: white;
+    text-shadow: 0 0 3px #DC3545;
+    border: 1px solid #DC3545
+}
+
+#favoriteBtn:hover {
+    background-color: #DC3545;
+}
+
+#favoriteBtn:active {
+    background-color: white;
+    color: #DC3545;
+}
+
+#favoriteBtn {
+    background: white;
+    color: white;
+    text-shadow: 0 0 3px rgb(0, 0, 0);
+    border: 1px solid rgb(0, 0, 0)
+}
+
+#favoriteBtn:hover {
+    background-color: rgb(0, 0, 0);
+}
+
+#favoriteBtn:active {
+    background-color: white;
+    color: rgb(0, 0, 0);
+}

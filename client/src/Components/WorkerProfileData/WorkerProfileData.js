@@ -1,5 +1,5 @@
 import React, { Component } from "react"
-import { Form, InputGroup, Button, Col, Container, Image } from "react-bootstrap";
+import { Form, InputGroup, Button, Col, Image } from "react-bootstrap";
 import StateSelector from "../StateSelector/StateSelector"
 import Professions from "../Professions/Professions"
 import "./style.css"
@@ -155,7 +155,7 @@ class WorkerProfileData extends Component {
     render() {
         const { validated } = this.state;
         return (
-            <Container>
+            <div>
                 <div className="fileControl">
                     <input id="uploadFileInput" onChange={this.selectorChange} className="form-control" type="file" />
                     <button id="triggerUploadButton" onClick={this.handleImageUpload}></button>
@@ -341,7 +341,7 @@ class WorkerProfileData extends Component {
                         </Col>
                     </Form.Row>
                 </Form>
-            </Container >
+            </div>
         );
     }
 }

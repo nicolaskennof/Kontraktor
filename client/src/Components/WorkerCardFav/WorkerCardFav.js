@@ -6,6 +6,7 @@ import Fav from "../microCompFav/Fav"
 import Price from "../microCompPrice/Price"
 import Rating from "../microCompRating/ModalRating"
 import Quant from "../microCompQuant/Quant"
+import Hired from "../microCompHired/Hired"
 import "./style.css"
 
 
@@ -18,7 +19,6 @@ let workerImage = "http://nicolas-kennof.com/wp-content/uploads/2018/07/Perfil-2
 function WorkerCard(props) {
     return (
         <div>
-            <Container>
                 <Figure className="workerCard p-1">
                     <div className="row">
                         <div className="col-md-2 text-center">
@@ -28,7 +28,7 @@ function WorkerCard(props) {
                                 src={workerImage}
                             />
                         </div>
-                        <div className="col-md-8">
+                        <div className="col-md-7">
                             <div className="row my-3">
                                 <div className="col-md-6">
                                     <h4><span id="workerNames">{props.myFavs.firstName} </span> <span id="workerLastNames">{props.myFavs.lastName}</span></h4>
@@ -56,26 +56,36 @@ function WorkerCard(props) {
                                 </div>
                             </div>
                         </div>
-                        <div className="col-md-2 my-auto">
-                            <Row>
-                                <Col md={12} className="mb-2">
-                                    <ModalMessage />
+                        <div className="col-md-3 my-auto">
+                        <Row>
+                                <Col md={6}>
+                                    <Row>
+                                        <Col md={12} className="mb-2">
+                                            <ModalMessage />
+                                        </Col>
+                                    </Row>
+                                    <Row>
+                                        <Col md={12} className="mb-2">
+                                            <ModalPhoneFav />
+                                        </Col>
+                                    </Row>
                                 </Col>
-                            </Row>
-                            <Row>
-                                <Col md={12} className="mb-2">
-                                    <ModalPhoneFav />
-                                </Col>
-                            </Row>
-                            <Row>
-                                <Col md={12}>
-                                    <Fav />
+                                <Col md={6}>
+                                    <Row>
+                                        <Col md={12}>
+                                            <Fav className="mr-3" />
+                                        </Col>
+                                    </Row>
+                                    <Row className="mt-2">
+                                        <Col md={12}>
+                                            <Hired className="mr-3" />
+                                        </Col>
+                                    </Row>
                                 </Col>
                             </Row>
                         </div>
                     </div>
                 </Figure>
-            </Container>
         </div >
     )
 }
