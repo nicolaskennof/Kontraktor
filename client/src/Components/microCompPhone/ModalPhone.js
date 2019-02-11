@@ -30,7 +30,7 @@ class ModalPhone extends React.Component {
                     aria-labelledby="modal-phone"
                     centered
                 >
-                    <Modal.Header closeButton>
+                    <Modal.Header closeButton className="border-dark">
                         <Modal.Title id="modal-phone">
                             <i className="fas fa-phone"></i> Contacto
                         </Modal.Title>
