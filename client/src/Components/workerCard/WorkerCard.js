@@ -75,17 +75,10 @@ class WorkerCard extends Component {
                             </div>
                             <div className="row">
                                 <div className="col-md-6 text-left">
-<<<<<<< HEAD
                                     <Rating quality={this.calculateRating()}/>
                                 </div>
                                 <div className="col-md-3 text-center">
                                     <Quant quant={props.kontratado.hires.length}  />
-=======
-                                    <Rating quality={props.kontratado.qualityRate} />
-                                </div>
-                                <div className="col-md-3 text-center">
-                                    <Quant quant={props.kontratado.hire} />
->>>>>>> master
                                 </div>
                                 <div className="col-md-3 text-center">
 
@@ -107,36 +100,14 @@ class WorkerCard extends Component {
                                         <Fav userId={props.userId} addFavs={props.addFavs} />
                                     </Col>
                                 </Row>
-                            </div>
-                        </div>
-                        <div className="col-md-3 my-auto">
-                            <Row>
-                                <Col md={6}>
-                                    <Row>
-                                        <Col md={12} className="mb-2">
-                                            <ModalMessage />
-                                        </Col>
-                                    </Row>
-                                    <Row>
-                                        <Col md={12} className="mb-2">
-                                            <ModalPhone />
-                                        </Col>
-                                    </Row>
-                                </Col>
-                                <Col md={6}>
-                                    <Row>
-                                        <Col md={12}>
-                                            <Fav className="mr-3" />
-                                        </Col>
-                                    </Row>
-                                    <Row>
+                                <Row>
                                         <Col md={12}>
                                             <Hired className="mr-3" />
                                         </Col>
                                     </Row>
-                                </Col>
-                            </Row>
+                            </div>
                         </div>
+                        
                     </div>
                 </Figure>
             </div>

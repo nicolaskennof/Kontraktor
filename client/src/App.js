@@ -16,7 +16,7 @@ class App extends Component {
       kontratadoUser: null,
       favorites:[],
       messages:[],
-      favProfession:''
+      fullfav:[]
     };
   }
 
@@ -56,22 +56,31 @@ class App extends Component {
                 let pushing=[];
                 pushing.push(result)
                 this.setState({favorites: pushing})
-
-                
-                
-              }).then(  this.state.favorites.data.profession.map(profession=>{
-                API.getProfession(profession).then(res=>{
-                  console.log("we received a profession", res);
-                  let pushing=[];
-                  pushing.push(res);
-                  this.setState({favProfession: res})
-                })
-                }))
+                  console.log("we are trying to get professions");
+    
+              })
         })
+        
       }
     })
   });
 }
+
+getkon=()=>{
+let a1=[];
+    this.state.favorites.map(kontratado=>{
+    API.getKontratado(kontratado.data._id).then(res=>{
+    console.log("we received a profession", res);
+    
+    a1.push(res.data);
+    this.setState({fullfav: a1})
+  })
+  })}
+
+
+
+
+    
 
   logKontratado = (idKontratado) => {
     let kontratadoUser;
@@ -100,7 +109,7 @@ class App extends Component {
   chooseRender = () => {
     if (this.state.isFacebookAuthenticated || this.state.isKontratadoAuthenticated){
       if (this.state.isFacebookAuthenticated){
-        return <UserAfterLogin userId={this.state.facebookUser._id} addFavs={this.addFavs} myFavs={this.state.favorites} favProfession={this.state.favProfession} facebookLogout = {this.facebookLogout} />
+        return <UserAfterLogin userId={this.state.facebookUser._id} getkon={this.getkon} addFavs={this.addFavs} fullfav={this.state.fullfav}  facebookLogout = {this.facebookLogout} />
       } else {
         return <div>
           <KontratadoAfterLogin kontratadoUpdate={this.kontratadoUpdate} kontratado = {this.state.kontratadoUser} logOutKontratado={this.logOutKontratado} />

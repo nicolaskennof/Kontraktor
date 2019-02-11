@@ -52,19 +52,11 @@ class UserAfterLogin extends Component {
             this.setState({ kontratados: result.data })
             this.setState({ results: result.data[0] })
             console.log("resultado de kontratados: ", result);
-<<<<<<< HEAD
             this.setState({resultsProfession: result.data[0].profession.profession})
             this.setState({resultCostRate: result.data[0].costRates[0].costRating})
             this.setState({resultQualityRate: result.data[0].qualityRates[0].quality})
             this.setState({resultHires: result.data[0].hires.length})
             //this.setState({userId: this.props.userId})
-=======
-            this.setState({ resultsProfession: result.data[0].profession.profession })
-            this.setState({ resultCostRate: result.data[0].costRates[0].costRating })
-            this.setState({ resultQualityRate: result.data[0].qualityRates[0].quality })
-            this.setState({ resultHires: result.data[0].hires.length })
-            this.setState({ userId: this.props.userId })
->>>>>>> master
 
         }).catch(err => console.log(err));
     }
@@ -79,7 +71,7 @@ class UserAfterLogin extends Component {
     render() {
         return (
             <div>
-                <NavBarUser facebookLogout={this.props.facebookLogout} type={this.state.type} routeChange={this.routeChange} />{this.state.type === "home" ?
+                <NavBarUser facebookLogout={this.props.facebookLogout} type={this.state.type} getkon={this.props.getkon} routeChange={this.routeChange}  />{this.state.type === "home" ?
                     <div>
                         <HeroImage mySearch={this.searchClickHandler} />
                         <UserHomepageQuickLinks routeChange={this.routeChange}/>
@@ -100,11 +92,7 @@ class UserAfterLogin extends Component {
                     </div>
                     :
                     this.state.type === "favorite" ?
-<<<<<<< HEAD
-                        <div><UserFavorite userId={this.props.userId}  addFavs={this.addFavs} myFavs={this.props.myFavs} favProfession= {this.props.favProfession} results={this.state.results} quant={this.state.resultHires} quality={this.state.resultQualityRate} costRate={this.state.resultCostRate} /></div>
-=======
-                        <div><UserFavorite userId={this.props.userId} addFavs={this.addFavs} myFavs={this.props.myFavs} favProfession={this.props.favProfession} results={this.state.results} quant={this.state.resultHires} quality={this.state.resultQualityRate} costRate={this.state.resultCostRate} /></div>
->>>>>>> master
+                        <div><UserFavorite userId={this.props.userId}  addFavs={this.addFavs} fullfav={this.props.fullfav}  results={this.state.results} quant={this.state.resultHires} quality={this.state.resultQualityRate} costRate={this.state.resultCostRate} /></div>
                         :
                         <div><UserMailbox /></div>
                 }
