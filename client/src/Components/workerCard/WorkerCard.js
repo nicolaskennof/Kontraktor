@@ -29,6 +29,15 @@ class WorkerCard extends Component{
         return total
     }
 
+    calculateRating= ()=>{
+        let sum=0;
+        let total=0;
+        this.props.kontratado.qualityRates.forEach(qualityRate=>{
+            sum+= qualityRate.quality  })
+            total= sum/this.props.kontratado.qualityRates.length
+            return total
+    }
+
 
 
 render( ){
@@ -64,10 +73,10 @@ render( ){
                             </div>
                             <div className="row">
                                 <div className="col-md-6 text-left">
-                                    <Rating quality={props.kontratado.qualityRate}/>
+                                    <Rating quality={this.calculateRating()}/>
                                 </div>
                                 <div className="col-md-3 text-center">
-                                    <Quant quant={props.kontratado.hire}  />
+                                    <Quant quant={props.kontratado.hires.length}  />
                                 </div>
                                 <div className="col-md-3 text-center">
 

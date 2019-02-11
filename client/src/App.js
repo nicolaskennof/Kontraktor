@@ -50,24 +50,28 @@ class App extends Component {
       r.json().then(facebookUser => {
         if (token) {
           this.setState({ isFacebookAuthenticated: true, facebookUser, token })
+            this.state.facebookUser.favourites.map(favourite=>{
+              API.getFavourite(favourite).then(result=>{
+                console.log(result)
+                let pushing=[];
+                pushing.push(result)
+                this.setState({favorites: pushing})
 
-          API.getFavourite(this.state.facebookUser.favourites[0]).then(result=>{
-            console.log(result)
-            this.setState({favorites: result.data})
-
-            API.getProfession(this.state.favorites.profession).then(res=>{
-              console.log("we received an answer", res);
-              this.setState({favProfession: res.data.profession})
-            })
-            })
-            
-        }
-      });
+                
+                
+              }).then(  this.state.favorites.data.profession.map(profession=>{
+                API.getProfession(profession).then(res=>{
+                  console.log("we received a profession", res);
+                  let pushing=[];
+                  pushing.push(res);
+                  this.setState({favProfession: res})
+                })
+                }))
+        })
+      }
     })
-
-      
-    
-  };
+  });
+}
 
   logKontratado = (idKontratado) => {
     let kontratadoUser;

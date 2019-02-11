@@ -62,7 +62,7 @@ class UserAfterLogin extends Component {
             this.setState({resultCostRate: result.data[0].costRates[0].costRating})
             this.setState({resultQualityRate: result.data[0].qualityRates[0].quality})
             this.setState({resultHires: result.data[0].hires.length})
-            this.setState({userId: this.props.userId})
+            //this.setState({userId: this.props.userId})
 
 		}).catch(err => console.log(err));
     }
@@ -102,7 +102,7 @@ class UserAfterLogin extends Component {
                     </div>
                     :
                     this.state.type === "favorite" ?
-                        <div><UserFavorite  userId={this.props.userId}  addFavs={this.addFavs} myFavs={this.props.myFavs} favProfession= {this.props.favProfession} results={this.state.results} quant={this.state.resultHires} quality={this.state.resultQualityRate} costRate={this.state.resultCostRate} /></div>
+                        <div><UserFavorite userId={this.props.userId}  addFavs={this.addFavs} myFavs={this.props.myFavs} favProfession= {this.props.favProfession} results={this.state.results} quant={this.state.resultHires} quality={this.state.resultQualityRate} costRate={this.state.resultCostRate} /></div>
                         :
                         <div><UserMailbox /></div>
                 }

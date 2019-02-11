@@ -6,12 +6,15 @@ import HeroImageFav from "../Components/HeroImage/HeroImageFav"
 import Footer from "../Components/Footer/Footer"
 
 function UserFavorite(props) {
+
     return (
         <div>
             <HeroImageFav />
             <Filters isUserFilter={true}/>
             <WorkersWrapper>
-                <WorkerCardFav userId={props.userId}  myFavs={props.myFavs} addFavs={props.addFavs}  favProfession= {props.favProfession} results={props.results} quant={props.resultHires} quality={props.resultQualityRate} costRate={props.resultCostRate} />
+            {props.myFavs.map(favorite=>{
+                                return  <WorkerCardFav userId={props.userId} myFavs={props.myFavs} addFavs={props.addFavs} favorite={favorite}/>
+            })}
             </WorkersWrapper>
             <Footer />
         </div>
@@ -19,3 +22,5 @@ function UserFavorite(props) {
 }
 
 export default UserFavorite
+
+
