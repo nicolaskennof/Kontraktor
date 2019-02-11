@@ -30,7 +30,7 @@ class ModalMessage extends React.Component {
           aria-labelledby="modal-message"
           centered
         >
-          <Modal.Header closeButton>
+          <Modal.Header closeButton  className="border-dark">
             <Modal.Title id="modal-message">
               Tu conversación con <span id="workerName">{firstName + " " + lastName}</span>
             </Modal.Title>
