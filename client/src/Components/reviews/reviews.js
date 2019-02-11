@@ -1,5 +1,5 @@
-import React, { Component } from 'react'
-import { Row, Col, Card, Button } from "react-bootstrap"
+import React from 'react'
+import { Row, Card } from "react-bootstrap"
 import SingleReview from "../reviews/SingleReview"
 import Price from "../microCompPrice/Price"
 import "./style.css";

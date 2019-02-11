@@ -1,17 +1,35 @@
 import React from "react";
-import Card from 'react-bootstrap/Card'
+import { Row, Col } from 'react-bootstrap'
 import ModalMessage from "../microCompMessage/ModalMessage"
 import './style.css'
 
 function KontratadoConversation(props) {
     return (
-        <div className="border border-warning rounded p-2">
-            <Card.Title>{props.firstName}</Card.Title>
-            <Card.Text>
-                {props.lastMessage}
-                </Card.Text>
-            <ModalMessage/>
-        </div>
+
+        <blockquote class="quote-card">
+            <Row>
+            <Col md={2} className="m-0 p-0 text-center"><img className="imgContainer" alt="facebook-pic" src={props.userFacebookPic} /></Col>
+                <Col md={6}>
+                    <p>
+                        {props.userLastMessage}
+                    </p>
+                    <br />
+                    <div className="d-inline"><span id="messageCardSender"><b>Recibido de: </b></span></div>
+                    <cite className="d-inline">
+                        {props.userFirstName + " " + props.userLastName}
+                    </cite>
+                </Col>
+                <Col md={4}>
+                <br />
+                    <div className="d-inline"><ModalMessage /></div>
+                </Col>
+            </Row>
+        </blockquote>
+
+
+
+
+
     )
 }
 

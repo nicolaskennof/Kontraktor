@@ -1,16 +1,15 @@
 import React from "react"
-import { Container, Card } from "react-bootstrap"
 import KontratadoConversation from "../KontratadoConversation/KontratadoConversation"
 import "./style.css"
+import "./KontratadoKonversationsWrapper.css"
 
-function KontratadoKonversationsWrapper() {
+
+
+function KontratadoKonversationsWrapper(props) {
     return (
-        <Card>
-            <Card.Header as="h5"><i className="fas fa-comments"> Tus ultimas conversaciones</i></Card.Header>
-            <Card.Body>
-                <KontratadoConversation firstName="Nicolas" lastMessage="¿Cuanto costaría amigo?"/>
-            </Card.Body>
-        </Card>
+        <div>
+            <KontratadoConversation userLastMessage="Entonces cuanto me cobrarías para todo eso?" userFirstName="Nicolas Jules R" userLastName="Kennof" userFacebookPic="https://avatars3.githubusercontent.com/u/41691887?s=460&v=4" />
+        </div>
     )
 }
 
