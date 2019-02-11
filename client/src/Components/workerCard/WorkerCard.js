@@ -1,4 +1,4 @@
-import React from "react";
+import React, {Component} from "react";
 import { Container, Figure, Row, Col } from "react-bootstrap";
 import ModalMessage from "../microCompMessage/ModalMessage"
 import ModalPhone from "../microCompPhone/ModalPhone"
@@ -9,14 +9,31 @@ import Quant from "../microCompQuant/Quant"
 import "./style.css"
 import ModalPhoneFav from "../modalPhoneFav/ModalPhoneFav"
 
-
-
-let firstName = "Nicolas";
+let firstName = "Nicolas Jules R";
 let lastName = "Kennof";
 let occupation = "Plomero"
 let workerImage = "http://nicolas-kennof.com/wp-content/uploads/2018/07/Perfil-2018.png"
 
-function WorkerCard(props) {
+class WorkerCard extends Component{
+
+    state={
+
+    }
+
+    calculateCostAverage = ()=>{
+        let sum=0;
+        let total=0
+        this.props.kontratado.costRates.forEach(costRate=>{
+            sum+=costRate.costRating   }   )
+            total= sum/this.props.kontratado.costRates.length;
+        return total
+    }
+
+
+
+render( ){
+    let props=this.props;
+
     return (
         <div>
             <Container>
@@ -32,25 +49,25 @@ function WorkerCard(props) {
                         <div className="col-md-8">
                             <div className="row my-3">
                                 <div className="col-md-6">
-                                    <h4><span id="workerNames">{props.results.firstName} </span> <span id="workerLastNames">{props.results.lastName}</span></h4>
+                                    <h4><span id="workerNames">{props.kontratado.firstName} </span> <span id="workerLastNames">{props.kontratado.lastName}</span></h4>
                                     <div className="row">
                                         <div className="col-6">
-                                            <h5 className="workerCardDetail"><span id="workerEmployment">{props.profession}</span></h5>
+                                            <h5 className="workerCardDetail"><span id="workerEmployment">{props.kontratado.profession.profession}</span></h5>
                                         </div>
                                         <div className="col-6 text-left">
                                         </div>
                                     </div>
                                 </div>
                                 <div className="col-md-3 text-center">
-                                    <Price costRate={props.costRate} />
+                                    <Price costRate={this.calculateCostAverage()} />
                                 </div>
                             </div>
                             <div className="row">
                                 <div className="col-md-6 text-left">
-                                    <Rating quality={props.quality}/>
+                                    <Rating quality={props.kontratado.qualityRate}/>
                                 </div>
                                 <div className="col-md-3 text-center">
-                                    <Quant quant={props.quant} />
+                                    <Quant quant={props.kontratado.hire}  />
                                 </div>
                                 <div className="col-md-3 text-center">
 
@@ -65,7 +82,7 @@ function WorkerCard(props) {
                             </Row>
                             <Row>
                                 <Col md={12} className="mb-2">
-                                    <ModalPhone results={props.results} />
+                                    <ModalPhone contactPhone={props.kontratado.contactPhone} />
                                 </Col>
                             </Row>
                             <Row>
@@ -79,6 +96,7 @@ function WorkerCard(props) {
             </Container>
         </div >
     )
+}
 }
 
 export default WorkerCard;

@@ -8,11 +8,12 @@
     color: #FBCC04;
     background: #494949;
     width: 45px;
-    border: #494949 .5px dotted
+    border: #FBCC04 .5px dotted;
+    text-align: center
 }
 
 .formInput {
-    border: #494949 .5px dotted
+    border: #FBBC04 .5px dotted
 }
 
 .fileControl{

@@ -1,17 +1,21 @@
 import React, { Component } from "react"
 import NavBarUser from "../Components/navBars/navBarUser"
-import LogInCardsWrapper from "../Components/infoCardsWrapper/logInCardsWrapper"
 import Filters from "../Components/resultsFilters/Filters"
 import WorkerCard from "../Components/workerCard/WorkerCard"
 import WorkersWrapper from "../Components/workersWrapper/WorkersWrapper"
-//import Search from "../Components/Search/Search"
+import Search from "../Components/Search/Search"
 import UserFavorite from "./UserFavorite"
-import UserMailbox from "./UserMailbox"
+
 import WelcomeMessage from "../Components/WelcomeMessage/WelcomeMessage"
 import API from "../utils/API";
 import { InputGroup, Button, Col, Form } from "react-bootstrap";
 import Professions from "../Components/Professions/Professions";
 import StateSelector from "../Components/StateSelector/StateSelector";
+
+import UserMailbox from "./UserMailbox"
+import HeroImage from "../Components/HeroImage/HeroImageUserHome"
+import UserHomepageQuickLinks from "../Components/Steps/UserHomepageQuickLinks"
+import Footer from "../Components/Footer/Footer"
 
 
 class UserAfterLogin extends Component {
@@ -27,6 +31,8 @@ class UserAfterLogin extends Component {
         resultHires:null,
         userId: '',
         favorites:[],
+        kontratados: [],
+        
     }
 
   addFavs =()=>{
@@ -43,31 +49,24 @@ class UserAfterLogin extends Component {
 
   
        
-    searchClickHandler = () => {
-       
+    searchClickHandler = (searchProfession, searchState) => {
+        
 		API.getKontratadoByFilter({
-			searchProfession: this.state.searchProfession,
-			searchState: this.state.searchState
+			searchProfession,
+			searchState
 		}).then(result => {
-            
+            this.setState({kontratados: result.data})
             this.setState({results: result.data[0]})
+            console.log("resultado de kontratados: ", result);
             this.setState({resultsProfession: result.data[0].profession.profession})
             this.setState({resultCostRate: result.data[0].costRates[0].costRating})
             this.setState({resultQualityRate: result.data[0].qualityRates[0].quality})
             this.setState({resultHires: result.data[0].hires.length})
             this.setState({userId: this.props.userId})
 
-         console.log(result.data);
 		}).catch(err => console.log(err));
     }
-    
-    onProfessionChange = (searchProfession) => {
-		this.setState({ searchProfession });
-	}
-
-	onStateChange = (searchState) => {
-		this.setState({ searchState });
-	}
+    	
 
     routeChange = (type) => {
         this.setState({
@@ -78,39 +77,25 @@ class UserAfterLogin extends Component {
     render() {
         return (
             <div>
-                <NavBarUser type={this.state.type} routeChange={this.routeChange} />{this.state.type === "home" ?
+                <NavBarUser facebookLogout={this.props.facebookLogout} type={this.state.type} routeChange={this.routeChange} />{this.state.type === "home" ?
                     <div>
-                        <WelcomeMessage />
+                        <HeroImage mySearch={this.searchClickHandler}/>
+                        <UserHomepageQuickLinks />
                         <br />
-                        <Form >
-					<Form.Row className="containerHard">
-						<Col s={12} md={4}>
-							<InputGroup>
-								<Professions onProfessionChange={this.onProfessionChange} className="searchItem" />
-							</InputGroup>
-						</Col>
-						<Col s={12} md={4}>
-							<InputGroup>
-								<StateSelector isSearch={true} handleStateChange={this.onStateChange} className="searchItem" />
-							</InputGroup>
-                            </Col>
-                        <Col s={12} md={4} className="text-center">
-							<Button onClick={() => this.searchClickHandler()} className="workerCardButton" id="searchBtn"><i class="fas fa-search"></i> Buscar</Button>
-						</Col>
-
-						
-					</Form.Row>
-				</Form>
+                     
 
                         <br />
                         <button onClick={this.props.facebookLogout} className="button">Cerrar sesión</button>
                         
                         <br />
-                        <LogInCardsWrapper />
+                        {/*<LogInCardsWrapper />*/}
                         <br />
                         <Filters />
                         <WorkersWrapper> 
-                            <WorkerCard userId={this.props.userId}  addFavs={this.addFavs}  profession= {this.state.resultsProfession} results={this.state.results} quant={this.state.resultHires} quality={this.state.resultQualityRate} costRate={this.state.resultCostRate}/>
+                            {this.state.kontratados.map(kontratado=> {
+                                return <WorkerCard userId={kontratado._id}  addFavs={this.addFavs} kontratado={kontratado}/>
+                            
+                             }) }
                             
                         </WorkersWrapper>
                         

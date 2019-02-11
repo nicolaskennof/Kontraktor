@@ -1,6 +1,5 @@
 import React, {Component} from "react";
-import FacebookLogin from 'react-facebook-login';
-import config from '../../config.json';  
+import FacebookLogin from 'react-facebook-login'; 
 import {Modal} from "react-bootstrap"
 import WorkerProfileData from '../WorkerProfileData/WorkerProfileData'
 import KontratadoLogin from '../KontratadoLogin/KontratadoLogin'
@@ -20,11 +19,11 @@ handleOptionChange(changeEvent){
     })
 }
 
-render () {
+render () {
     let button;
 	if (this.state.selectedOption === 'A') {
         button =  <FacebookLogin
-        appId={config.FACEBOOK_APP_ID}
+        appId= {'1042884622576309'}
         autoLoad={false}
         fields="name,email,picture"
         callback={this.props.facebookResponse} 
@@ -63,5 +62,6 @@ return (
 		</div>
 		)
 	}
-}
-export default ModalLogin;
+}
+
+export default ModalLogin;

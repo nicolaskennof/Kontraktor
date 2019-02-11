@@ -36,7 +36,7 @@ class ModalPhone extends React.Component {
                         </Modal.Title>
                     </Modal.Header>
                     <Modal.Body>
-                        El número de celular de {this.props.results.firstName + " " + this.props.results.lastName} es el siguiente:<br /><b>{this.props.results.contactPhone}</b>.
+                        El número de celular de {this.props.firstName + " " + this.props.lastName} es el siguiente:<br /><b>{this.props.contactPhone}</b>.
                     </Modal.Body>
                 </Modal>
             </ButtonToolbar>

@@ -1,14 +1,14 @@
 import React from "react";
 import InfoCard from './infoCard';
 import './style.css';
-import { Container } from "react-bootstrap";
+import { CardGroup } from "react-bootstrap";
 
 
 
 function LogInCardsWrapper(props) {
     return (
         <div>
-            <Container>
+            <CardGroup>
                 <div className="row">
                     <div className="col-md-4">
                         <InfoCard title='Tus favoritos' image='assets/img/NoLoginImages/pintura.jpg' />
@@ -20,7 +20,7 @@ function LogInCardsWrapper(props) {
                         <InfoCard title='Tu historial' image='assets/img/NoLoginImages/carpintero.jpg' />
                     </div>
                 </div>
-            </Container>
+            </CardGroup>
         </div>
     )
 }

@@ -20,10 +20,6 @@ class App extends Component {
     };
   }
 
-
-
-
-
   facebookLogout = () => {
     this.setState({
       isFacebookAuthenticated: false,
@@ -96,7 +92,6 @@ class App extends Component {
       kontratadoUser : kontratado
     })
   }
-
 
   chooseRender = () => {
     if (this.state.isFacebookAuthenticated || this.state.isKontratadoAuthenticated){

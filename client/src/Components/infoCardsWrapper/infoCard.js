@@ -6,9 +6,9 @@ function InfoCard(props) {
     return (
 
         <Card className="bg-light text-white">
-            <Card.Img className='loginImage' src={props.image} alt="Card image" />
+            <Card.Img className='loginImage fluid' src={props.image} alt="Card image" />
             <Card.ImgOverlay className="cardText">
-                <Card.Title>{props.title}</Card.Title>
+                <Card.Title className="bannerText darkTextBackground rounded">{props.title}</Card.Title>
                 <Card.Text>
                     {props.text}
                 </Card.Text>

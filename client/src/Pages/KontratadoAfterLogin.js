@@ -1,21 +1,47 @@
 import React, { Component } from "react"
-import KNavBar from "../Components/kNavBar/KaNaBar"
-import KStats from "../Components/kStats/kStats"
-import WorkerProfileData from "../Components/WorkerProfileData/WorkerProfileData"
-
+import KaNaBar from "../Components/kNavBar/KaNaBar"
+import Wrapper from "../Components/workersWrapper/commonWrapper"
+import KontratadoProfile from "../Pages/KontratadoProfile"
+import KontratadoMailbox from "../Pages/KontratadoMailbox"
+import HeroImageKontratadoAfterLogin from "../Components/HeroImage/HeroImageKontratadoAfterLogin"
+import KontratadoKonversationsWrapper from "../Components/KontratadoConversation/KontratadoKonversationsWrapper"
+import Footer from "../Components/Footer/Footer"
 
 class KontratadoAfterLogin extends Component {
+
+    state = {
+        type: "home"
+    }
+
+    routeChange = (type) => {
+        this.setState({
+            type
+        })
+    }
+
 
     render() {
         return (
 
             <div>
-                <KNavBar />
-                <br />
-                <KStats />
-                <br />
-                <WorkerProfileData kontratadoUpdate={this.props.kontratadoUpdate} kontratado={this.props.kontratado} isSignup={false} />
-                <button onClick={this.props.logOutKontratado}>Adios paisano</button>
+                <KaNaBar logOutKontratado={this.props.logOutKontratado} type={this.state.type} routeChange={this.routeChange} />
+                {this.state.type === "home" ?
+                    <div>
+                        <HeroImageKontratadoAfterLogin />
+                        <Wrapper>
+                            <h1>Tus últimas conversaciones</h1>
+                            <hr />
+                            <br />
+                            <KontratadoKonversationsWrapper />
+                        </Wrapper>
+                        <Footer />
+                    </div>
+                    :
+                    this.state.type === "profile" ?
+                        <div><KontratadoProfile /></div>
+                        :
+                        <div><KontratadoMailbox /></div>
+                }
             </div>
         )
     }

@@ -1,0 +1,83 @@
+.bgimage {
+    width:100%;
+    height:500px;
+    background: url("https://images.unsplash.com/photo-1493150134366-cacb0bdc03fe?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80");
+    background-repeat: no-repeat;
+    background-position: bottom;
+    background-size: cover;
+    background-attachment: fixed;
+  }
+
+  .bgimageHomepage {
+    width:100%;
+    height:500px;
+    background: url("https://images.unsplash.com/photo-1520372561567-bac27b0e5fa1?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1448&q=80");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 100%;
+    background-attachment: fixed;
+  }
+
+  .bgimageKontratadoAfterLogin {
+    width:100%;
+    height:500px;
+    background: url("https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80");
+    background-repeat: no-repeat;
+    background-position: bottom;
+    background-size: 100%;
+    background-attachment: fixed;
+  }
+
+  .bgimageMailbox {
+    width:100%;
+    height:500px;
+    background: url("https://images.unsplash.com/photo-1466096115517-bceecbfb6fde?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80");
+    background-repeat: no-repeat;
+    background-position: bottom;
+    background-size: 100%;
+    background-attachment: fixed;
+  }
+
+  .bgimageFav {
+    width:100%;
+    height:500px;
+    background: url("https://images.unsplash.com/photo-1423666639041-f56000c27a9a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1353&q=80");
+    background-repeat: no-repeat;
+    background-position: bottom;
+    background-size: 100%;
+    background-attachment: fixed;
+  }
+
+  .bgimageProfile {
+    width:100%;
+    height:500px;
+    background: url("https://images.unsplash.com/photo-1508188609340-e8068b599193?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=700&q=80");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 100%;
+    background-attachment: fixed;
+  }
+
+  .bgimage h5 {
+    color:white;
+    text-shadow:2px 2px #333;
+  }
+
+  .bgimageMailbox h5 {
+    color:white;
+    text-shadow:2px 2px #333;
+  }
+
+  .bgimageProfile h5 {
+    color:white;
+    text-shadow:2px 2px #333;
+  }
+
+  .bgimageFav h5 {
+    color:white;
+    text-shadow:2px 2px #333;
+  }
+
+  .v-center {
+    margin: 12% 0
+  }
