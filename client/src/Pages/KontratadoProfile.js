@@ -1,7 +1,5 @@
 import React from "react"
-import Filters from "../Components/resultsFilters/Filters"
 import WorkerProfileData from "../Components/WorkerProfileData/WorkerProfileData"
-import WorkersWrapper from "../Components/workersWrapper/WorkersWrapper"
 import HeroImageProfile from "../Components/HeroImage/HeroImageProfile"
 import Footer from "../Components/Footer/Footer"
 import Wrapper from "../Components/workersWrapper/commonWrapper"
@@ -15,11 +13,13 @@ function KontratadoProfile() {
             <Wrapper>
                 <h1>Tu datos</h1>
                 <hr />
+                <br />
                 <WorkerProfileData />
                 <br />
                 <br />
                 <h1>Tus reseñas</h1>
                 <hr />
+                <br />
                 <Reviews />
             </Wrapper>
             <Footer />

@@ -29,6 +29,9 @@ class KontratadoAfterLogin extends Component {
                     <div>
                         <HeroImageKontratadoAfterLogin />
                         <Wrapper>
+                            <h1>Tus últimas conversaciones</h1>
+                            <hr />
+                            <br />
                             <KontratadoKonversationsWrapper />
                         </Wrapper>
                         <Footer />

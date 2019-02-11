@@ -32,9 +32,6 @@ class BeforeLogin extends Component {
         return (
             <div>
                 <NavBarStart handleShow = {this.handleShow} />
-                <CommonWrapper>
-                    <KontratadoKonversationsWrapper />
-                </CommonWrapper>
                 <ImgCarousel />
                 <Functioning />
                 <HeroImageHomepage />

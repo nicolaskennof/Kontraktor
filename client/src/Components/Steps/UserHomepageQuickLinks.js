@@ -2,7 +2,6 @@ import React from "react";
 import { Jumbotron, CardGroup, Row, Col, Card } from 'react-bootstrap'
 import ModalQuienes from "../microCompQuienes/ModalQuienes"
 import ModalPorque from "../microCompPorque/ModalPorque"
-import ModalExito from "../microCompExito/ModalExito"
 import Like from "../../img/like.png"
 import Chat from "../../img/chat.png"
 import './style.css'

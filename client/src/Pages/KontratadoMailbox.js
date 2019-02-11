@@ -1,16 +1,20 @@
 import React from "react"
-import WorkersWrapper from "../Components/workersWrapper/WorkersWrapper"
 import HeroImageMailbox from "../Components/HeroImage/HeroImageMailbox"
+import Wrapper from "../Components/workersWrapper/commonWrapper"
 import Footer from "../Components/Footer/Footer"
+import KontratadoKonversationsWrapper from "../Components/KontratadoConversation/KontratadoKonversationsWrapper";
 
 
 function UserFavorite() {
     return (
         <div>
             <HeroImageMailbox />
-            <WorkersWrapper>
-              Desde mailbox!
-            </WorkersWrapper>
+            <Wrapper>
+                <h1>Todas tus conversaciones</h1>
+                <hr />
+                <br />
+                <KontratadoKonversationsWrapper />
+            </Wrapper>
             <Footer />
         </div>
     )
