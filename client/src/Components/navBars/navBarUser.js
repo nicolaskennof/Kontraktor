@@ -8,7 +8,7 @@ class NavBarUser extends Component {
     chooseRender = () => {
         if (this.props.type === "home") {
             return <div>
-                <Button onClick={() => { this.props.routeChange("favorite") }} className="m-2" variant="outline-warning"><i className="fas fa-heart"></i></Button>
+                <Button onClick={() => { this.props.routeChange("favorite"); this.props.getkon() }} className="m-2" variant="outline-warning"><i className="fas fa-heart"></i></Button>
                 <Button onClick={() => { this.props.routeChange("message") }} variant="outline-warning"><i className="fas fa-comments"></i></Button>
                 <Button onClick={this.props.facebookLogout} className="btn btn-danger m-2 ml-2 logoutBtn"><i className="fas fa-sign-out-alt"></i></Button>
             </div>
