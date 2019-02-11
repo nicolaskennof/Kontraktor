@@ -1,39 +1,21 @@
-import React, {Component} from "react";
+import React from "react";
 import { Container, Figure, Row, Col } from "react-bootstrap";
 import ModalMessage from "../microCompMessage/ModalMessage"
-import ModalPhone from "../microCompPhone/ModalPhone"
+import ModalPhoneFav from "../modalPhoneFav/ModalPhoneFav"
 import Fav from "../microCompFav/Fav"
 import Price from "../microCompPrice/Price"
 import Rating from "../microCompRating/ModalRating"
 import Quant from "../microCompQuant/Quant"
 import "./style.css"
-import ModalPhoneFav from "../modalPhoneFav/ModalPhoneFav"
 
-let firstName = "Nicolas Jules R";
+
+
+let firstName = "Nicolas";
 let lastName = "Kennof";
 let occupation = "Plomero"
 let workerImage = "http://nicolas-kennof.com/wp-content/uploads/2018/07/Perfil-2018.png"
 
-class WorkerCard extends Component{
-
-    state={
-
-    }
-
-    calculateCostAverage = ()=>{
-        let sum=0;
-        let total=0
-        this.props.kontratado.costRates.forEach(costRate=>{
-            sum+=costRate.costRating   }   )
-            total= sum/this.props.kontratado.costRates.length;
-        return total
-    }
-
-
-
-render( ){
-    let props=this.props;
-
+function WorkerCard(props) {
     return (
         <div>
             <Container>
@@ -49,25 +31,25 @@ render( ){
                         <div className="col-md-8">
                             <div className="row my-3">
                                 <div className="col-md-6">
-                                    <h4><span id="workerNames">{props.kontratado.firstName} </span> <span id="workerLastNames">{props.kontratado.lastName}</span></h4>
+                                    <h4><span id="workerNames">{props.myFavs.firstName} </span> <span id="workerLastNames">{props.myFavs.lastName}</span></h4>
                                     <div className="row">
                                         <div className="col-6">
-                                            <h5 className="workerCardDetail"><span id="workerEmployment">{props.kontratado.profession.profession}</span></h5>
+                                            <h5 className="workerCardDetail"><span id="workerEmployment">{props.favProfession}</span></h5>
                                         </div>
                                         <div className="col-6 text-left">
                                         </div>
                                     </div>
                                 </div>
                                 <div className="col-md-3 text-center">
-                                    <Price costRate={this.calculateCostAverage()} />
+                                    <Price myFavs= {props.myFavs.costRates} />
                                 </div>
                             </div>
                             <div className="row">
                                 <div className="col-md-6 text-left">
-                                    <Rating quality={props.kontratado.qualityRate}/>
+                                    <Rating />
                                 </div>
                                 <div className="col-md-3 text-center">
-                                    <Quant quant={props.kontratado.hire}  />
+                                    <Quant  />
                                 </div>
                                 <div className="col-md-3 text-center">
 
@@ -82,12 +64,12 @@ render( ){
                             </Row>
                             <Row>
                                 <Col md={12} className="mb-2">
-                                    <ModalPhone contactPhone={props.kontratado.contactPhone} />
+                                    <ModalPhoneFav />
                                 </Col>
                             </Row>
                             <Row>
                                 <Col md={12}>
-                                    <Fav userId={props.userId} addFavs={props.addFavs}/>
+                                    <Fav />
                                 </Col>
                             </Row>
                         </div>
@@ -96,7 +78,6 @@ render( ){
             </Container>
         </div >
     )
-}
 }
 
 export default WorkerCard;

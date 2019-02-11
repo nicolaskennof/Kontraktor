@@ -26,6 +26,18 @@ module.exports = {
                        })})
             }
         },
+        getFavourite: (req,res)=>{
+            if(req.params.id){
+                db.Favourite
+                .findById({_id: req.params.id})
+                .then( dbModel=>{
+                    db.Kontratado.findByIdAndUpdate({_id: dbModel.kontratado}, {favourites: req.params.id})
+                    .then(updated=>{
+                        res.status(200).json(updated);
+                    })
+                })
+            }
+        }
         }
 
 

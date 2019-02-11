@@ -3,12 +3,12 @@ import "./style.css"
 
 let kontraktedAmount = 48;
 
-function Quant() {
+function Quant(props) {
     return (
         <div>
         <p><b># Kontratado: </b>
         <br />
-        <span className="workerCardDetail" id="timesKontrakted">{kontraktedAmount}</span> x</p>
+        <span className="workerCardDetail" id="timesKontrakted">{props.quant}</span> x</p>
         </div>
     )
 }

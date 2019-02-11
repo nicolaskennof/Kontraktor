@@ -3,7 +3,7 @@ import "./userHome.css"
 import WelcomeMessage from "../WelcomeMessage/WelcomeMessage";
 import Search from "../Search/Search"
 
-function HeroImage() {
+function HeroImage(props) {
   return (
     <section class="bgimage">
       <div class="container-fluid">
@@ -12,7 +12,7 @@ function HeroImage() {
             <WelcomeMessage />
             <br />
             <br />
-            <Search />
+            <Search mySearch={props.mySearch} />
           </div>
         </div>
       </div>
