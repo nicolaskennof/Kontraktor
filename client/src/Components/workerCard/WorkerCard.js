@@ -39,6 +39,7 @@ function WorkerCard() {
                                     </div>
                                 </div>
                                 <div className="col-md-3 text-center">
+                                <p><b>Rango de precio:</b></p>
                                     <Price />
                                 </div>
                             </div>

@@ -1,3 +1,20 @@
 .quienesBtn {
     margin: auto !important;
 }
+
+.imageInText {
+    width: 30%;
+    height: auto;
+}
+
+.modal-content {
+    background-color: #494949
+}
+
+.modal-header {
+    color: #FBBC04;
+}
+
+.modal-body {
+    color: rgb(136, 136, 136);
+}
