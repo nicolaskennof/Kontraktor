@@ -1,5 +1,4 @@
-import React, { Component } from "react";
-import { InputGroup, Button, Col, Form, Jumbotron } from "react-bootstrap";
+import React from "react";
 import "./userHome.css"
 import WelcomeMessage from "../WelcomeMessage/WelcomeMessage";
 import Search from "../Search/Search"

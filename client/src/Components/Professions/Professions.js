@@ -30,7 +30,7 @@ class Professions extends Component {
                         <InputGroup.Text className="formIcon" id="inputGroupPrepend"><i className="fas fa-hammer"></i></InputGroup.Text>
                     </InputGroup.Prepend>
                     <Form.Control value={this.props.currentProfession} as="select" onChange={this.onProfessionChange} className="formInput rounded-right">
-                        <option>Elija tus habilidades (3 max.)</option>
+                        <option>Selecciona tu habilidad</option>
                         {this.state.professions.map(professionElement => {
                             return <option key={professionElement._id} value={professionElement._id}>{professionElement.profession}</option>
                         })}

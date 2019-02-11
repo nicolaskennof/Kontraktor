@@ -42,7 +42,7 @@ render() {
                         className="d-inline-block align-top"
                     />
 
-                    {' Kontractor'}
+                    {' Kontratado'}
                 </Navbar.Brand>
                 <div className="signInWrapper">
                     <div className="buttonSignIn">

@@ -1,7 +1,7 @@
 import React from "react";
 import InfoCard from './infoCard';
 import './style.css';
-import { Container, CardGroup } from "react-bootstrap";
+import { CardGroup } from "react-bootstrap";
 
 
 

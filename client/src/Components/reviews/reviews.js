@@ -1,36 +1,42 @@
 import React, { Component } from 'react'
-import { Row } from "react-bootstrap"
+import { Row, Col, Card, Button } from "react-bootstrap"
+import SingleReview from "../reviews/SingleReview"
+import Price from "../microCompPrice/Price"
 import "./style.css";
 
-
 function Reviews() {
-    
+
     return (
         <div>
             <Row>
-                <div class="col-8">
-                    <div class="row">
-                        <div class="col-12"><div class="mini-box">Ana estuvo muy linda y hermosa conmigo, Arregló mis tuberias en tiempo record</div></div>
-                        <div class="col-12"><div class="mini-box">Nico estuvo muy lindo y hermoso conmigo, Arregló mis tuberias en tiempo record</div></div>
-                        <div class="col-12"><div class="mini-box">Paco estuvo muy lindo y hermoso conmigo, Arregló mis tuberias en tiempo record</div></div>
-                        <div class="col-12"><div class="mini-box">Froys estuvo muy lindo y hermoso conmigo, Arregló mis tuberias en tiempo record</div></div>
+                <div className="col-8">
+                    <div className="row">
+                        <div className="col-12"><SingleReview className="mini-box" userReview="Muchas gracias a Froy! Arregló mi tubo en un fracción de segundo" userFirstName="Jorge"></SingleReview>
+                        </div>
                     </div>
                 </div>
-                <div class="col-4">
-                    <div class="big-box">Tu calificación promedia</div>
-
-                    <div class="big-box">Tu costo promedio<div className="col-md-3 text-right">
-                        <span class="fas fa-dollar-sign checked mr-1"></span>
-                        <span class="fas fa-dollar-sign checked mr-1"></span>
-                        <span class="fas fa-dollar-sign mr-1"></span>
-                        <span class="fas fa-dollar-sign mr-1"></span>
-
-                    </div></div>
-
+                <div className="col-4">
+                    <Card>
+                        <Card.Header as="h5">Tu costo promedio</Card.Header>
+                        <Card.Body>
+                            <Card.Title>Los usuarios califican tu <b>costo</b> de la siguiente manera:</Card.Title>
+                            <Card.Text className="text-center">
+                                <span className="scoreCard"><Price /></span>
+                            </Card.Text>
+                        </Card.Body>
+                    </Card>
+                    <br />
+                    <Card>
+                        <Card.Header as="h5">Tu calificación promedia</Card.Header>
+                        <Card.Body>
+                            <Card.Title>Los usuarios califican <b>servicio</b> de la siguiente manera:</Card.Title>
+                            <Card.Text className="text-center">
+                                <span className="scoreCard">4.5</span>
+                            </Card.Text>
+                        </Card.Body>
+                    </Card>
                 </div>
-
             </Row>
-
         </div>
     )
 }
