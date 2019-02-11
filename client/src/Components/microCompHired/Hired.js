@@ -4,7 +4,7 @@ import "./style.css"
 
 function Fav() {
     return (
-        <Button className="workerCardButton mb-2" variant="danger" id="favoriteBtn"><i className="fas fa-heart"></i></Button>
+        <Button className="workerCardButton" variant="info" id="hiredBtn"><i className="fas fa-hammer"></i></Button>
     )
 }
 

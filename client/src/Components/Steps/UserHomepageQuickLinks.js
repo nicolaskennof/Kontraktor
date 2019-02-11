@@ -23,7 +23,7 @@ function UserHomepageQuickLinks(props) {
                                         </Card.Text>
                                     </Card.Body>
                                     <Card.Footer className="BtnFooter border-0">
-                                        <Button onClick={() => { this.props.routeChange("favorite") }} className="m-2" variant="outline-warning"><i className="fas fa-heart"></i></Button>
+                                        <Button onClick={() => { props.routeChange("favorite") }} className="m-2" variant="outline-warning"><i className="fas fa-heart"></i></Button>
                                     </Card.Footer>
                                 </Card>
                                 <Card className="border-0">
@@ -35,7 +35,7 @@ function UserHomepageQuickLinks(props) {
                                         </Card.Text>
                                     </Card.Body>
                                     <Card.Footer className="BtnFooter border-0">
-                                        <Button onClick={() => { this.props.routeChange("message") }} variant="outline-warning"><i className="fas fa-comments"></i></Button>
+                                        <Button onClick={() => { props.routeChange("message") }} variant="outline-warning"><i className="fas fa-comments"></i></Button>
                                     </Card.Footer>
                                 </Card>
                             </CardGroup>

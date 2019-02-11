@@ -1,7 +1,7 @@
 import React from "react"
 import Filters from "../Components/resultsFilters/Filters"
 import WorkerCard from "../Components/workerCard/WorkerCard"
-import WorkersWrapper from "../Components/workersWrapper/WorkersWrapper"
+import Wrapper from "../Components/workersWrapper/commonWrapper"
 import HeroImageFav from "../Components/HeroImage/HeroImageFav"
 import Footer from "../Components/Footer/Footer"
 
@@ -9,10 +9,10 @@ function UserFavorite() {
     return (
         <div>
             <HeroImageFav />
-            <Filters isUserFilter={true}/>
-            <WorkersWrapper>
+            <Wrapper>
+                <Filters isUserFilter={true}/>
                 <WorkerCard />
-            </WorkersWrapper>
+            </Wrapper>
             <Footer />
         </div>
     )
