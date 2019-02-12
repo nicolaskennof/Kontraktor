@@ -1,6 +1,5 @@
 import React, { Component } from "react";
-import { Container, Figure, Row, Col } from "react-bootstrap";
-import ModalMessage from "../microCompMessage/ModalMessage"
+import { Figure, Row, Col } from "react-bootstrap";
 import ModalPhone from "../microCompPhone/ModalPhone"
 import Fav from "../microCompFav/Fav"
 import Price from "../microCompPrice/Price"
@@ -8,40 +7,31 @@ import Rating from "../microCompRating/ModalRating"
 import Quant from "../microCompQuant/Quant"
 import Hired from "../microCompHired/Hired"
 import "./style.css"
-import ModalPhoneFav from "../modalPhoneFav/ModalPhoneFav"
-let firstName = "Nicolas Jules R";
-let lastName = "Kennof";
-let occupation = "Plomero"
-let workerImage = "http://nicolas-kennof.com/wp-content/uploads/2018/07/Perfil-2018.png"
-let myClass="btn btn-warning"
+import helpers from "../../utils/helpers"
+import ModalMessage from "../microCompMessage/ModalMessage"
 
 class WorkerCard extends Component {
 
     state = {
-      
-      
+
+
     }
 
-    calculateCostAverage = () => {
-        let sum = 0;
-        let total = 0
-        this.props.kontratado.costRates.forEach(costRate => {
-            sum += costRate.costRating
+    getFavouriteId = () => {
+        const kontratadoId = this.props.kontratado._id;
+        const favouriteFilter = this.props.user.favourites.filter(favourite => {
+            return favourite.kontratado._id === kontratadoId
         })
-        total = sum / this.props.kontratado.costRates.length;
-        return total
+        return favouriteFilter.length ? favouriteFilter[0]._id : '';
     }
 
-    calculateRating = () => {
-        let sum = 0;
-        let total = 0;
-        this.props.kontratado.qualityRates.forEach(qualityRate => {
-            sum += qualityRate.quality
+    getHiredId = () => {
+        const kontratadoId = this.props.kontratado._id;
+        const hiredFilter = this.props.user.hires.filter(hire => {
+            return hire.kontratado === kontratadoId
         })
-        total = sum / this.props.kontratado.qualityRates.length
-        return total
+        return hiredFilter.length ? hiredFilter[0]._id : '';
     }
-
 
     render() {
         let props = this.props;
@@ -55,7 +45,7 @@ class WorkerCard extends Component {
                             <Figure.Image
                                 className="workerImage my-2"
                                 alt=""
-                                src={workerImage}
+                                src={props.kontratado.image ? `/api/image/${props.kontratado.image}` : helpers.getDefaultImage() } 
                             />
                         </div>
                         <div className="col-md-7">
@@ -72,12 +62,12 @@ class WorkerCard extends Component {
                                 </div>
                                 <div className="col-md-3 text-center">
                                     <p><b>Rango de precio:</b></p>
-                                    <Price costRate={this.calculateCostAverage()} />
+                                    <Price costRate={helpers.calculateCostRating(props.kontratado.costRates)} />
                                 </div>
                             </div>
                             <div className="row">
                                 <div className="col-md-6 text-left">
-                                    <Rating quality={this.calculateRating()} />
+                                    <Rating userId = {props.user._id} kontratadoId = {props.kontratado._id} updateUser={props.updateUser} workerName = {`${props.kontratado.firstName} el ${props.kontratado.profession.profession}`} quality={helpers.calculateQualityRating(props.kontratado.qualityRates)} />
                                 </div>
                                 <div className="col-md-3 text-center">
                                     <Quant quant={props.kontratado.hires.length} />
@@ -91,15 +81,24 @@ class WorkerCard extends Component {
                             <Row className="workerCardBtnRow">
                                 <Col md={6}>
                                     <br />
-                                   {/* <ModalMessage /> */}
+                                    <ModalMessage 
+                                    updateUser={props.updateUser}
+                                    user = {props.user}
+                                    isKontratado={false}
+                                    fullName={`${props.kontratado.firstName} ${props.kontratado.lastName}`}
+                                    userMessages={props.userMessages}
+                                    kontratadoImage={props.kontratado.image}
+                                    kontratadoId={props.kontratado._id}
+                                    userId={props.user._id}
+                                    />
                                     <br />
-                                    <ModalPhone  firstName= {props.kontratado.firstName} lastName={props.kontratado.lastName} contactPhone={props.kontratado.contactPhone} />
-                                    </Col>
-                                    <Col md={6}>
-                                        <br />
-                                        <Fav userId={props.userId} favClass={props.favClass} changeClass={this.changeClass} addFavs={props.addFavs} />
+                                    <ModalPhone firstName={props.kontratado.firstName} lastName={props.kontratado.lastName} contactPhone={props.kontratado.contactPhone} />
+                                </Col>
+                                <Col md={6}>
+                                    <br />
+                                    <Fav updateUser={this.props.updateUser} kontratadoId={this.props.kontratado._id} userId={this.props.user._id} favouriteId={this.getFavouriteId()} />
                                     <br /><br />
-                                    <Hired />
+                                    <Hired updateUser={this.props.updateUser} kontratadoId={this.props.kontratado._id} userId={this.props.user._id} hireId={this.getHiredId()} />
                                 </Col>
                             </Row>
                         </Col>

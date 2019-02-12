@@ -13,9 +13,6 @@ class ModalPhone extends React.Component {
 
     render() {
         let phoneClose = () => this.setState({ phoneModal: false });
-        let firstName = "Nicolas Jules R";
-        let lastName = "Kennof";
-        let phoneNumber = "222 903 8667";
 
         return (
             <ButtonToolbar>

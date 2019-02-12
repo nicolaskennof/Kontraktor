@@ -22,11 +22,7 @@ module.exports = {
             db.Favourite
                 .findOneAndDelete({ _id: req.params.id })
                 .then(dbModel => {
-
-                    db.Kontratado.findOneAndUpdate({ _id: dbModel.kontratado }, { favourites: req.params.id })
-                        .then(updated => {
-                            res.status(200).json(dbModel);
-                        })
+                    return res.status(200).json(dbModel);
                 })
         }
     },

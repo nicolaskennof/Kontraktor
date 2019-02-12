@@ -3,10 +3,10 @@ import "./userHome.css"
 
 function HeroImageFav() {
   return (
-    <section class="bgimageFav">
-      <div class="container-fluid">
-        <div class="row">
-          <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 m-auto">
+    <section className="bgimageFav">
+      <div className="container-fluid">
+        <div className="row">
+          <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 m-auto">
             <div className="v-center text-center">
                 <h5 className="bannerTitle"><span className="darkTextBackground rounded">Tus favoritos</span></h5>
             </div>

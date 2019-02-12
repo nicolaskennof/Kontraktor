@@ -8,7 +8,7 @@ function KontratadoConversation(props) {
 
         <blockquote class="quote-card">
             <Row>
-            <Col md={2} className="m-0 p-0 text-center"><img className="imgContainer" alt="facebook-pic" src={props.userFacebookPic} /></Col>
+                <Col md={2} className="m-0 p-0 text-center"><img className="imgContainer" alt="facebook-pic" src={props.userFacebookPic} /></Col>
                 <Col md={6}>
                     <p>
                         {props.userLastMessage}
@@ -20,16 +20,20 @@ function KontratadoConversation(props) {
                     </cite>
                 </Col>
                 <Col md={4}>
-                <br />
-                    <div className="d-inline"><ModalMessage userMessages={props.userMessages} kontratadoImage={props.kontratadoImage} /></div>
+                    <br />
+                    <div className="d-inline"><ModalMessage
+                        kontratadoUpdate={props.kontratadoUpdate}
+                        isKontratado={true}
+                        fullName={props.fullName}
+                        userMessages={props.userMessages}
+                        kontratadoImage={props.kontratadoImage}
+                        kontratadoId={props.kontratadoId}
+                        userId={props.userId}
+                    />
+                    </div>
                 </Col>
             </Row>
         </blockquote>
-
-
-
-
-
     )
 }
 

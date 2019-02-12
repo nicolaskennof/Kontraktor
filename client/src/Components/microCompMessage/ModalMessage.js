@@ -2,6 +2,8 @@ import React from "react";
 import { ButtonToolbar, Button, Modal, Form, Container } from "react-bootstrap";
 import MessageInChat from "../messageInChat/MessageInChat"
 import "./style.css"
+import API from '../../utils/API'
+import helpers from '../../utils/helpers'
 
 class ModalMessage extends React.Component {
   constructor(props, context) {
@@ -9,38 +11,103 @@ class ModalMessage extends React.Component {
 
     this.state = {
       messageModal: false,
+      message: ''
     };
   }
 
-  createMessageInChatElements = () => {
-    console.log(this.props.userMessages);
+  handleMessageChange = (e) => {
+    this.setState({
+      message : e.target.value
+    })
+  }
+
+  handleSendMessage = () => {
+    const {message} = this.state;
+    if (message){
+      if (this.props.isKontratado){
+        const newMessage = {
+          message,
+          kontratado : this.props.kontratadoId,
+          user : this.props.userId,
+          isUserMessage : "false"
+        }
+  
+        API.insertMessage(newMessage)
+          .then(newMessage=>{
+            API.getKontratado(newMessage.data.kontratado)
+              .then(updateKontratado=>{
+                this.setState({
+                  message : ''
+                }, ()=>{
+                  this.props.kontratadoUpdate(updateKontratado.data);
+                })
+              })
+          })
+      } else {
+        const newMessage = {
+          message,
+          kontratado : this.props.kontratadoId,
+          user : this.props.userId,
+          isUserMessage : "true"
+        }
+  
+        API.insertMessage(newMessage)
+          .then(newMessage=>{
+            API.getUserById(newMessage.data.user)
+              .then(updateUser=>{
+                this.setState({
+                  message : ''
+                }, ()=>{
+                  this.props.updateUser(updateUser.data);
+                })
+              })
+          })
+      }
+      
+    }
+  }
+
+  createChatForUser = () => {
     return this.props.userMessages.map(userMessage=>{
       let image = '';
       if (userMessage.isUserMessage){
-        image = `https://graph.facebook.com/10155848713781746/picture?type=square`
+        image = `https://graph.facebook.com/${this.props.user.facebookProvider.id}/picture?type=square`
       } else {
         if (this.props.kontratadoImage){
           image = `/api/image/${this.props.kontratadoImage}`
         } else {
-          image = 'http://nicolas-kennof.com/wp-content/uploads/2018/07/Perfil-2018.png'
+          image = helpers.getDefaultImage()
         }
       }
-      console.log(image);
-      return <MessageInChat key={userMessage.message._id} image={image} message={userMessage.message} />
+      
+      return <MessageInChat key={userMessage._id} image={image} message={userMessage.message} />
+    })
+  }
+
+  createMessageInChatElements = () => {
+    return this.props.userMessages.map(userMessage=>{
+      let image = '';
+      if (userMessage.isUserMessage){
+        image = `https://graph.facebook.com/${userMessage.user.facebookProvider.id}/picture?type=square`
+      } else {
+        if (this.props.kontratadoImage){
+          image = `/api/image/${this.props.kontratadoImage}`
+        } else {
+          image = helpers.getDefaultImage()
+        }
+      }
+      
+      return <MessageInChat key={userMessage._id} image={image} message={userMessage.message} />
     })
   }
 
   render() {
     let messageClose = () => this.setState({ messageModal: false });
-    let firstName = "Nicolas Jules R";
-    let lastName = "Kennof";
-
     return (
       <ButtonToolbar>
         <Button className="workerCardButton" id="messageBtn" onClick={() => this.setState({ messageModal: true })}>
           <i className="fas fa-comments"></i>
         </Button>
-
         <Modal
           size="lg"
           show={this.state.messageModal}
@@ -50,21 +117,33 @@ class ModalMessage extends React.Component {
         >
           <Modal.Header closeButton  className="border-dark">
             <Modal.Title id="modal-message">
-              Tu conversación con <span id="workerName">{firstName + " " + lastName}</span>
+              Tu conversación con <span id="workerName">{this.props.fullName}</span>
             </Modal.Title>
           </Modal.Header>
           <Modal.Body>
-            <Container>
-              {this.createMessageInChatElements()}
+            <Container className="border rounded mb-3">
+              {
+                this.props.isKontratado ? 
+                this.createMessageInChatElements() :
+                this.createChatForUser()
+              }
+              
             </Container>
             <div className="row">
               <div className="col-md-10">
                 <Form.Group controlId="exampleForm.ControlTextarea1">
-                  <Form.Control as="textarea" rows="3" />
+                  <Form.Control 
+                    onChange={this.handleMessageChange}
+                    value={this.state.message}
+                    as="textarea"
+                    rows="3" />
                 </Form.Group>
               </div>
               <div className="col-md-2">
-                <Button variant="primary" type="submit">
+                <Button 
+                  variant="primary" 
+                  onClick={this.handleSendMessage}
+                >
                   Enviar
                 </Button>
               </div>

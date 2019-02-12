@@ -13,7 +13,7 @@ for(let i=0; i<5; i++){
     }
 }
 
-    return (
+    return(
         <div>
             <span  className={myClasses[0]}></span> 
             <span className={myClasses[1]}></span>
@@ -22,6 +22,7 @@ for(let i=0; i<5; i++){
             <span className={myClasses[4]}></span>
         </div>
     )
+
 }
 
 export default Price

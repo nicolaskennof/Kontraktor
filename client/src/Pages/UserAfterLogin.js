@@ -2,7 +2,6 @@ import React, { Component } from "react"
 import NavBarUser from "../Components/navBars/navBarUser"
 import Filters from "../Components/resultsFilters/Filters"
 import WorkerCard from "../Components/workerCard/WorkerCard"
-import WorkersWrapper from "../Components/workersWrapper/WorkersWrapper"
 import UserFavorite from "./UserFavorite"
 import API from "../utils/API";
 import UserMailbox from "./UserMailbox"
@@ -19,50 +18,10 @@ class UserAfterLogin extends Component {
         type: "home",
         searchProfession: '',
         searchState: '',
-        results: [],
-        resultsProfession: [],
-        resultCostRate: [],
-        resultQualityRate: [],
-        resultHires: null,
-        userId: '',
-        favorites: [],
         kontratados: [],
-        myBool: false,
-        favClass:"Danger",
+        isSearchReturnNoResults: false,
     }
 
-    addFavs = () => {
-        console.log("we are trying to addfavs")
-     
-        let fav = {
-            kontratado: this.state.results._id,
-            user: this.props.userId
-        }
-            
-
-        API.insertFavourite(fav).then(result => {
-            this.setState({ favorites: result });
-            console.log(result);
-            API.getKontratado(result.data._id).then(result2=>{
-                console.log(result2);
-                let temp1=this.state.favorites
-                temp1.push(result2)
-                this.setState({favorites: temp1});
-            }).catch(err=> console.log(err))
-        }).catch(err => console.log(err));
-
-            /* Funcion para cambiar la clase de boton de favoritos
-            console.log("we are trying to change class");
-            if(this.state.myBool===false ){
-              this.setState({favClass:"Warning"})
-              this.setState({myBool:true});
-            }else{
-                this.setState({favClass:"Danger"})
-                this.setState({myBool:false});
-                
-            }*/
-        
-    }
 
     searchClickHandler = (searchProfession, searchState) => {
 
@@ -70,16 +29,18 @@ class UserAfterLogin extends Component {
             searchProfession,
             searchState
         }).then(result => {
-            this.setState({ kontratados: result.data })
-            this.setState({ results: result.data[0] })
-            console.log("resultado de kontratados: ", result);
-            this.setState({resultsProfession: result.data[0].profession.profession})
-            this.setState({resultCostRate: result.data[0].costRates[0].costRating})
-            this.setState({resultQualityRate: result.data[0].qualityRates[0].quality})
-            this.setState({resultHires: result.data[0].hires.length})
-            //this.setState({userId: this.props.userId})
-
+            this.setState(
+                {
+                    kontratados: result.data,
+                    isSearchReturnNoResults: result.data.length ? false : true
+                })
         }).catch(err => console.log(err));
+    }
+
+    getUserMessages = (user,kontratadoId) => {
+        return user.messages.filter(userMessage=>{
+            return userMessage.kontratado._id === kontratadoId
+        })
     }
 
     routeChange = (type) => {
@@ -91,28 +52,38 @@ class UserAfterLogin extends Component {
     render() {
         return (
             <div>
-                <NavBarUser facebookLogout={this.props.facebookLogout} type={this.state.type} getkon={this.props.getkon} routeChange={this.routeChange}  />{this.state.type === "home" ?
+                <NavBarUser facebookLogout={this.props.facebookLogout} type={this.state.type} routeChange={this.routeChange} />{this.state.type === "home" ?
                     <div>
-                        <HeroImage mySearch={this.searchClickHandler} />
+                        <HeroImage 
+                            firstName={this.props.user.fullName.split(' ')[0]} 
+                            mySearch={this.searchClickHandler} />
                         <Wrapper>
-                        {/* BEGIN PLACEHOLDER NO RESULTADOS */}
-                        <NoContent noContentMessage="No hemos encontrado el experto que buscas. Nuestra base de datos se expande cada día... ¡gracias por tu paciencia!" noContentTeam="Tu Equipo Kontratado" />
-                        {/* END PLACEHOLDER NO RESULTADOS */}
-                            
-                            <Filters />
-                            {this.state.kontratados.map(kontratado => {
-                                return <WorkerCard userId={kontratado._id} favClass={this.state.favClass} addFavs={this.addFavs} kontratado={kontratado} />
 
-                            })}
-                            <UserHomepageQuickLinks routeChange={this.routeChange}/>
+                            {this.state.isSearchReturnNoResults ?
+                                <NoContent noContentMessage="No hemos encontrado el experto que buscas. Nuestra base de datos se expande cada día... ¡gracias por tu paciencia!" noContentTeam="Tu Equipo Kontratado" />
+                                : this.state.kontratados.length ?
+                                    <div>
+                                        <Filters />
+                                        {this.state.kontratados.map(kontratado => {
+                                            return <WorkerCard key={kontratado._id} 
+                                                userMessages={this.getUserMessages(this.props.user , kontratado._id)} 
+                                                updateUser={this.props.updateUser} 
+                                                user={this.props.user} 
+                                                kontratado={kontratado} />
+                                        })}
+                                    </div> : <div></div>
+                            }
+
+
+                            <UserHomepageQuickLinks routeChange={this.routeChange} />
                         </Wrapper>
                         <Footer />
                     </div>
                     :
                     this.state.type === "favorite" ?
-                        <div><UserFavorite userId={this.props.userId}  addFavs={this.addFavs} fullfav={this.props.fullfav}  results={this.state.results} quant={this.state.resultHires} quality={this.state.resultQualityRate} costRate={this.state.resultCostRate} /></div>
+                        <div><UserFavorite updateUser={this.props.updateUser} user={this.props.user} /></div>
                         :
-                        <div><UserMailbox /></div>
+                        <div><UserMailbox updateUser={this.props.updateUser} user={this.props.user} /></div>
                 }
             </div>
         )

@@ -45,6 +45,11 @@ export default {
   deleteFavourite: function(id){
     return axios.delete("/api/favourite/delete/"+ id);
   },
+
+  deleteHire: function(id){
+    return axios.delete("/api/hire/"+ id);
+  },
+
   insertHire: function(hire){
     return axios.post("/api/hire/", hire);
   },
@@ -80,5 +85,10 @@ export default {
 
   getProfession: function (id){
     return axios.get("api/profession/"+id)
+  },
+  
+  getUserById: function (id){
+    return axios.get("api/v1/auth/facebook/"+id)
   }
+
 };

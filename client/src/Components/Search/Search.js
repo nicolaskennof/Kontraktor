@@ -45,7 +45,7 @@ class Search extends Component {
 							</InputGroup>
 						</Col>
 						<Col s={12} md={4} className="text-center">
-							<Button onClick={() => this.onSearchHandler()} className="workerCardButton" id="searchBtn"><i class="fas fa-search"></i> Buscar</Button>
+							<Button onClick={() => this.onSearchHandler()} className="workerCardButton" id="searchBtn"><i className="fas fa-search"></i> Buscar</Button>
 						</Col>
 					</Form.Row>
 				</Form>

@@ -30,5 +30,9 @@ export default {
         }
 
         return qualityAverage;
+    },
+
+    getDefaultImage: () =>{
+        return 'assets/img/profile-default.png'
     }
 }
