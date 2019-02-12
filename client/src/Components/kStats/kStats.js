@@ -12,7 +12,7 @@ function KStats(props) {
                         < KStatsCard 
                             header='Calificación promedio' 
                             title={helpers.calculateQualityRating(props.kontratado.qualityRates)} 
-                            text={`Cantidad de reseñas: ${props.kontratado.reviews.length}`} />
+                            text={`Cantidad de reseñas de usuarios: ${props.kontratado.reviews.length}`} />
                     </div>
                     <div className="col-md-4">
                         <KStatsCard header='Cantidad de trabajos' 

@@ -1,6 +1,7 @@
 import React from "react";
-import { Button, Modal, ButtonToolbar, Container, Form, Row, Col, Dropdown, DropdownType } from "react-bootstrap";
+import { Button, Modal, ButtonToolbar, Container, Form, Row, Col } from "react-bootstrap";
 import "./style.css"
+import API from '../../utils/API'
 
 
 class RatingModal extends React.Component {
@@ -9,16 +10,84 @@ class RatingModal extends React.Component {
 
         this.state = {
             ratingModal: false,
+            review : '',
+            showErrors : false, 
+            currentError : '',
+            rating : '',
+            cost : ''
         };
+    }
+
+    handleCostChange = (e) => {
+        this.setState({cost:e.target.value})
+    }
+
+    handleRatingChange = (e) => {
+        this.setState({rating:e.target.value})
+    }
+
+    handleReviewChange = (e) => {
+        this.setState({review : e.target.value})
+    }
+
+    handleSave = () => {
+        const {review,rating,cost} = this.state;
+        const {userId,kontratadoId,updateUser} = this.props;
+        
+        if (review && rating && cost){
+            const reviewObject = {
+                review,
+                kontratado : kontratadoId,
+                user : userId
+            }
+    
+            const ratingObject = {
+                quality : rating,
+                kontratado : kontratadoId, 
+                user : userId
+            }
+    
+            const costObject = {
+                costRating : cost,
+                kontratado : kontratadoId,
+                user : userId
+            }
+
+            API.insertReview(reviewObject)
+                .then(insertedReview=>{
+                    API.insertQualityRate(ratingObject)
+                        .then(insertedRating=>{
+                            API.insertCostRate(costObject)
+                                .then(insertedCost=>{
+                                    API.getUserById(userId)
+                                        .then(result=>{
+                                            this.setState({
+                                                review : '',
+                                                rating : '',
+                                                cost : '',
+                                                ratingModal : false
+                                            }, () => {
+                                                updateUser(result.data);
+                                            } )
+                                        })
+                                })
+                        })
+                })
 
 
+            //Despues de guardar todo hay que actualizar el user, limpiar el estado y cerrar el modal. 
 
+        } else {
+            this.setState({
+                showErrors : true, 
+                currentError : "Es necesario que ingreses calificación calidad/servicio así como un review"
+            })
+        }
     }
 
     render() {
         let myClasses = [];
         let ratingClose = () => this.setState({ ratingModal: false });
-        let workerName = "Nicolas el Plomero"
         let var1 = this.props.quality;
         for (let i = 0; i < 5; i++) {
 
@@ -32,7 +101,7 @@ class RatingModal extends React.Component {
 
         return (
             <ButtonToolbar>
-                <Button data-value={this.props.quality} className={myClasses[0]} aria-label="Left Align" onClick={() => this.setState({ ratingModal: true })}>
+                <Button className={myClasses[0]} aria-label="Left Align" onClick={() => this.setState({ ratingModal: true })}>
                     <span className="fa fa-hammer" aria-hidden="true"></span>
                 </Button>
                 <Button className={myClasses[1]} aria-label="Left Align" onClick={() => this.setState({ ratingModal: true })}>
@@ -57,7 +126,7 @@ class RatingModal extends React.Component {
                 >
                     <Modal.Header closeButton className="border-dark">
                         <Modal.Title id="modal-rating">
-                            ¿Qué opinan nuestros usuarios de {workerName}?
+                            ¿Qué opinan nuestros usuarios de {this.props.workerName}?
                         </Modal.Title>
                     </Modal.Header>
                     <Modal.Body>
@@ -67,8 +136,8 @@ class RatingModal extends React.Component {
                         <br />
                         <div className="row">
                             <div className="col-md-8">
-                                <Form.Group controlId="exampleForm.ControlTextarea1" className="ratingSubmitBtn">
-                                    <Form.Control as="textarea" rows="3" />
+                                <Form.Group className="ratingSubmitBtn">
+                                    <Form.Control onChange={this.handleReviewChange} value={this.state.review} as="textarea" rows="3" />
                                 </Form.Group>
                             </div>
                             <div className="col-md-2">
@@ -76,13 +145,13 @@ class RatingModal extends React.Component {
                                     <Col md={12}>
                                         <Form>
                                             <Form.Group controlId="serviceRating">
-                                                <Form.Control as="select">
-                                                    <option>Servicio</option>
-                                                    <option>1</option>
-                                                    <option>2</option>
-                                                    <option>3</option>
-                                                    <option>4</option>
-                                                    <option>5</option>
+                                                <Form.Control  onChange = {this.handleRatingChange} as="select">
+                                                    <option value="">Servicio</option>
+                                                    <option value="1">1</option>
+                                                    <option value="2">2</option>
+                                                    <option value="3">3</option>
+                                                    <option value="4">4</option>
+                                                    <option value="5">5</option>
                                                 </Form.Control>
                                             </Form.Group>
                                         </Form>
@@ -92,13 +161,13 @@ class RatingModal extends React.Component {
                                     <Col md={12}>
                                         <Form>
                                             <Form.Group controlId="costRating">
-                                                <Form.Control as="select">
-                                                    <option>Costo</option>
-                                                    <option>1</option>
-                                                    <option>2</option>
-                                                    <option>3</option>
-                                                    <option>4</option>
-                                                    <option>5</option>
+                                                <Form.Control onChange= {this.handleCostChange} as="select">
+                                                    <option value="">Costo</option>
+                                                    <option value="1">1</option>
+                                                    <option value="2">2</option>
+                                                    <option value="3">3</option>
+                                                    <option value="4">4</option>
+                                                    <option value="5">5</option>
                                                 </Form.Control>
                                             </Form.Group>
                                         </Form>
@@ -106,10 +175,16 @@ class RatingModal extends React.Component {
                                 </Row>
                             </div>
                             <Col md={2} className="text-center">
-                                <Button variant="success" type="submit" className="ratingSubmitBtn">
-                                    <i class="fas fa-check"></i>
+                                <Button variant="success" onClick={this.handleSave} className="ratingSubmitBtn">
+                                    <i className="fas fa-check"></i>
                                 </Button>
                             </Col>
+                            {
+                                this.state.showErrors ? 
+                                <p className="error">{this.state.currentError}</p> :
+                                <div></div>
+                            }
+                           
                         </div>
                     </Modal.Body>
                 </Modal>

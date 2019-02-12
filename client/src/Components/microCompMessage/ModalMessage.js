@@ -3,7 +3,7 @@ import { ButtonToolbar, Button, Modal, Form, Container } from "react-bootstrap";
 import MessageInChat from "../messageInChat/MessageInChat"
 import "./style.css"
 import API from '../../utils/API'
-import { networkInterfaces } from "os";
+import helpers from '../../utils/helpers'
 
 class ModalMessage extends React.Component {
   constructor(props, context) {
@@ -24,26 +24,64 @@ class ModalMessage extends React.Component {
   handleSendMessage = () => {
     const {message} = this.state;
     if (message){
-      
-      const newMessage = {
-        message,
-        kontratado : this.props.kontratadoId,
-        user : this.props.userId,
-        isUserMessage : "false"
-      }
-
-      API.insertMessage(newMessage)
-        .then(newMessage=>{
-          API.getKontratado(newMessage.data.kontratado)
-            .then(updateKontratado=>{
-              this.setState({
-                message : ''
-              }, ()=>{
-                this.props.kontratadoUpdate(updateKontratado.data);
+      if (this.props.isKontratado){
+        const newMessage = {
+          message,
+          kontratado : this.props.kontratadoId,
+          user : this.props.userId,
+          isUserMessage : "false"
+        }
+  
+        API.insertMessage(newMessage)
+          .then(newMessage=>{
+            API.getKontratado(newMessage.data.kontratado)
+              .then(updateKontratado=>{
+                this.setState({
+                  message : ''
+                }, ()=>{
+                  this.props.kontratadoUpdate(updateKontratado.data);
+                })
               })
-            })
-        })
+          })
+      } else {
+        const newMessage = {
+          message,
+          kontratado : this.props.kontratadoId,
+          user : this.props.userId,
+          isUserMessage : "true"
+        }
+  
+        API.insertMessage(newMessage)
+          .then(newMessage=>{
+            API.getUserById(newMessage.data.user)
+              .then(updateUser=>{
+                this.setState({
+                  message : ''
+                }, ()=>{
+                  this.props.updateUser(updateUser.data);
+                })
+              })
+          })
+      }
+      
     }
+  }
+
+  createChatForUser = () => {
+    return this.props.userMessages.map(userMessage=>{
+      let image = '';
+      if (userMessage.isUserMessage){
+        image = `https://graph.facebook.com/${this.props.user.facebookProvider.id}/picture?type=square`
+      } else {
+        if (this.props.kontratadoImage){
+          image = `/api/image/${this.props.kontratadoImage}`
+        } else {
+          image = helpers.getDefaultImage()
+        }
+      }
+      
+      return <MessageInChat key={userMessage._id} image={image} message={userMessage.message} />
+    })
   }
 
   createMessageInChatElements = () => {
@@ -55,10 +93,11 @@ class ModalMessage extends React.Component {
         if (this.props.kontratadoImage){
           image = `/api/image/${this.props.kontratadoImage}`
         } else {
-          image = 'http://nicolas-kennof.com/wp-content/uploads/2018/07/Perfil-2018.png'
+          image = helpers.getDefaultImage()
         }
       }
-      return <MessageInChat key={userMessage.message._id} image={image} message={userMessage.message} />
+      
+      return <MessageInChat key={userMessage._id} image={image} message={userMessage.message} />
     })
   }
 
@@ -86,7 +125,7 @@ class ModalMessage extends React.Component {
               {
                 this.props.isKontratado ? 
                 this.createMessageInChatElements() :
-                <div />
+                this.createChatForUser()
               }
               
             </Container>

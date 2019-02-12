@@ -44,7 +44,7 @@ function Hired(props) {
                     </Tooltip>
                 }
             >
-                <Button className="workerCardButton" onClick={()=>handleHireAdd(props)} className="workerCardButton" variant={props.hireId?"outline-info":"info"}>
+                <Button className="workerCardButton" onClick={()=>handleHireAdd(props)} variant={props.hireId?"outline-info":"info"}>
                     <i className="fas fa-hammer"></i>
                 </Button>
             </OverlayTrigger>

@@ -1,8 +1,6 @@
 import React from "react";
 import "./style.css"
 
-let kontraktedAmount = 48;
-
 function Quant(props) {
     return (
         <div>

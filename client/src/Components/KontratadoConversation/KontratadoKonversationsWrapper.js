@@ -2,6 +2,7 @@ import React from "react"
 import KontratadoConversation from "../KontratadoConversation/KontratadoConversation"
 import "./style.css"
 import "./KontratadoKonversationsWrapper.css"
+import NoContent from "../reviews/NoContentDiv"
 
 function getDistinctUserMessages(messages){
     const users = messages.map(message=>message.user._id);
@@ -36,7 +37,12 @@ function createKontratadoConversations({messages,image, _id}, kontratadoUpdate){
 function KontratadoKonversationsWrapper(props) {
     return (
         <div>
-            {createKontratadoConversations(props.kontratado, props.kontratadoUpdate)}
+            {
+                props.kontratado.messages.length ?
+                    createKontratadoConversations(props.kontratado, props.kontratadoUpdate) :
+                    <NoContent noContentMessage="Todavía ningún usuario se ha comunicado contigo" noContentTeam="Tu Equipo Kontratado" />
+            }
+            
         </div>
     )
 }

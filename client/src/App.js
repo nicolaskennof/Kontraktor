@@ -52,19 +52,6 @@ class App extends Component {
   }
 
 
-    getkon = () => {
-      let a1 = [];
-      this.state.favorites.map(kontratado => {
-        API.getKontratado(kontratado.data._id).then(res => {
-          console.log("we received a profession", res);
-
-          a1.push(res.data);
-          this.setState({ fullfav: a1 })
-        })
-      })
-    }
-
-
     logKontratado = (idKontratado) => {
       let kontratadoUser;
       API.getKontratado(idKontratado)

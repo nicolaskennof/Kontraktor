@@ -8,9 +8,7 @@ import Quant from "../microCompQuant/Quant"
 import Hired from "../microCompHired/Hired"
 import "./style.css"
 import helpers from "../../utils/helpers"
-
-let workerImage = "http://nicolas-kennof.com/wp-content/uploads/2018/07/Perfil-2018.png"
-
+import ModalMessage from "../microCompMessage/ModalMessage"
 
 class WorkerCard extends Component {
 
@@ -47,7 +45,7 @@ class WorkerCard extends Component {
                             <Figure.Image
                                 className="workerImage my-2"
                                 alt=""
-                                src={workerImage}
+                                src={props.kontratado.image ? `/api/image/${props.kontratado.image}` : helpers.getDefaultImage() } 
                             />
                         </div>
                         <div className="col-md-7">
@@ -69,7 +67,7 @@ class WorkerCard extends Component {
                             </div>
                             <div className="row">
                                 <div className="col-md-6 text-left">
-                                    <Rating quality={helpers.calculateQualityRating(props.kontratado.qualityRates)} />
+                                    <Rating userId = {props.user._id} kontratadoId = {props.kontratado._id} updateUser={props.updateUser} workerName = {`${props.kontratado.firstName} el ${props.kontratado.profession.profession}`} quality={helpers.calculateQualityRating(props.kontratado.qualityRates)} />
                                 </div>
                                 <div className="col-md-3 text-center">
                                     <Quant quant={props.kontratado.hires.length} />
@@ -83,7 +81,16 @@ class WorkerCard extends Component {
                             <Row className="workerCardBtnRow">
                                 <Col md={6}>
                                     <br />
-                                    {/* <ModalMessage /> */}
+                                    <ModalMessage 
+                                    updateUser={props.updateUser}
+                                    user = {props.user}
+                                    isKontratado={false}
+                                    fullName={`${props.kontratado.firstName} ${props.kontratado.lastName}`}
+                                    userMessages={props.userMessages}
+                                    kontratadoImage={props.kontratado.image}
+                                    kontratadoId={props.kontratado._id}
+                                    userId={props.user._id}
+                                    />
                                     <br />
                                     <ModalPhone firstName={props.kontratado.firstName} lastName={props.kontratado.lastName} contactPhone={props.kontratado.contactPhone} />
                                 </Col>

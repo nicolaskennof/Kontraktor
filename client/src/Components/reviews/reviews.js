@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import { Row, Card } from "react-bootstrap"
 import SingleReview from "../reviews/SingleReview"
 import Price from "../microCompPrice/Price"
-import "./style.css";
 import "./reviews.css";
 import "../../utils/helpers"
 import helpers from '../../utils/helpers';
@@ -30,10 +29,11 @@ class Reviews extends Component {
                     <div className="col-8">
                         <div className="row">
                             <div className="col-12">
-                                {/* BEGIN PLACEHOLDER NO RESULTADOS */}
-                                <NoContent noContentMessage="Todavía no has recibido reseñas de tus clientes" noContentTeam="Tu Equipo Kontratado" />
-                                {/* END PLACEHOLDER NO RESULTADOS */}
-                                {this.createReviews(this.props.kontratado.reviews)}
+                                {
+                                    this.props.kontratado.reviews.length ?
+                                         this.createReviews(this.props.kontratado.reviews)  :
+                                        <NoContent noContentMessage="Todavía no has recibido reseñas de tus clientes" noContentTeam="Tu Equipo Kontratado" />
+                                }
                             </div>
                         </div>
                     </div>
@@ -43,8 +43,8 @@ class Reviews extends Component {
                             <Card.Body>
                                 <Card.Title>Los usuarios califican tu <b>costo</b> de la siguiente manera:</Card.Title>
                                 <Card.Text className="text-center">
-                                    <span className="scoreCard"><Price 
-                                        costRate={helpers.calculateCostRating(this.props.kontratado.costRates)}  /></span>
+                                    <span className="scoreCard"><Price
+                                        costRate={helpers.calculateCostRating(this.props.kontratado.costRates)} /></span>
                                 </Card.Text>
                             </Card.Body>
                         </Card>

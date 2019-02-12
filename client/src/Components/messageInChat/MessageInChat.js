@@ -1,5 +1,4 @@
 import React from "react";
-import { Figure } from "react-bootstrap";
 import "./style.css"
 
 function MessageInChat(props) {

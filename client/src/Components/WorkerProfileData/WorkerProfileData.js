@@ -4,6 +4,7 @@ import StateSelector from "../StateSelector/StateSelector"
 import Professions from "../Professions/Professions"
 import "./style.css"
 import API from "../../utils/API";
+import helpers from "../../utils/helpers"
 
 class WorkerProfileData extends Component {
 
@@ -185,7 +186,7 @@ class WorkerProfileData extends Component {
                                 <div className="imgWrap">
 
                                     <Image
-                                        src={this.state.image ? `/api/image/${this.state.image}` : "http://nicolas-kennof.com/wp-content/uploads/2018/07/Perfil-2018.png"}
+                                        src={this.state.image ? `/api/image/${this.state.image}` : helpers.getDefaultImage()}
                                         roundedCircle className="profilePicAccount" />
                                     <p className="profilePicChange"><br /><span onClick={this.loadImage} className="profilePicChangeLink"><i className="fas fa-camera"></i><br />Editar tu foto<br />de perfil</span></p>
                                 </div>

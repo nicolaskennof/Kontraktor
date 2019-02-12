@@ -3,7 +3,7 @@ import "./nocontent.css";
 
 function NoContent(props) {
     return (
-        <blockquote class="quote-card red-card">
+        <blockquote className="quote-card red-card">
         <p>
           {props.noContentMessage}
         </p>

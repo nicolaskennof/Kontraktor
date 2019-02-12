@@ -16,8 +16,8 @@ module.exports = {
         let id = req.params.id;
         if (id){
             db.User.findById(id)
-                .populate({ path:"messages", populate : {path : "kontratado"}})
-                .populate({ path:"favourites", populate : {path : "kontratado"}})
+                .populate({ path:"messages", populate : {path : "kontratado" , populate:[{path : "profession"},{path : "qualityRates"},{path : "costRates"},{path : "qualityRates"},{path : "costRates"}]}})
+                .populate({ path:"favourites", populate : {path : "kontratado", populate:[{path : "profession"},{path : "qualityRates"},{path : "costRates"},{path : "qualityRates"},{path : "hires"}] }})
                 .populate("hires")
                 .then(user => {
                     res.status(200).json(user);
