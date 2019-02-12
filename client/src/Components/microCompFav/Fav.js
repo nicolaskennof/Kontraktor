@@ -7,6 +7,7 @@ let placement = "right"
 
 function Fav(props) {
 
+    
     return (
         <ButtonToolbar>
         <OverlayTrigger

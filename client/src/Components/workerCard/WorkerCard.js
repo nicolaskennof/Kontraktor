@@ -9,16 +9,17 @@ import Quant from "../microCompQuant/Quant"
 import Hired from "../microCompHired/Hired"
 import "./style.css"
 import ModalPhoneFav from "../modalPhoneFav/ModalPhoneFav"
-
 let firstName = "Nicolas Jules R";
 let lastName = "Kennof";
 let occupation = "Plomero"
 let workerImage = "http://nicolas-kennof.com/wp-content/uploads/2018/07/Perfil-2018.png"
+let myClass="btn btn-warning"
 
 class WorkerCard extends Component {
 
     state = {
-
+      
+      
     }
 
     calculateCostAverage = () => {
@@ -40,7 +41,6 @@ class WorkerCard extends Component {
         total = sum / this.props.kontratado.qualityRates.length
         return total
     }
-
 
 
     render() {
@@ -91,13 +91,13 @@ class WorkerCard extends Component {
                             <Row className="workerCardBtnRow">
                                 <Col md={6}>
                                     <br />
-                                    {/*<ModalMessage />*/}
+                                   {/* <ModalMessage /> */}
                                     <br />
-                                    <ModalPhone contactPhone={props.kontratado.contactPhone} />
-                                </Col>
-                                <Col md={6}>
-                                    <br />
-                                    <Fav userId={props.userId} addFavs={props.addFavs} />
+                                    <ModalPhone  firstName= {props.kontratado.firstName} lastName={props.kontratado.lastName} contactPhone={props.kontratado.contactPhone} />
+                                    </Col>
+                                    <Col md={6}>
+                                        <br />
+                                        <Fav userId={props.userId} favClass={props.favClass} changeClass={this.changeClass} addFavs={props.addFavs} />
                                     <br /><br />
                                     <Hired />
                                 </Col>
