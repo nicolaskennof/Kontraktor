@@ -1,21 +1,12 @@
 #favoriteBtn {
-    background: white;
-    color: white;
-    text-shadow: 0 0 3px #DC3545;
-    border: 1px solid #DC3545
+    text-shadow: 0 0 3px rgb(136, 33, 44);
+    font-size: 16px;
+    width: 80%;
 }
 
-#favoriteBtn:hover {
-    background-color: #DC3545;
-}
 
 #hiredBtn {
-    background: white;
-    color: white;
-    text-shadow: 0 0 3px rgb(0, 0, 0);
-    border: 1px solid rgb(0, 0, 0)
-}
-
-#hiredBtn:hover {
-    background-color: rgb(0, 0, 0);
+    text-shadow: 0 0 3px rgb(15, 108, 122);
+    font-size: 16px;
+    width: 80%;
 }

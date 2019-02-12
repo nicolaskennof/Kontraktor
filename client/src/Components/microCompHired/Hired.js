@@ -16,7 +16,7 @@ function Hired() {
                     </Tooltip>
                 }
             >
-                <Button className="workerCardButton" id="hiredBtn">
+                <Button variant="outline-info" id="hiredBtn">
                     <i className="fas fa-hammer"></i>
                 </Button>
             </OverlayTrigger>

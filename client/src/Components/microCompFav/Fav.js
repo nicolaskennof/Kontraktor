@@ -19,7 +19,7 @@ function Fav(props) {
                 </Tooltip>
             }
         >
-            <Button onClick={props.addFavs} data-id={props.userId} className="workerCardButton" variant="danger" id="favoriteBtn"><i className="fas fa-heart"></i>
+            <Button onClick={props.addFavs} data-id={props.userId} variant="outline-danger" id="favoriteBtn"><i className="fas fa-heart"></i>
             </Button>
         </OverlayTrigger>
     </ButtonToolbar>
