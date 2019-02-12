@@ -92,7 +92,7 @@ class WorkerCard extends Component {
                                 </Row>
                                 <Row>
                                     <Col md={12} className="mb-2">
-                                        <ModalPhone contactPhone={props.kontratado.contactPhone} />
+                                        <ModalPhone  firstName= {props.kontratado.firstName} lastName={props.kontratado.lastName} contactPhone={props.kontratado.contactPhone} />
                                     </Col>
                                 </Row>
                                 <Row>

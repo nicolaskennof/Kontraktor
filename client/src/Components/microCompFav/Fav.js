@@ -5,7 +5,12 @@ import API from "../../utils/API"
 
 function Fav(props) {
 
-   
+
+    
+
+   let myClass='';
+   let myBool=false;
+
 
     
 
