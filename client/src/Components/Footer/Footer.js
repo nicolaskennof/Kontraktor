@@ -8,7 +8,7 @@ function Footer() {
             <Jumbotron bg="dark" variant="dark" className="jumbofoot mb-0 mt-5 rounded-0">
                 <Row>
                     <Col className="text-center">
-                        <p>Copyright © 2019 Los Patos de Tampico - Web Design Buffet</p>
+                        <p>Copyright © 2019 Designed with ❤ by Los Patos de Tampico - Web Design & Marketing</p>
                     </Col>
                 </Row>
             </Jumbotron >
