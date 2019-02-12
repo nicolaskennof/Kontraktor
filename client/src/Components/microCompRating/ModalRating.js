@@ -74,20 +74,26 @@ class RatingModal extends React.Component {
                         })
                 })
 
-
-            //Despues de guardar todo hay que actualizar el user, limpiar el estado y cerrar el modal. 
-
         } else {
             this.setState({
                 showErrors : true, 
-                currentError : "Es necesario que ingreses calificación calidad/servicio así como un review"
+                currentError : "Es necesario que ingreses calificación calidad/servicio así como un reseña"
             })
         }
     }
 
     render() {
         let myClasses = [];
-        let ratingClose = () => this.setState({ ratingModal: false });
+        let ratingClose = () => {
+            this.setState({ 
+                ratingModal: false,
+                review : '',
+                showErrors : false,
+                currentError : '', 
+                cost : '',
+                rating : ''
+            });
+        } 
         let var1 = this.props.quality;
         for (let i = 0; i < 5; i++) {
 
@@ -131,7 +137,7 @@ class RatingModal extends React.Component {
                     </Modal.Header>
                     <Modal.Body>
                         <Container>
-                            Will insert review component here later!
+                            {/*Will insert review component here later!*/}
                         </Container>
                         <br />
                         <div className="row">
@@ -179,13 +185,14 @@ class RatingModal extends React.Component {
                                     <i className="fas fa-check"></i>
                                 </Button>
                             </Col>
-                            {
+                            
+                           
+                        </div>
+                        {
                                 this.state.showErrors ? 
                                 <p className="error">{this.state.currentError}</p> :
                                 <div></div>
                             }
-                           
-                        </div>
                     </Modal.Body>
                 </Modal>
             </ButtonToolbar>
