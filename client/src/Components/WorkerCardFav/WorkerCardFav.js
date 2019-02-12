@@ -90,7 +90,7 @@ class WorkerCard extends Component {
                                     <br />
                                     <ModalMessage />
                                     <br />
-                                    <ModalPhone contactPhone={props.kontratado.contactPhone} />
+                                    <ModalPhoneFav contactPhone={props.kontratado.contactPhone} />
                                 </Col>
                                 <Col md={6}>
                                     <br />
