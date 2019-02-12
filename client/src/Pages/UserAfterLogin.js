@@ -28,16 +28,17 @@ class UserAfterLogin extends Component {
         kontratados: [],
         myBool: false,
         favClass:"Danger",
-
     }
 
     addFavs = () => {
         console.log("we are trying to addfavs")
+     
         let fav = {
             kontratado: this.state.results._id,
             user: this.props.userId
         }
-       
+            
+
         API.insertFavourite(fav).then(result => {
             this.setState({ favorites: result });
             console.log(result);
@@ -49,6 +50,7 @@ class UserAfterLogin extends Component {
             }).catch(err=> console.log(err))
         }).catch(err => console.log(err));
 
+            /* Funcion para cambiar la clase de boton de favoritos
             console.log("we are trying to change class");
             if(this.state.myBool===false ){
               this.setState({favClass:"Warning"})
@@ -57,11 +59,9 @@ class UserAfterLogin extends Component {
                 this.setState({favClass:"Danger"})
                 this.setState({myBool:false});
                 
-            }
+            }*/
         
     }
-
-
 
     searchClickHandler = (searchProfession, searchState) => {
 
@@ -80,7 +80,6 @@ class UserAfterLogin extends Component {
 
         }).catch(err => console.log(err));
     }
-
 
     routeChange = (type) => {
         this.setState({
