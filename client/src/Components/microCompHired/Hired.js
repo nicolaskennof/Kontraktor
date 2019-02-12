@@ -1,11 +1,28 @@
 import React from "react";
-import { Button } from "react-bootstrap";
+import { Button, ButtonToolbar, OverlayTrigger, Tooltip } from "react-bootstrap";
 import "./style.css"
 
-function Fav() {
+let placement = "right"
+
+function Hired() {
     return (
-        <Button className="workerCardButton" variant="info" id="hiredBtn"><i className="fas fa-hammer"></i></Button>
+        <ButtonToolbar>
+            <OverlayTrigger
+                key={placement}
+                placement={placement}
+                overlay={
+                    <Tooltip id="hiredTooltip">
+                        Marcar como <strong>Kontratado</strong>.
+                    </Tooltip>
+                }
+            >
+                <Button className="workerCardButton" id="hiredBtn">
+                    <i className="fas fa-hammer"></i>
+                </Button>
+            </OverlayTrigger>
+        </ButtonToolbar>
     )
 }
 
-export default Fav
+export default Hired
+

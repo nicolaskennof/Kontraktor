@@ -93,23 +93,20 @@ class WorkerCard extends Component {
                             </div>
                         </div>
                         <Col md={3}>
-                                <Row className="workerCardBtnRow">
-                                    <Col md={6}>
-                                        <br />
-                                 { /*<  ModalMessage /> */}
-                                    </Col>
-                                </Row>
-                                <Row>
-                                    <Col md={12} className="mb-2">
-                                        <ModalPhone  firstName= {props.kontratado.firstName} lastName={props.kontratado.lastName} contactPhone={props.kontratado.contactPhone} />
+                            <Row className="workerCardBtnRow">
+                                <Col md={6}>
+                                    <br />
+                                    <ModalMessage />
+                                    <br />
+                                    <ModalPhone  firstName= {props.kontratado.firstName} lastName={props.kontratado.lastName} contactPhone={props.kontratado.contactPhone} />
                                     </Col>
                                     <Col md={6}>
                                         <br />
                                         <Fav userId={props.userId} favClass={props.favClass} changeClass={this.changeClass} addFavs={props.addFavs} />
-                                        <br /><br />
-                                        <Hired />
-                                    </Col>
-                                </Row>
+                                    <br /><br />
+                                    <Hired />
+                                </Col>
+                            </Row>
                         </Col>
                     </div>
                 </Figure>
