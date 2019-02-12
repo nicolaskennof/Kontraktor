@@ -88,6 +88,7 @@ class WorkerCard extends Component {
                             </div>
                         </div>
                         <Col md={3}>
+<<<<<<< HEAD
                                 <Row className="workerCardBtnRow">
                                     <Col md={6}>
                                         <br />
@@ -102,6 +103,22 @@ class WorkerCard extends Component {
                                         <Hired />
                                     </Col>
                                 </Row>
+=======
+                            <Row className="workerCardBtnRow">
+                                <Col md={6}>
+                                    <br />
+                                    <ModalMessage />
+                                    <br />
+                                    <ModalPhone contactPhone={props.kontratado.contactPhone} />
+                                </Col>
+                                <Col md={6}>
+                                    <br />
+                                    <Fav userId={props.userId} addFavs={props.addFavs} />
+                                    <br /><br />
+                                    <Hired />
+                                </Col>
+                            </Row>
+>>>>>>> master
                         </Col>
                     </div>
                 </Figure>

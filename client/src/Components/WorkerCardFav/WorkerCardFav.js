@@ -1,4 +1,4 @@
-import React, {Component} from "react";
+import React, { Component } from "react";
 import { Container, Figure, Row, Col } from "react-bootstrap";
 import ModalMessage from "../microCompMessage/ModalMessage"
 import ModalPhoneFav from "../modalPhoneFav/ModalPhoneFav"
@@ -17,9 +17,9 @@ let lastName = "Kennof";
 let occupation = "Plomero"
 let workerImage = "http://nicolas-kennof.com/wp-content/uploads/2018/07/Perfil-2018.png"
 
-class WorkerCard extends Component{
-    state={
-        
+class WorkerCard extends Component {
+    state = {
+
     }
 
     calculateCostAverage = () => {
@@ -32,20 +32,21 @@ class WorkerCard extends Component{
         return total
     }
 
-    calculateRating= ()=>{
-        let sum=0;
-        let total=0;
-        this.props.favorite.qualityRates.forEach(qualityRate=>{
-            sum+= qualityRate.quality  })
-            total= sum/this.props.favorite.qualityRates.length
-            return total
+    calculateRating = () => {
+        let sum = 0;
+        let total = 0;
+        this.props.favorite.qualityRates.forEach(qualityRate => {
+            sum += qualityRate.quality
+        })
+        total = sum / this.props.favorite.qualityRates.length
+        return total
     }
 
 
-    render(){
-        let props=this.props;
-    return (
-        <div>
+    render() {
+        let props = this.props;
+        return (
+            <div>
                 <Figure className="workerCard p-1">
                     <div className="row">
                         <div className="col-md-2 text-center">
@@ -73,7 +74,7 @@ class WorkerCard extends Component{
                             </div>
                             <div className="row">
                                 <div className="col-md-6 text-left">
-                                    <Rating quality={this.calculateRating()}/>
+                                    <Rating quality={this.calculateRating()} />
                                 </div>
                                 <div className="col-md-3 text-center">
                                     <Quant quant={props.favorite.hires.length} />
@@ -83,9 +84,10 @@ class WorkerCard extends Component{
                                 </div>
                             </div>
                         </div>
-                        <div className="col-md-3 my-auto">
-                        <Row>
+                        <Col md={3}>
+                            <Row className="workerCardBtnRow">
                                 <Col md={6}>
+<<<<<<< HEAD
                                     <Row>
                                         <Col md={12} className="mb-2">
                                             {/*<ModalMessage />*/}
@@ -96,25 +98,25 @@ class WorkerCard extends Component{
                                             <ModalPhoneFav contactPhone={props.favorite.contactPhone}/>
                                         </Col>
                                     </Row>
+=======
+                                    <br />
+                                    <ModalMessage />
+                                    <br />
+                                    <ModalPhone contactPhone={props.kontratado.contactPhone} />
+>>>>>>> master
                                 </Col>
                                 <Col md={6}>
-                                    <Row>
-                                        <Col md={12}>
-                                            <Fav userId={props.userId}  addFavs={props.addFavs} className="mr-3" />
-                                        </Col>
-                                    </Row>
-                                    <Row className="mt-2">
-                                        <Col md={12}>
-                                            <Hired className="mr-3" />
-                                        </Col>
-                                    </Row>
+                                    <br />
+                                    <Fav userId={props.userId} addFavs={props.addFavs} />
+                                    <br /><br />
+                                    <Hired />
                                 </Col>
                             </Row>
-                        </div>
+                        </Col>
                     </div>
                 </Figure>
-        </div >
-    )
-}
+            </div >
+        )
+    }
 }
 export default WorkerCard;
