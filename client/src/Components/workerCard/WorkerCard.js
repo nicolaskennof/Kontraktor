@@ -14,12 +14,17 @@ let firstName = "Nicolas Jules R";
 let lastName = "Kennof";
 let occupation = "Plomero"
 let workerImage = "http://nicolas-kennof.com/wp-content/uploads/2018/07/Perfil-2018.png"
+let myClass="btn btn-warning"
 
 class WorkerCard extends Component {
 
     state = {
-
+      
+      
     }
+
+
+
 
     calculateCostAverage = () => {
         let sum = 0;
@@ -91,7 +96,7 @@ class WorkerCard extends Component {
                                 <Row className="workerCardBtnRow">
                                     <Col md={6}>
                                         <br />
-                                        <ModalMessage />
+                                 { /*<  ModalMessage /> */}
                                     </Col>
                                 </Row>
                                 <Row>
@@ -100,7 +105,7 @@ class WorkerCard extends Component {
                                     </Col>
                                     <Col md={6}>
                                         <br />
-                                        <Fav userId={props.userId} addFavs={props.addFavs} />
+                                        <Fav userId={props.userId} favClass={props.favClass} changeClass={this.changeClass} addFavs={props.addFavs} />
                                         <br /><br />
                                         <Hired />
                                     </Col>

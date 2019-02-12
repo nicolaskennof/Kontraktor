@@ -5,17 +5,11 @@ import API from "../../utils/API"
 
 function Fav(props) {
 
-
-    
-
-   let myClass='';
-   let myBool=false;
-
-
-    
+   
+   
 
     return (
-        <Button onClick={props.addFavs} data-id={props.userId} className="workerCardButton" variant="danger" id="favoriteBtn"><i className="fas fa-heart"></i></Button>
+        <Button onClick={props.addFavs(props.userId)}  data-id={props.userId} className="workerCardButton" variant={props.favClass} id="favoriteBtn"><i className="fas fa-heart"></i></Button>
     )
 }
 

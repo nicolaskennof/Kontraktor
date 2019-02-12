@@ -52,19 +52,18 @@ class App extends Component {
           this.setState({ isFacebookAuthenticated: true, facebookUser, token })
             this.state.facebookUser.favourites.map(favourite=>{
               API.getFavourite(favourite).then(result=>{
-                console.log(result)
-                let pushing=[];
-                pushing.push(result)
-                this.setState({favorites: pushing})
-                  console.log("we are trying to get professions");
-    
+                  console.log(result)
+                  let pushing=this.state.favorites;
+                  pushing.push(result)
+                  this.setState({favorites: pushing})
+                    console.log("we are trying to get professions");
+                })
               })
+            }
+          })
         })
-        
       }
-    })
-  });
-}
+
 
 getkon=()=>{
 let a1=[];
@@ -109,7 +108,7 @@ let a1=[];
   chooseRender = () => {
     if (this.state.isFacebookAuthenticated || this.state.isKontratadoAuthenticated){
       if (this.state.isFacebookAuthenticated){
-        return <UserAfterLogin userId={this.state.facebookUser._id} getkon={this.getkon} addFavs={this.addFavs} fullfav={this.state.fullfav}  facebookLogout = {this.facebookLogout} />
+        return <UserAfterLogin userId={this.state.facebookUser._id} getkon={this.getkon} favorites={this.state.favorites} addFavs={this.addFavs} fullfav={this.state.fullfav}  facebookLogout = {this.facebookLogout} />
       } else {
         return <div>
           <KontratadoAfterLogin kontratadoUpdate={this.kontratadoUpdate} kontratado = {this.state.kontratadoUser} logOutKontratado={this.logOutKontratado} />
