@@ -35,9 +35,7 @@ class BeforeLogin extends Component {
                 <HeroImageHomepage />
                 <ThisIsKontratado />
                 <Footer />
-                <Container>
-                    <ModalLogin logKontratado = {this.props.logKontratado} isSignup = {this.state.isSignup} handleClose = {this.handleClose} show = {this.state.show} facebookResponse={this.props.facebookResponse} />
-                </Container>
+                <ModalLogin logKontratado = {this.props.logKontratado} isSignup = {this.state.isSignup} handleClose = {this.handleClose} show = {this.state.show} facebookResponse={this.props.facebookResponse} />
             </div>
         )
     }

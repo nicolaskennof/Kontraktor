@@ -11,8 +11,8 @@ function UserFavorite(props) {
     return (
         <div>
             <HeroImageFav />
-            <Filters isUserFilter={true}/>
             <Wrapper>
+            <Filters isUserFilter={true}/>
             {props.fullfav.map(favorite=>{
                                 return  <WorkerCardFav userId={props.userId} favorite={favorite} addFavs={props.addFavs}  />
             })}

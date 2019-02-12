@@ -14,13 +14,13 @@ for(let i=0; i<5; i++){
 }
 
     return (
-        <p> <b>Rango de precio:</b><br />
+        <div>
             <span  className={myClasses[0]}></span> 
             <span className={myClasses[1]}></span>
             <span className={myClasses[2]}></span>
             <span  className={myClasses[3]}></span>
             <span className={myClasses[4]}></span>
-        </p>
+        </div>
     )
 }
 
