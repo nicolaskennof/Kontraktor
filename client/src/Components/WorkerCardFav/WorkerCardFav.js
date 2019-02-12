@@ -88,7 +88,7 @@ class WorkerCard extends Component{
                                 <Col md={6}>
                                     <Row>
                                         <Col md={12} className="mb-2">
-                                            <ModalMessage />
+                                            {/*<ModalMessage />*/}
                                         </Col>
                                     </Row>
                                     <Row>

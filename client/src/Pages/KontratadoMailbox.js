@@ -5,7 +5,7 @@ import Footer from "../Components/Footer/Footer"
 import KontratadoKonversationsWrapper from "../Components/KontratadoConversation/KontratadoKonversationsWrapper";
 
 
-function UserFavorite() {
+function UserFavorite(props) {
     return (
         <div>
             <HeroImageMailbox />
@@ -13,7 +13,7 @@ function UserFavorite() {
                 <h1>Todas tus conversaciones</h1>
                 <hr />
                 <br />
-                <KontratadoKonversationsWrapper />
+                <KontratadoKonversationsWrapper kontratadoUpdate={props.kontratadoUpdate} kontratado={props.kontratado}/>
             </Wrapper>
             <Footer />
         </div>

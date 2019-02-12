@@ -32,9 +32,6 @@ class App extends Component {
     alert(error);
   }
 
-
-
-  
   facebookResponse = (response) => {
     const tokenBlob = new Blob([JSON.stringify({ access_token: response.accessToken }, null, 2)], { type: 'application/json' });
     const options = {
@@ -78,11 +75,7 @@ let a1=[];
   })}
 
 
-
-
-    
-
-  logKontratado = (idKontratado) => {
+logKontratado = (idKontratado) => {
     let kontratadoUser;
     API.getKontratado(idKontratado)
       .then(result=>{

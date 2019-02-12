@@ -38,7 +38,8 @@ class Reviews extends Component {
                             <Card.Body>
                                 <Card.Title>Los usuarios califican tu <b>costo</b> de la siguiente manera:</Card.Title>
                                 <Card.Text className="text-center">
-                                    <span className="scoreCard"><Price /></span>
+                                    <span className="scoreCard"><Price 
+                                        costRate={helpers.calculateCostRating(this.props.kontratado.costRates)}  /></span>
                                 </Card.Text>
                             </Card.Body>
                         </Card>

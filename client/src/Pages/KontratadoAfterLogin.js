@@ -32,7 +32,7 @@ class KontratadoAfterLogin extends Component {
                             <h1>Tus últimas conversaciones</h1>
                             <hr />
                             <br />
-                            <KontratadoKonversationsWrapper kontratado={this.props.kontratado}/>
+                            <KontratadoKonversationsWrapper kontratadoUpdate={this.props.kontratadoUpdate} kontratado={this.props.kontratado}/>
                         </Wrapper>
                         <Footer />
                     </div>
@@ -40,7 +40,7 @@ class KontratadoAfterLogin extends Component {
                     this.state.type === "profile" ?
                         <div><KontratadoProfile kontratadoUpdate={this.props.kontratadoUpdate} kontratado={this.props.kontratado} /></div>
                         :
-                        <div><KontratadoMailbox /></div>
+                        <div><KontratadoMailbox kontratadoUpdate={this.props.kontratadoUpdate} kontratado={this.props.kontratado} /></div>
                 }
             </div>
         )

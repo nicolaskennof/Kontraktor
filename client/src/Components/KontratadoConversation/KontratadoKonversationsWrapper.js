@@ -14,7 +14,7 @@ function getDistinctUserMessages(messages){
     })
 }
 
-function createKontratadoConversations({messages,image}){
+function createKontratadoConversations({messages,image, _id}, kontratadoUpdate){
     const lastUserMessages = getDistinctUserMessages(messages);
     return lastUserMessages.map(lastUserMessage=>{
         const userMessages =  messages.filter(message=>{
@@ -22,6 +22,9 @@ function createKontratadoConversations({messages,image}){
         })
         return <KontratadoConversation 
         key = {lastUserMessage.user._id}
+        kontratadoUpdate={kontratadoUpdate}
+        kontratadoId = {_id}
+        userId = {lastUserMessage.user._id}
         kontratadoImage = {image}
         userMessages = {userMessages}
         userLastMessage={lastUserMessage.message} 
@@ -33,7 +36,7 @@ function createKontratadoConversations({messages,image}){
 function KontratadoKonversationsWrapper(props) {
     return (
         <div>
-            {createKontratadoConversations(props.kontratado)}
+            {createKontratadoConversations(props.kontratado, props.kontratadoUpdate)}
         </div>
     )
 }
