@@ -43,8 +43,7 @@ function Fav(props) {
             }
         >
             <Button onClick={()=>handleFavoriteAdd(props)} 
-                className="workerCardButton" 
-                variant={props.favouriteId?"outline-danger":"danger"}
+                variant={props.favouriteId?"danger":"outline-danger"}
                 ><i className="fas fa-heart"></i>
             </Button>
         </OverlayTrigger>

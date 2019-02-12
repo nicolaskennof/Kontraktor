@@ -97,7 +97,7 @@ class WorkerCard extends Component {
                                 <Col md={6}>
                                     <br />
                                     <Fav updateUser={this.props.updateUser} kontratadoId={this.props.kontratado._id} userId={this.props.user._id} favouriteId={this.getFavouriteId()} />
-                                    <br /><br />
+                                    <br />
                                     <Hired updateUser={this.props.updateUser} kontratadoId={this.props.kontratado._id} userId={this.props.user._id} hireId={this.getHiredId()} />
                                 </Col>
                             </Row>
