@@ -16,12 +16,12 @@ function KontratadoConversation(props) {
                     <br />
                     <div className="d-inline"><span id="messageCardSender"><b>Recibido de: </b></span></div>
                     <cite className="d-inline">
-                        {props.userFirstName + " " + props.userLastName}
+                        {props.fullName}
                     </cite>
                 </Col>
                 <Col md={4}>
                 <br />
-                    <div className="d-inline"><ModalMessage /></div>
+                    <div className="d-inline"><ModalMessage userMessages={props.userMessages} kontratadoImage={props.kontratadoImage} /></div>
                 </Col>
             </Row>
         </blockquote>

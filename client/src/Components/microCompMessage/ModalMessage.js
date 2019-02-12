@@ -12,6 +12,24 @@ class ModalMessage extends React.Component {
     };
   }
 
+  createMessageInChatElements = () => {
+    console.log(this.props.userMessages);
+    return this.props.userMessages.map(userMessage=>{
+      let image = '';
+      if (userMessage.isUserMessage){
+        image = `https://graph.facebook.com/10155848713781746/picture?type=square`
+      } else {
+        if (this.props.kontratadoImage){
+          image = `/api/image/${this.props.kontratadoImage}`
+        } else {
+          image = 'http://nicolas-kennof.com/wp-content/uploads/2018/07/Perfil-2018.png'
+        }
+      }
+      console.log(image);
+      return <MessageInChat key={userMessage.message._id} image={image} message={userMessage.message} />
+    })
+  }
+
   render() {
     let messageClose = () => this.setState({ messageModal: false });
     let firstName = "Nicolas Jules R";
@@ -37,9 +55,7 @@ class ModalMessage extends React.Component {
           </Modal.Header>
           <Modal.Body>
             <Container className="border rounded mb-3">
-              <MessageInChat />
-              <MessageInChat />
-              <MessageInChat />
+              {this.createMessageInChatElements()}
             </Container>
             <div className="row">
               <div className="col-md-10">

@@ -74,19 +74,13 @@ class UserAfterLogin extends Component {
                 <NavBarUser facebookLogout={this.props.facebookLogout} type={this.state.type} getkon={this.props.getkon} routeChange={this.routeChange}  />{this.state.type === "home" ?
                     <div>
                         <HeroImage mySearch={this.searchClickHandler} />
-                        <UserHomepageQuickLinks routeChange={this.routeChange}/>
-
-                        <br />
-                        {/*<LogInCardsWrapper />*/}
-                        <br />
-                        
                         <Wrapper>
                             <Filters />
                             {this.state.kontratados.map(kontratado => {
                                 return <WorkerCard userId={kontratado._id} addFavs={this.addFavs} kontratado={kontratado} />
 
                             })}
-
+                            <UserHomepageQuickLinks routeChange={this.routeChange}/>
                         </Wrapper>
                         <Footer />
                     </div>

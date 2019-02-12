@@ -31,13 +31,14 @@ class WorkerCard extends Component {
         return total
     }
 
-    calculateRating= ()=>{
-        let sum=0;
-        let total=0;
-        this.props.kontratado.qualityRates.forEach(qualityRate=>{
-            sum+= qualityRate.quality  })
-            total= sum/this.props.kontratado.qualityRates.length
-            return total
+    calculateRating = () => {
+        let sum = 0;
+        let total = 0;
+        this.props.kontratado.qualityRates.forEach(qualityRate => {
+            sum += qualityRate.quality
+        })
+        total = sum / this.props.kontratado.qualityRates.length
+        return total
     }
 
 
@@ -57,7 +58,7 @@ class WorkerCard extends Component {
                                 src={workerImage}
                             />
                         </div>
-                        <div className="col-md-8">
+                        <div className="col-md-7">
                             <div className="row my-3">
                                 <div className="col-md-6">
                                     <h4><span id="workerNames">{props.kontratado.firstName} </span> <span id="workerLastNames">{props.kontratado.lastName}</span></h4>
@@ -70,23 +71,26 @@ class WorkerCard extends Component {
                                     </div>
                                 </div>
                                 <div className="col-md-3 text-center">
+                                    <p><b>Rango de precio:</b></p>
                                     <Price costRate={this.calculateCostAverage()} />
                                 </div>
                             </div>
                             <div className="row">
                                 <div className="col-md-6 text-left">
-                                    <Rating quality={this.calculateRating()}/>
+                                    <Rating quality={this.calculateRating()} />
                                 </div>
                                 <div className="col-md-3 text-center">
-                                    <Quant quant={props.kontratado.hires.length}  />
+                                    <Quant quant={props.kontratado.hires.length} />
                                 </div>
                                 <div className="col-md-3 text-center">
 
                                 </div>
                             </div>
-                            <div className="col-md-2 my-auto">
-                                <Row>
-                                    <Col md={12} className="mb-2">
+                        </div>
+                        <Col md={3}>
+                                <Row className="workerCardBtnRow">
+                                    <Col md={6}>
+                                        <br />
                                         <ModalMessage />
                                     </Col>
                                 </Row>
@@ -94,20 +98,14 @@ class WorkerCard extends Component {
                                     <Col md={12} className="mb-2">
                                         <ModalPhone  firstName= {props.kontratado.firstName} lastName={props.kontratado.lastName} contactPhone={props.kontratado.contactPhone} />
                                     </Col>
-                                </Row>
-                                <Row>
-                                    <Col md={12}>
+                                    <Col md={6}>
+                                        <br />
                                         <Fav userId={props.userId} addFavs={props.addFavs} />
+                                        <br /><br />
+                                        <Hired />
                                     </Col>
                                 </Row>
-                                <Row>
-                                        <Col md={12}>
-                                            <Hired className="mr-3" />
-                                        </Col>
-                                    </Row>
-                            </div>
-                        </div>
-                        
+                        </Col>
                     </div>
                 </Figure>
             </div>

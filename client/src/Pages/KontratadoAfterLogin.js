@@ -32,7 +32,7 @@ class KontratadoAfterLogin extends Component {
                             <h1>Tus últimas conversaciones</h1>
                             <hr />
                             <br />
-                            <KontratadoKonversationsWrapper />
+                            <KontratadoKonversationsWrapper kontratado={this.props.kontratado}/>
                         </Wrapper>
                         <Footer />
                     </div>

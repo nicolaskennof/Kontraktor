@@ -1,30 +1,30 @@
 import React from "react";
-import { Button, Modal, ButtonToolbar, Container, Form } from "react-bootstrap";
+import { Button, Modal, ButtonToolbar, Container, Form, Row, Col, Dropdown, DropdownButton, SplitButton } from "react-bootstrap";
 import "./style.css"
 
 
 class RatingModal extends React.Component {
     constructor(props, context) {
         super(props, context);
-     
+
         this.state = {
             ratingModal: false,
         };
 
-     
-       
+
+
     }
 
     render() {
-        let myClasses=[];
+        let myClasses = [];
         let ratingClose = () => this.setState({ ratingModal: false });
         let workerName = "Nicolas el Plomero"
-        let var1=this.props.quality;
-        for(let i=0; i<5; i++){
-            
-            if(var1>i){
+        let var1 = this.props.quality;
+        for (let i = 0; i < 5; i++) {
+
+            if (var1 > i) {
                 myClasses.push("btn rating btn-warning btn-sm mr-1")
-            }else{
+            } else {
                 myClasses.push("btn rating btn-grey btn-sm mr-1")
             }
         }
@@ -32,7 +32,7 @@ class RatingModal extends React.Component {
 
         return (
             <ButtonToolbar>
-                <Button data-value= {this.props.quality} className={myClasses[0]} aria-label="Left Align" onClick={() => this.setState({ ratingModal: true })}>
+                <Button data-value={this.props.quality} className={myClasses[0]} aria-label="Left Align" onClick={() => this.setState({ ratingModal: true })}>
                     <span className="fa fa-hammer" aria-hidden="true"></span>
                 </Button>
                 <Button className={myClasses[1]} aria-label="Left Align" onClick={() => this.setState({ ratingModal: true })}>
@@ -41,7 +41,7 @@ class RatingModal extends React.Component {
                 <Button className={myClasses[2]} aria-label="Left Align" onClick={() => this.setState({ ratingModal: true })}>
                     <span className="fa fa-hammer" aria-hidden="true"></span>
                 </Button>
-                <Button className={myClasses[3]}  aria-label="Left Align" onClick={() => this.setState({ ratingModal: true })}>
+                <Button className={myClasses[3]} aria-label="Left Align" onClick={() => this.setState({ ratingModal: true })}>
                     <span className="fa fa-hammer" aria-hidden="true"></span>
                 </Button>
                 <Button className={myClasses[4]} aria-label="Left Align" onClick={() => this.setState({ ratingModal: true })}>
@@ -55,7 +55,7 @@ class RatingModal extends React.Component {
                     aria-labelledby="modal-rating"
                     centered
                 >
-                    <Modal.Header closeButton  className="border-dark">
+                    <Modal.Header closeButton className="border-dark">
                         <Modal.Title id="modal-rating">
                             ¿Qué opinan nuestros usuarios de {workerName}?
                         </Modal.Title>
@@ -71,9 +71,39 @@ class RatingModal extends React.Component {
                                 </Form.Group>
                             </div>
                             <div className="col-md-2">
-                                <Button variant="primary" type="submit">
-                                    Envia tu reseña
-                                </Button>
+                                <Row>
+                                    <Col md={12}>
+                                    </Col>
+                                </Row>
+                                <Row>
+                                    <Col md={12}>
+                                        <ButtonToolbar>
+                                            {[DropdownButton, SplitButton].map((DropdownType, idx) => (
+                                                <DropdownType
+                                                    size="sm"
+                                                    variant="secondary"
+                                                    title="Drop Rating"
+                                                    id={`dropdown-button-drop-${idx}`}
+                                                    key={idx}
+                                                >
+                                                    <Dropdown.Item eventKey="1" className="givingAReview"><i class="fas fa-hammer"></i></Dropdown.Item>
+                                                    <Dropdown.Item eventKey="2" className="givingAReview"><i class="fas fa-hammer"></i> <i class="fas fa-hammer"></i></Dropdown.Item>
+                                                    <Dropdown.Item eventKey="3" className="givingAReview"><i class="fas fa-hammer"></i> <i class="fas fa-hammer"></i> <i class="fas fa-hammer"></i></Dropdown.Item>
+                                                    <Dropdown.Divider />
+                                                    <Dropdown.Item eventKey="4" className="givingAReview"><i class="fas fa-hammer"></i> <i class="fas fa-hammer"></i> <i class="fas fa-hammer"></i> <i class="fas fa-hammer"></i></Dropdown.Item>
+                                                    <Dropdown.Item eventKey="5" className="givingAReview"><i class="fas fa-hammer"></i> <i class="fas fa-hammer"></i> <i class="fas fa-hammer"></i> <i class="fas fa-hammer"></i> <i class="fas fa-hammer"></i></Dropdown.Item>
+                                                </DropdownType>
+                                            ))}
+                                        </ButtonToolbar>
+                                    </Col>
+                                </Row>
+                                <Row>
+                                    <Col md={12}>
+                                        <Button variant="primary" type="submit">
+                                            Envia tu reseña
+                                        </Button>
+                                    </Col>
+                                </Row>
                             </div>
                         </div>
                     </Modal.Body>
