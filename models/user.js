@@ -28,6 +28,13 @@ var UserSchema = new Schema({
         }
     ],
 
+    hires: [
+        {
+            type: Schema.Types.ObjectId,
+            ref: "Hire"
+        }
+    ],
+
     messages : [
         {
             type: Schema.Types.ObjectId,

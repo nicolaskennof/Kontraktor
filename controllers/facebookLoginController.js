@@ -18,6 +18,7 @@ module.exports = {
             db.User.findById(id)
                 .populate({ path:"messages", populate : {path : "kontratado"}})
                 .populate({ path:"favourites", populate : {path : "kontratado"}})
+                .populate("hires")
                 .then(user => {
                     res.status(200).json(user);
                 })

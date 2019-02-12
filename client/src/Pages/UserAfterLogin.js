@@ -27,27 +27,9 @@ class UserAfterLogin extends Component {
         favorites: [],
         kontratados: [],
         myBool: false,
-        favClass:"Danger",
+        favClass:"",
     }
 
-    addFavs = () => {
-        console.log("we are trying to addfavs")
-     
-        let fav = {
-            kontratado: this.state.results._id,
-            user: this.props.userId
-        }
-        API.insertFavourite(fav).then(result => {
-            this.setState({ favorites: result });
-            console.log(result);
-            API.getKontratado(result.data._id).then(result2=>{
-                console.log(result2);
-                let temp1=this.state.favorites
-                temp1.push(result2)
-                this.setState({favorites: temp1});
-            }).catch(err=> console.log(err))
-        }).catch(err => console.log(err));
-    }
 
     searchClickHandler = (searchProfession, searchState) => {
 
@@ -57,7 +39,6 @@ class UserAfterLogin extends Component {
         }).then(result => {
             this.setState({ kontratados: result.data })
             this.setState({ results: result.data[0] })
-            console.log("resultado de kontratados: ", result);
             this.setState({resultsProfession: result.data[0].profession.profession})
             this.setState({resultCostRate: result.data[0].costRates[0].costRating})
             this.setState({resultQualityRate: result.data[0].qualityRates[0].quality})
@@ -76,14 +57,13 @@ class UserAfterLogin extends Component {
     render() {
         return (
             <div>
-                <NavBarUser facebookLogout={this.props.facebookLogout} type={this.state.type} getkon={this.props.getkon} routeChange={this.routeChange}  />{this.state.type === "home" ?
+                <NavBarUser facebookLogout={this.props.facebookLogout} type={this.state.type} routeChange={this.routeChange}  />{this.state.type === "home" ?
                     <div>
                         <HeroImage mySearch={this.searchClickHandler} />
                         <Wrapper>
                             <Filters />
                             {this.state.kontratados.map(kontratado => {
-                                return <WorkerCard userId={kontratado._id} favClass={this.state.favClass} addFavs={this.addFavs} kontratado={kontratado} />
-
+                                return <WorkerCard key={kontratado._id} updateUser = {this.props.updateUser} user={this.props.user} kontratado={kontratado} />
                             })}
                             <UserHomepageQuickLinks routeChange={this.routeChange}/>
                         </Wrapper>

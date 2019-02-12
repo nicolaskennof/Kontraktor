@@ -5,9 +5,32 @@ import API from "../../utils/API"
 
 let placement = "right"
 
-function Fav(props) {
+function handleFavoriteAdd({favouriteId,kontratadoId,userId, updateUser}){
+    if (favouriteId){
+        API.deleteFavourite(favouriteId)
+            .then(deleted=>{
+                API.getUserById(userId)
+                    .then(result=>{
+                        updateUser(result.data)
+                    })
+            })
+    } else {
+        const favouriteObject = {
+            kontratado : kontratadoId,
+            user : userId
+        }
 
-    
+        API.insertFavourite(favouriteObject)
+            .then(inserted=>{
+                API.getUserById(userId)
+                    .then(result=>{
+                        updateUser(result.data)
+                    })
+            })
+    }
+}
+
+function Fav(props) { 
     return (
         <ButtonToolbar>
         <OverlayTrigger
@@ -19,7 +42,10 @@ function Fav(props) {
                 </Tooltip>
             }
         >
-            <Button onClick={props.addFavs} data-id={props.userId} className="workerCardButton" variant="danger" id="favoriteBtn"><i className="fas fa-heart"></i>
+            <Button onClick={()=>handleFavoriteAdd(props)} 
+                className="workerCardButton" 
+                variant={props.favouriteId?"outline-danger":"danger"}
+                ><i className="fas fa-heart"></i>
             </Button>
         </OverlayTrigger>
     </ButtonToolbar>

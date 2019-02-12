@@ -1,10 +1,38 @@
 import React from "react";
 import { Button, ButtonToolbar, OverlayTrigger, Tooltip } from "react-bootstrap";
 import "./style.css"
+import API from '../../utils/API'
 
 let placement = "right"
 
-function Hired() {
+
+function handleHireAdd({hireId,kontratadoId,userId, updateUser}){
+    if (hireId){
+        API.deleteHire(hireId)
+            .then(deleted=>{
+                API.getUserById(userId)
+                    .then(result=>{
+                        updateUser(result.data)
+                    })
+            })
+    } else {
+        const hireObject = {
+            kontratado : kontratadoId,
+            user : userId
+        }
+
+        API.insertHire(hireObject)
+            .then(inserted=>{
+                API.getUserById(userId)
+                    .then(result=>{
+                        updateUser(result.data)
+                    })
+            })
+    }
+}
+
+
+function Hired(props) {
     return (
         <ButtonToolbar>
             <OverlayTrigger
@@ -16,7 +44,7 @@ function Hired() {
                     </Tooltip>
                 }
             >
-                <Button className="workerCardButton" id="hiredBtn">
+                <Button className="workerCardButton" onClick={()=>handleHireAdd(props)} className="workerCardButton" variant={props.hireId?"outline-info":"info"}>
                     <i className="fas fa-hammer"></i>
                 </Button>
             </OverlayTrigger>

@@ -3,7 +3,6 @@ import { Row, Card } from "react-bootstrap"
 import SingleReview from "../reviews/SingleReview"
 import Price from "../microCompPrice/Price"
 import "./style.css";
-import "../../utils/helpers"
 import helpers from '../../utils/helpers';
 
 class Reviews extends Component {

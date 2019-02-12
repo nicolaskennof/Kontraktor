@@ -89,10 +89,16 @@ class App extends Component {
       })
     }
 
+    updateUser = user => {
+      this.setState({
+        facebookUser : user
+      })
+    }
+
     chooseRender = () => {
       if (this.state.isFacebookAuthenticated || this.state.isKontratadoAuthenticated) {
         if (this.state.isFacebookAuthenticated) {
-          return <UserAfterLogin userId={this.state.facebookUser._id} getkon={this.getkon} favorites={this.state.favorites} addFavs={this.addFavs} fullfav={this.state.fullfav} facebookLogout={this.facebookLogout} />
+          return <UserAfterLogin updateUser = {this.updateUser} user={this.state.facebookUser} facebookLogout={this.facebookLogout} />
         } else {
           return <div>
             <KontratadoAfterLogin kontratadoUpdate={this.kontratadoUpdate} kontratado={this.state.kontratadoUser} logOutKontratado={this.logOutKontratado} />
