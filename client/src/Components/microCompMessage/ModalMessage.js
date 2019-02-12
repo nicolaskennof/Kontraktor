@@ -54,7 +54,7 @@ class ModalMessage extends React.Component {
             </Modal.Title>
           </Modal.Header>
           <Modal.Body>
-            <Container className="border rounded mb-3">
+            <Container>
               {this.createMessageInChatElements()}
             </Container>
             <div className="row">
