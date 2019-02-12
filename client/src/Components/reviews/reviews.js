@@ -1,32 +1,38 @@
-import React, {Component} from 'react'
+import React, { Component } from 'react'
 import { Row, Card } from "react-bootstrap"
 import SingleReview from "../reviews/SingleReview"
 import Price from "../microCompPrice/Price"
 import "./style.css";
+import "./reviews.css";
+import "../../utils/helpers"
 import helpers from '../../utils/helpers';
+import NoContent from './NoContentDiv';
 
 class Reviews extends Component {
-    
+
     createReviews = (reviews) => {
         return reviews.map(review => {
             return (
                 <SingleReview
                     key={review._id}
                     className="mini-box"
-                    userReview= {review.review} 
+                    userReview={review.review}
                     userFirstName={review.user.fullName}>
                 </SingleReview>
             )
         })
     }
-    
-    render(){
+
+    render() {
         return (
             <div>
                 <Row>
                     <div className="col-8">
                         <div className="row">
                             <div className="col-12">
+                                {/* BEGIN PLACEHOLDER NO RESULTADOS */}
+                                <NoContent noContentMessage="Todavía no has recibido reseñas de tus clientes" noContentTeam="Tu Equipo Kontratado" />
+                                {/* END PLACEHOLDER NO RESULTADOS */}
                                 {this.createReviews(this.props.kontratado.reviews)}
                             </div>
                         </div>

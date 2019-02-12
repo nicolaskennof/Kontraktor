@@ -10,6 +10,7 @@ import HeroImage from "../Components/HeroImage/HeroImageUserHome"
 import UserHomepageQuickLinks from "../Components/Steps/UserHomepageQuickLinks"
 import Footer from "../Components/Footer/Footer"
 import Wrapper from "../Components/workersWrapper/commonWrapper"
+import NoContent from "../Components/reviews/NoContentDiv"
 
 
 class UserAfterLogin extends Component {
@@ -61,6 +62,10 @@ class UserAfterLogin extends Component {
                     <div>
                         <HeroImage mySearch={this.searchClickHandler} />
                         <Wrapper>
+                        {/* BEGIN PLACEHOLDER NO RESULTADOS */}
+                        <NoContent noContentMessage="No hemos encontrado el experto que buscas. Nuestra base de datos se expande cada día... ¡gracias por tu paciencia!" noContentTeam="Tu Equipo Kontratado" />
+                        {/* END PLACEHOLDER NO RESULTADOS */}
+                            
                             <Filters />
                             {this.state.kontratados.map(kontratado => {
                                 return <WorkerCard key={kontratado._id} updateUser = {this.props.updateUser} user={this.props.user} kontratado={kontratado} />
