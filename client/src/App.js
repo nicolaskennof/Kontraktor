@@ -14,9 +14,6 @@ class App extends Component {
       facebookUser: null,
       token: '',
       kontratadoUser: null,
-      favorites:[],
-      messages:[],
-      fullfav:[]
     };
   }
 
@@ -42,22 +39,13 @@ class App extends Component {
     };
    
     fetch('/api/v1/auth/facebook', options).then(r => {
-      console.log(r);
       const token = r.headers.get('x-auth-token');
       r.json().then(facebookUser => {
         if (token) {
-          this.setState({ isFacebookAuthenticated: true, facebookUser, token })
-            this.state.facebookUser.favourites.map(favourite=>{
-              API.getFavourite(favourite).then(result=>{
-                console.log(result)
-                let pushing=[];
-                pushing.push(result)
-                this.setState({favorites: pushing})
-                  console.log("we are trying to get professions");
-    
-              })
-        })
-        
+          API.getUserById(facebookUser._id)
+            .then(result=>{
+              this.setState({ isFacebookAuthenticated: true, facebookUser : result.data, token })
+            })
       }
     })
   });

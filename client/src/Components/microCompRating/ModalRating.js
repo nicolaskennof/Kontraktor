@@ -1,5 +1,5 @@
 import React from "react";
-import { Button, Modal, ButtonToolbar, Container, Form, Row, Col, Dropdown, DropdownButton, SplitButton } from "react-bootstrap";
+import { Button, Modal, ButtonToolbar, Container, Form, Row, Col, Dropdown, DropdownType } from "react-bootstrap";
 import "./style.css"
 
 
@@ -61,50 +61,55 @@ class RatingModal extends React.Component {
                         </Modal.Title>
                     </Modal.Header>
                     <Modal.Body>
-                        <Container className="border rounded mb-3">
+                        <Container>
                             Will insert review component here later!
                         </Container>
+                        <br />
                         <div className="row">
-                            <div className="col-md-10">
-                                <Form.Group controlId="exampleForm.ControlTextarea1">
+                            <div className="col-md-8">
+                                <Form.Group controlId="exampleForm.ControlTextarea1" className="ratingSubmitBtn">
                                     <Form.Control as="textarea" rows="3" />
                                 </Form.Group>
                             </div>
                             <div className="col-md-2">
                                 <Row>
                                     <Col md={12}>
+                                        <Form>
+                                            <Form.Group controlId="serviceRating">
+                                                <Form.Control as="select">
+                                                    <option>Servicio</option>
+                                                    <option>1</option>
+                                                    <option>2</option>
+                                                    <option>3</option>
+                                                    <option>4</option>
+                                                    <option>5</option>
+                                                </Form.Control>
+                                            </Form.Group>
+                                        </Form>
                                     </Col>
                                 </Row>
                                 <Row>
                                     <Col md={12}>
-                                        <ButtonToolbar>
-                                            {[DropdownButton, SplitButton].map((DropdownType, idx) => (
-                                                <DropdownType
-                                                    size="sm"
-                                                    variant="secondary"
-                                                    title="Drop Rating"
-                                                    id={`dropdown-button-drop-${idx}`}
-                                                    key={idx}
-                                                >
-                                                    <Dropdown.Item eventKey="1" className="givingAReview"><i class="fas fa-hammer"></i></Dropdown.Item>
-                                                    <Dropdown.Item eventKey="2" className="givingAReview"><i class="fas fa-hammer"></i> <i class="fas fa-hammer"></i></Dropdown.Item>
-                                                    <Dropdown.Item eventKey="3" className="givingAReview"><i class="fas fa-hammer"></i> <i class="fas fa-hammer"></i> <i class="fas fa-hammer"></i></Dropdown.Item>
-                                                    <Dropdown.Divider />
-                                                    <Dropdown.Item eventKey="4" className="givingAReview"><i class="fas fa-hammer"></i> <i class="fas fa-hammer"></i> <i class="fas fa-hammer"></i> <i class="fas fa-hammer"></i></Dropdown.Item>
-                                                    <Dropdown.Item eventKey="5" className="givingAReview"><i class="fas fa-hammer"></i> <i class="fas fa-hammer"></i> <i class="fas fa-hammer"></i> <i class="fas fa-hammer"></i> <i class="fas fa-hammer"></i></Dropdown.Item>
-                                                </DropdownType>
-                                            ))}
-                                        </ButtonToolbar>
-                                    </Col>
-                                </Row>
-                                <Row>
-                                    <Col md={12}>
-                                        <Button variant="primary" type="submit">
-                                            Envia tu reseña
-                                        </Button>
+                                        <Form>
+                                            <Form.Group controlId="costRating">
+                                                <Form.Control as="select">
+                                                    <option>Costo</option>
+                                                    <option>1</option>
+                                                    <option>2</option>
+                                                    <option>3</option>
+                                                    <option>4</option>
+                                                    <option>5</option>
+                                                </Form.Control>
+                                            </Form.Group>
+                                        </Form>
                                     </Col>
                                 </Row>
                             </div>
+                            <Col md={2} className="text-center">
+                                <Button variant="success" type="submit" className="ratingSubmitBtn">
+                                    <i class="fas fa-check"></i>
+                                </Button>
+                            </Col>
                         </div>
                     </Modal.Body>
                 </Modal>

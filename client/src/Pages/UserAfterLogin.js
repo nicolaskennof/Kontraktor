@@ -34,7 +34,6 @@ class UserAfterLogin extends Component {
             kontratado: this.state.results._id,
             user: this.state.userId
         }
-        console.log("we are on addfavs", fav)
         API.insertFavourite(fav).then(result => {
             this.setState({ favorites: result });
             console.log(result);

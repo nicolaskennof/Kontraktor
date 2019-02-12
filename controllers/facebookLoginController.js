@@ -2,7 +2,6 @@ var db = require("../models");
 
 module.exports = {
     login: (req, res, next) => {
-        console.log("we are on facebook login");
         if (!req.user) {
             return res.send(401, 'User Not Authenticated');
         }

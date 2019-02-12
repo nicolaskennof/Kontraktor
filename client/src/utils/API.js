@@ -80,5 +80,10 @@ export default {
 
   getProfession: function (id){
     return axios.get("api/profession/"+id)
+  },
+  
+  getUserById: function (id){
+    return axios.get("api/v1/auth/facebook/"+id)
   }
+
 };
