@@ -37,77 +37,79 @@ class App extends Component {
       mode: 'cors',
       cache: 'default'
     };
-   
+
     fetch('/api/v1/auth/facebook', options).then(r => {
       const token = r.headers.get('x-auth-token');
       r.json().then(facebookUser => {
         if (token) {
           API.getUserById(facebookUser._id)
-            .then(result=>{
-              this.setState({ isFacebookAuthenticated: true, facebookUser : result.data, token })
+            .then(result => {
+              this.setState({ isFacebookAuthenticated: true, facebookUser: result.data, token })
             })
-      }
-    })
-  });
-}
-
-getkon=()=>{
-let a1=[];
-    this.state.favorites.map(kontratado=>{
-    API.getKontratado(kontratado.data._id).then(res=>{
-    console.log("we received a profession", res);
-    
-    a1.push(res.data);
-    this.setState({fullfav: a1})
-  })
-  })}
-
-
-logKontratado = (idKontratado) => {
-    let kontratadoUser;
-    API.getKontratado(idKontratado)
-      .then(result=>{
-        kontratadoUser = result.data;
-        this.setState({
-          kontratadoUser,
-          isKontratadoAuthenticated : true
-        });
+        }
       })
-  }
-
-  logOutKontratado = () => {
-    this.setState({
-      isKontratadoAuthenticated : false
-    });
-  }
-
-  kontratadoUpdate = kontratado => {
-    this.setState({
-      kontratadoUser : kontratado
     })
   }
 
-  chooseRender = () => {
-    if (this.state.isFacebookAuthenticated || this.state.isKontratadoAuthenticated){
-      if (this.state.isFacebookAuthenticated){
-        return <UserAfterLogin userId={this.state.facebookUser._id} getkon={this.getkon} addFavs={this.addFavs} fullfav={this.state.fullfav}  facebookLogout = {this.facebookLogout} />
+
+    getkon = () => {
+      let a1 = [];
+      this.state.favorites.map(kontratado => {
+        API.getKontratado(kontratado.data._id).then(res => {
+          console.log("we received a profession", res);
+
+          a1.push(res.data);
+          this.setState({ fullfav: a1 })
+        })
+      })
+    }
+
+
+    logKontratado = (idKontratado) => {
+      let kontratadoUser;
+      API.getKontratado(idKontratado)
+        .then(result => {
+          kontratadoUser = result.data;
+          this.setState({
+            kontratadoUser,
+            isKontratadoAuthenticated: true
+          });
+        })
+    }
+
+    logOutKontratado = () => {
+      this.setState({
+        isKontratadoAuthenticated: false
+      });
+    }
+
+    kontratadoUpdate = kontratado => {
+      this.setState({
+        kontratadoUser: kontratado
+      })
+    }
+
+    chooseRender = () => {
+      if (this.state.isFacebookAuthenticated || this.state.isKontratadoAuthenticated) {
+        if (this.state.isFacebookAuthenticated) {
+          return <UserAfterLogin userId={this.state.facebookUser._id} getkon={this.getkon} favorites={this.state.favorites} addFavs={this.addFavs} fullfav={this.state.fullfav} facebookLogout={this.facebookLogout} />
+        } else {
+          return <div>
+            <KontratadoAfterLogin kontratadoUpdate={this.kontratadoUpdate} kontratado={this.state.kontratadoUser} logOutKontratado={this.logOutKontratado} />
+          </div>
+        }
       } else {
-        return <div>
-          <KontratadoAfterLogin kontratadoUpdate={this.kontratadoUpdate} kontratado = {this.state.kontratadoUser} logOutKontratado={this.logOutKontratado} />
-        </div>
+        return <BeforeLogin logKontratado={this.logKontratado} facebookResponse={this.facebookResponse} />
       }
-    } else {
-      return <BeforeLogin logKontratado = {this.logKontratado} facebookResponse={this.facebookResponse} />
+    }
+
+    render() {
+      return (
+        <div className="App">
+          {this.chooseRender()}
+        </div>
+      )
     }
   }
 
-  render() {
-    return (
-      <div className="App">
-        {this.chooseRender()}
-      </div>
-    )
-  }
-}
-
-export default App;
+  export default App;

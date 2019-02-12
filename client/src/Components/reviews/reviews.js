@@ -47,7 +47,7 @@ class Reviews extends Component {
                         <Card>
                             <Card.Header as="h5">Tu calificación promedia</Card.Header>
                             <Card.Body>
-                                <Card.Title>Los usuarios califican <b>servicio</b> de la siguiente manera:</Card.Title>
+                                <Card.Title>Los usuarios califican tu <b>servicio</b> de la siguiente manera:</Card.Title>
                                 <Card.Text className="text-center">
                                     <span className="scoreCard">
                                         {helpers.calculateQualityRating(this.props.kontratado.qualityRates)}

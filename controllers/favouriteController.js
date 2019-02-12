@@ -10,7 +10,7 @@ module.exports = {
                         .then(userUpdated => {
                             db.Kontratado.findOneAndUpdate({ _id: dbModel.kontratado }, { $push: { favourites: dbModel._id } }, { new: true })
                                 .then(kontratadoUpdated => {
-                                    res.status(200).json(dbModel);
+                                    res.status(200).json(kontratadoUpdated);
                                 })
                         })
                 })

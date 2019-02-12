@@ -26,21 +26,28 @@ class UserAfterLogin extends Component {
         userId: '',
         favorites: [],
         kontratados: [],
-
+        myBool: false,
+        favClass:"Danger",
     }
 
     addFavs = () => {
+        console.log("we are trying to addfavs")
+     
         let fav = {
             kontratado: this.state.results._id,
-            user: this.state.userId
+            user: this.props.userId
         }
         API.insertFavourite(fav).then(result => {
             this.setState({ favorites: result });
             console.log(result);
+            API.getKontratado(result.data._id).then(result2=>{
+                console.log(result2);
+                let temp1=this.state.favorites
+                temp1.push(result2)
+                this.setState({favorites: temp1});
+            }).catch(err=> console.log(err))
         }).catch(err => console.log(err));
     }
-
-
 
     searchClickHandler = (searchProfession, searchState) => {
 
@@ -60,7 +67,6 @@ class UserAfterLogin extends Component {
         }).catch(err => console.log(err));
     }
 
-
     routeChange = (type) => {
         this.setState({
             type
@@ -76,7 +82,7 @@ class UserAfterLogin extends Component {
                         <Wrapper>
                             <Filters />
                             {this.state.kontratados.map(kontratado => {
-                                return <WorkerCard userId={kontratado._id} addFavs={this.addFavs} kontratado={kontratado} />
+                                return <WorkerCard userId={kontratado._id} favClass={this.state.favClass} addFavs={this.addFavs} kontratado={kontratado} />
 
                             })}
                             <UserHomepageQuickLinks routeChange={this.routeChange}/>
